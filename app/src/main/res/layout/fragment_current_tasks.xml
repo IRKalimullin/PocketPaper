@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="currentTaskFragment"
+            type="com.baleshapp.pocketpaper.view.task.CurrentTasksFragment" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.task.CurrentTasksFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginEnd="12dp">
+
+            <TextView
+                android:id="@+id/current_tasks_title"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="@{currentTaskFragment.title}"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="24sp" />
+
+            <ImageButton
+                android:id="@+id/new_task_button"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:onClick="@{() -> currentTaskFragment.createNewTask()}"
+                android:src="@drawable/ic_baseline_add_task_24"
+                app:tint="?attr/button_color_attr" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_layout_shape"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/date_title_today"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="16sp"
+                tools:text="@{currentTaskFragment.date}" />
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:background="?attr/window_background_color_attr" />
+
+            <TextView
+                android:id="@+id/goto_all_tasks"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/all_tasks_button_text"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/current_tasks_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:saveEnabled="false" />
+
+    </LinearLayout>
+
+</layout>

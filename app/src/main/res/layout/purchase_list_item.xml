@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="list"
+            type="com.baleshapp.pocketpaper.data.model.PurchaseList" />
+
+        <variable
+            name="viewHolder"
+            type="com.baleshapp.pocketpaper.view.purchase.adapters.PurchaseListAdapter.PurchaseListViewHolder" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/custom_layout_shape"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/purchase_list_name"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:gravity="center_vertical"
+                android:onClick="@{() ->  viewHolder.openList()}"
+                android:onLongClick="@{() -> viewHolder.onLongClick()}"
+                android:paddingStart="17dp"
+                android:paddingEnd="0dp"
+                android:text="@{list.name}"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="18sp"
+
+                />
+        </LinearLayout>
+    </LinearLayout>
+</layout>
