@@ -1,5 +1,6 @@
 package com.baleshapp.pocketpaper.view.task.adapters
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,14 +23,12 @@ class TaskAdapter(
     private var taskList: SortedList<Task> =
         SortedList(Task::class.java, object : SortedList.Callback<Task>() {
             override fun compare(o1: Task, o2: Task): Int {
-                return if (o2.isDone && o1.isDone) {
+                return if (!o2.isDone && o1.isDone) {
                     1
                 } else if (o2.isDone && !o1.isDone) {
                     -1
-                } else if (o1.isDone == o2.isDone) {
-                    (o2.timestampOfTask - o1.timestampOfTask).toInt()
                 } else {
-                    (o1.date - o2.date).toInt()
+                    (o2.timestampOfTask - o1.timestampOfTask).toInt()
                 }
             }
 
@@ -49,8 +48,8 @@ class TaskAdapter(
                 notifyItemRangeChanged(position, count)
             }
 
-            override fun areContentsTheSame(oldItem: Task?, newItem: Task?): Boolean {
-                return oldItem?.equals(newItem)!!
+            override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
+                return oldItem == newItem
             }
 
             override fun areItemsTheSame(item1: Task, item2: Task): Boolean {
@@ -71,11 +70,12 @@ class TaskAdapter(
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.bind(taskList.get(position))
+        holder.bind(taskList[position])
     }
 
     fun setItems(taskList: List<Task>) {
         this.taskList.replaceAll(taskList)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = taskList.size()
@@ -97,11 +97,14 @@ class TaskAdapter(
             binding.root.context.resources.getString(R.string.cancel_warning_message)
         private val deletedMessage = binding.root.context.resources.getString(R.string.deleted)
 
+        init {
+            mBinding.viewHolder = this
+        }
+
         fun bind(task: Task) {
             this.task = task
             mBinding.task = this.task
-            mBinding.viewHolder = this
-            mBinding.executePendingBindings()
+            mBinding.invalidateAll()
         }
 
         fun getDateString(task: Task): String {

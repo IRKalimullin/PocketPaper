@@ -21,9 +21,9 @@ class PurchaseAdapter(
         SortedList(PurchaseItem::class.java, object : SortedList.Callback<PurchaseItem>() {
             override fun compare(o1: PurchaseItem, o2: PurchaseItem): Int {
                 return if (!o2.isAdded && o1.isAdded) {
-                    -1
-                } else if (o2.isAdded && !o1.isAdded) {
                     1
+                } else if (o2.isAdded && !o1.isAdded) {
+                    -1
                 } else {
                     (o2.timestampOfItem - o1.timestampOfItem).toInt()
                 }
@@ -75,6 +75,7 @@ class PurchaseAdapter(
 
     fun setItems(itemList: List<PurchaseItem>) {
         this.itemList.replaceAll(itemList)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = itemList.size()

@@ -20,6 +20,6 @@
         android:background="?attr/window_background_color_attr"
         app:itemIconTint="@color/bottom_navigation_buttons_color"
         app:itemTextColor="@color/bottom_navigation_buttons_color"
-        app:menu="@menu/bottom_navigation_main_menu" />
+        app:menu="@menu/main_navigation_menu" />
 
 </RelativeLayout>

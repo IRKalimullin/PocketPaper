@@ -60,6 +60,7 @@ class PurchaseListDialog(
 
     fun setData(itemList: List<PurchaseItem>) {
         adapter.setItems(itemList)
+        adapter.notifyDataSetChanged()
     }
 
     fun saveItem() {

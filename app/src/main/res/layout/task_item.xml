@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -16,72 +17,119 @@
     </data>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/task_check_box"
-            android:layout_width="36dp"
-            android:layout_height="48dp"
-            android:checked="@{task.done}"
-            android:gravity="center_vertical|center_horizontal"
-            android:onCheckedChanged="@{(compoundButton, checked) -> viewHolder.saveCheckedState(compoundButton, checked)}"
-            android:theme="@style/custom_checkbox_style" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerVertical="true"
-                android:background="?attr/text_color_attr"
-                android:visibility="@{task.done ? View.VISIBLE : View.GONE}"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/task_name"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:background="@android:color/transparent"
-                android:gravity="center_vertical"
-                android:onLongClick="@{() -> viewHolder.onLongClick()}"
-                android:text="@{task.name}"
-                android:textColor="?attr/text_color_attr"
-                android:textSize="16sp" />
-        </RelativeLayout>
+        android:layout_margin="3dp"
+        android:background="@drawable/custom_layout_shape"
+        android:layout_width="200dp"
+        android:layout_height="119dp"
+        android:elevation="2dp"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/task_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:text="@{viewHolder.getDateString(task)}"
-                android:textColor="?attr/text_color_attr"
-                android:textSize="12sp" />
+            <CheckBox
+                android:id="@+id/task_check_box"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="top|center_vertical"
+                android:checked="@{task.done}"
+                android:gravity="center_vertical|center_horizontal"
+                android:onCheckedChanged="@{(compoundButton, checked) -> viewHolder.saveCheckedState(compoundButton, checked)}"
+                android:theme="@style/custom_checkbox_style" />
 
-            <TextView
-                android:id="@+id/task_time"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:text="@{viewHolder.getTimeString(task)}"
-                android:textColor="?attr/text_color_attr"
-                android:textSize="12sp" />
+                android:layout_gravity="top"
+                android:layout_weight="1">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:background="?attr/text_color_attr"
+                    android:visibility="@{task.done ? View.VISIBLE : View.GONE}"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:ellipsize="end"
+                    android:maxLines="1"
+
+                    android:id="@+id/task_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="36dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:onLongClick="@{() -> viewHolder.onLongClick()}"
+                    android:text="@{task.name}"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp" />
+            </RelativeLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:gravity="start|top"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_baseline_date_range_24"/>
+
+                <TextView
+                    android:layout_marginStart="4dp"
+                    android:id="@+id/task_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:background="@android:color/transparent"
+                    android:text="@{viewHolder.getDateString(task)}"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_baseline_access_time_24"/>
+
+                <TextView
+                    android:layout_marginStart="4dp"
+                    android:id="@+id/task_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:background="@android:color/transparent"
+                    android:text="@{viewHolder.getTimeString(task)}"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="12sp"
+                     />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
     </LinearLayout>
+
 
 </layout>

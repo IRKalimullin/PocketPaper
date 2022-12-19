@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PocketPaper/app/src/main/res/drawable-v24/custom_layout_shape.xml" value="0.23854166666666668" />
         <entry key="..\:/PocketPaper/app/src/main/res/drawable-v24/ic_baseline_shopping_basket_24.xml" value="0.2916666666666667" />
+        <entry key="..\:/PocketPaper/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.23854166666666668" />
         <entry key="..\:/PocketPaper/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
         <entry key="..\:/PocketPaper/app/src/main/res/layout/add_task_line.xml" value="0.2957427536231884" />
         <entry key="..\:/PocketPaper/app/src/main/res/layout/fragment_current_tasks.xml" value="0.2957427536231884" />
+        <entry key="..\:/PocketPaper/app/src/main/res/layout/fragment_main_page.xml" value="0.44479166666666664" />
         <entry key="..\:/PocketPaper/app/src/main/res/layout/fragment_note_list.xml" value="0.276268115942029" />
         <entry key="..\:/PocketPaper/app/src/main/res/layout/fragment_purchase.xml" value="0.18795289855072464" />
         <entry key="..\:/PocketPaper/app/src/main/res/layout/fragment_purchase_list.xml" value="0.18795289855072464" />
@@ -17,8 +20,10 @@
         <entry key="..\:/PocketPaper/app/src/main/res/layout/purchase_list_dialog.xml" value="0.371875" />
         <entry key="..\:/PocketPaper/app/src/main/res/layout/purchase_list_item.xml" value="0.33" />
         <entry key="..\:/PocketPaper/app/src/main/res/layout/purchase_new_list.xml" value="0.371875" />
+        <entry key="..\:/PocketPaper/app/src/main/res/layout/task_item.xml" value="0.36820652173913043" />
         <entry key="..\:/PocketPaper/app/src/main/res/layout/tasks_show_line.xml" value="0.2957427536231884" />
         <entry key="..\:/PocketPaper/app/src/main/res/menu/bottom_navigation_main_menu.xml" value="0.371875" />
+        <entry key="..\:/PocketPaper/app/src/main/res/menu/main_navigation_menu.xml" value="0.371875" />
       </map>
     </option>
   </component>
