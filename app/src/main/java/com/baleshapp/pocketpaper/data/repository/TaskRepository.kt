@@ -21,6 +21,20 @@ class TaskRepository(context: Context) {
         return taskDao.getCurrentTasks(day[0], day[1])
     }
 
+    fun getActiveTasks(): Flow<List<Task>> {
+        val day = DateTimeUtil().getDayBorders(0)
+        return taskDao.getActiveTasksLiveData(day.first())
+    }
+
+    fun getCompletedTasks(): Flow<List<Task>> {
+        return taskDao.getCompletedTasksLiveData()
+    }
+
+    fun getMissedTasks(): Flow<List<Task>> {
+        val day = DateTimeUtil().getDayBorders(0)
+        return taskDao.getMissedTasksLiveData(day.first())
+    }
+
     fun getAllTasks(): Flow<List<Task>> {
         return taskDao.getAllTasks()
     }

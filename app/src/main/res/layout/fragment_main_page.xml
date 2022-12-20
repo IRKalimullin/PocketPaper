@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginTop="20dp"
-                android:text="Главная"
+                android:text="@string/main_page_title"
                 android:textColor="?attr/text_color_attr"
                 android:textSize="28sp" />
 
@@ -52,19 +52,24 @@
                 android:layout_height="wrap_content"
                 android:textColor="?attr/text_color_attr"
                 android:textSize="16sp"
-                android:text="Задачи на сегодня"/>
+                android:text="@string/today_tasks"/>
 
             <TextView
-                android:layout_margin="1dp"
-                android:elevation="1dp"
+                android:onClick="@{() -> fragment.openAllTasks()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="1dp"
                 android:background="@drawable/custom_layout_shape"
+                android:elevation="1dp"
                 android:padding="4dp"
-                android:text="Открыть все"
+                android:text="@string/open_all"
                 android:textColor="?attr/text_color_attr"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                tools:ignore="RelativeOverlap" />
 
         </RelativeLayout>
 
@@ -116,7 +121,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Заметки"
+                    android:text="@string/title_notes_fragment"
                     android:textSize="16sp"
                     android:textColor="@color/white"
                     android:layout_below="@id/note_icon"/>
@@ -154,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/purchase_icon"
                     android:layout_marginTop="6dp"
-                    android:text="Покупки"
+                    android:text="@string/title_purchases_fragment"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -188,7 +193,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Финансы"
+                    android:text="@string/title_finances_fragment"
                     android:textSize="16sp"
                     android:textColor="@color/white"
                     android:layout_below="@id/finance_icon"/>
@@ -204,7 +209,7 @@
             android:layout_marginHorizontal="16dp"
             android:textColor="?attr/text_color_attr"
             android:textSize="16sp"
-            android:text="Избранное"/>
+            android:text="@string/favorites"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="12dp"

@@ -14,13 +14,14 @@ import com.baleshapp.pocketpaper.data.repository.TaskRepository
 import com.baleshapp.pocketpaper.databinding.FragmentMainPageBinding
 import com.baleshapp.pocketpaper.view.note.NoteListFragment
 import com.baleshapp.pocketpaper.view.purchase.PurchaseFragment
+import com.baleshapp.pocketpaper.view.task.AllTasksFragment
 import com.baleshapp.pocketpaper.view.task.adapters.TaskAdapter
 import com.baleshapp.pocketpaper.view.task.dialogs.NewTaskDialog
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModel
 
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModelFactory
 
-class MainPageFragment: Fragment() {
+class MainPageFragment : Fragment() {
 
     private lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var taskViewModel: TaskViewModel
@@ -33,7 +34,7 @@ class MainPageFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_page,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_page, container, false)
 
         binding.fragment = this
 
@@ -48,10 +49,11 @@ class MainPageFragment: Fragment() {
         }, {
             taskViewModel.update(it)
         })
-        taskViewModel.getCurrentTasks(0).observe(viewLifecycleOwner, {
+        taskViewModel.getCurrentTasks(0).observe(viewLifecycleOwner) {
             taskAdapter.setItems(it)
-        })
-        val layoutManager = LinearLayoutManager(binding.root.context, RecyclerView.HORIZONTAL, false)
+        }
+        val layoutManager =
+            LinearLayoutManager(binding.root.context, RecyclerView.HORIZONTAL, false)
 
         binding.tasksRecyclerView.layoutManager = layoutManager
         binding.tasksRecyclerView.adapter = taskAdapter
@@ -59,19 +61,27 @@ class MainPageFragment: Fragment() {
         return binding.root
     }
 
-    fun openNotesPage(){
+    fun openNotesPage() {
         val fragmentManager = parentFragmentManager
-        fragmentManager.beginTransaction().replace(R.id.main_container, NoteListFragment()).addToBackStack(null).commit()
+        fragmentManager.beginTransaction().replace(R.id.main_container, NoteListFragment())
+            .addToBackStack(null).commit()
     }
 
-    fun openPurchasesPage(){
+    fun openPurchasesPage() {
         val fragmentManager = parentFragmentManager
-        fragmentManager.beginTransaction().replace(R.id.main_container, PurchaseFragment()).addToBackStack(null).commit()
+        fragmentManager.beginTransaction().replace(R.id.main_container, PurchaseFragment())
+            .addToBackStack(null).commit()
     }
 
-    fun createNewTask(){
+    fun createNewTask() {
         NewTaskDialog(binding.root.context) {
             taskViewModel.insert(it)
         }
+    }
+
+    fun openAllTasks() {
+        val fragmentManager = parentFragmentManager
+        fragmentManager.beginTransaction().replace(R.id.main_container, AllTasksFragment())
+            .addToBackStack(null).commit()
     }
 }

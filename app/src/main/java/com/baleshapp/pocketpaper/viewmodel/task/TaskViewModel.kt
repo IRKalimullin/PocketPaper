@@ -23,6 +23,17 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         repository.update(task)
     }
 
+    fun getActiveTasks() : LiveData<List<Task>>  {
+        return repository.getActiveTasks().asLiveData()
+    }
+
+    fun getCompletedTasks() : LiveData<List<Task>> {
+        return repository.getCompletedTasks().asLiveData()
+    }
+
+    fun getMissedTasks(): LiveData<List<Task>>  {
+        return repository.getMissedTasks().asLiveData()
+    }
 }
 
 

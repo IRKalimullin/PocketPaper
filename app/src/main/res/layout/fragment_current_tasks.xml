@@ -73,7 +73,7 @@
                 android:layout_height="30dp"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="@string/all_tasks_button_text"
+                android:text="@string/all_tasks"
                 android:textColor="?attr/text_color_attr"
                 android:textSize="20sp" />
 

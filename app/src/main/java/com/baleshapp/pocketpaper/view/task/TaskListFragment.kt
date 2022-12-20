@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Task
 import com.baleshapp.pocketpaper.data.repository.TaskRepository
-import com.baleshapp.pocketpaper.databinding.FragmentTaskPageBinding
+import com.baleshapp.pocketpaper.databinding.FragmentTaskPage1Binding
 import com.baleshapp.pocketpaper.view.task.adapters.TaskAdapter
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModel
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModelFactory
@@ -24,13 +24,13 @@ class TaskListFragment(private val pageCount: Int) : Fragment() {
     private lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var taskViewModel: TaskViewModel
     private lateinit var taskAdapter: TaskAdapter
-    private lateinit var binding: FragmentTaskPageBinding
+    private lateinit var binding: FragmentTaskPage1Binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_task_page, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_task_page1, container, false)
         binding.pageFragment = this
         fragmentContext = binding.root.context
 

@@ -5,10 +5,7 @@
     <string name="title_purchases_fragment">Покупки</string>
     <string name="title_finances_fragment">Финансы</string>
     <string name="title_current_tasks_fragment">Текущие задачи</string>
-    <string name="all_tasks_button_text">Все задачи</string>
-    <string name="active_tasks_text">Активные</string>
-    <string name="completed_tasks_text">Выполненные</string>
-    <string name="missed_tasks_text">Просроченные</string>
+    <string name="all_tasks">Все задачи</string>
     <string name="empty_task_list_message">На этот день ничего не запланировано</string>
     <string name="note">Заметка</string>
     <string name="name_hint">Название</string>
@@ -21,6 +18,7 @@
     <string name="save_note_button_description">Сохранить заметку</string>
     <string name="save_item_button_description">Сохранить предмет</string>
     <string name="save_list_button_description">Сохранить список</string>
+    <string name="back_button_description">Назад</string>
 
     <string name="cancel_warning_message">(Это действие невозможно отменить!)</string>
     <string name="delete">Удалить</string>
@@ -32,6 +30,14 @@
     <string name="empty_name">Название не может быть пустым</string>
     <string name="delete_task">Удалить задачу</string>
     <string name="today">Сегодня</string>
+    <string name="active_tasks">Активные</string>
+    <string name="completed_tasks">Выполненные</string>
+    <string name="missed_tasks">Просроченные</string>
+    <string name="open_all">Открыть все</string>
+    <string name="today_tasks">Задачи на сегодня</string>
+    <string name="favorites">Избранное</string>
+    <string name="main_page_title">Главная</string>
+
 
     <string-array name="finance_spent_categories">
         <item>Продукты</item>
@@ -52,4 +58,6 @@
     </string-array>
     <string name="finance_transaction_type_spent">Расходы</string>
     <string name="finance_transaction_type_receive">Доходы</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

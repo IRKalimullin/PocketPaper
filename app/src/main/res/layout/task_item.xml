@@ -47,6 +47,7 @@
                 android:layout_weight="1">
 
                 <View
+                    android:layout_marginEnd="6dp"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_centerVertical="true"

@@ -59,4 +59,9 @@ class NoteListFragment : Fragment() {
             })
     }
 
+    fun onBack() {
+        val fragmentManager = parentFragmentManager
+        fragmentManager.popBackStack()
+    }
+
 }
