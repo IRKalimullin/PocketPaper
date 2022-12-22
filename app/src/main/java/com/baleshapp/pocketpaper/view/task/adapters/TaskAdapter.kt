@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SortedList
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Task
+import com.baleshapp.pocketpaper.data.model.TaskTag
 import com.baleshapp.pocketpaper.databinding.TaskItemBinding
 import com.baleshapp.pocketpaper.utils.DateTimeUtil
 
@@ -89,13 +90,17 @@ class TaskAdapter(
         lateinit var task: Task
         private val mBinding: TaskItemBinding = binding
         private val dateTimeUtil = DateTimeUtil()
+        private val context = binding.root.context
+
+        var tagText: String = context.resources.getString(R.string.general_tag_text)
+
         private val deleteTaskMessage =
-            binding.root.context.resources.getString(R.string.delete_task)
-        private val deleteMessage = binding.root.context.resources.getString(R.string.delete)
-        private val cancelMessage = binding.root.context.resources.getString(R.string.cancel)
+            context.resources.getString(R.string.delete_task)
+        private val deleteMessage = context.resources.getString(R.string.delete)
+        private val cancelMessage = context.resources.getString(R.string.cancel)
         private val cancelWarningMessage =
-            binding.root.context.resources.getString(R.string.cancel_warning_message)
-        private val deletedMessage = binding.root.context.resources.getString(R.string.deleted)
+            context.resources.getString(R.string.cancel_warning_message)
+        private val deletedMessage = context.resources.getString(R.string.deleted)
 
         init {
             mBinding.viewHolder = this
@@ -103,8 +108,28 @@ class TaskAdapter(
 
         fun bind(task: Task) {
             this.task = task
+            mBinding.taskTagChip.setChipBackgroundColorResource(getTagColor(task.tag))
+            tagText = getTagText(task.tag)
             mBinding.task = this.task
             mBinding.invalidateAll()
+        }
+
+        private fun getTagColor(tag: TaskTag): Int {
+            return when (tag) {
+                TaskTag.GENERAL -> R.color.general_task_tag_color
+                TaskTag.PERSONAL -> R.color.personal_task_tag_color
+                TaskTag.WORK -> R.color.work_task_tag_color
+                TaskTag.STUDY -> R.color.study_task_tag_color
+            }
+        }
+
+        private fun getTagText(tag: TaskTag): String {
+            return when (tag) {
+                TaskTag.GENERAL -> context.resources.getString(R.string.general_tag_text)
+                TaskTag.PERSONAL -> context.resources.getString(R.string.personal_tag_text)
+                TaskTag.WORK -> context.resources.getString(R.string.work_tag_text)
+                TaskTag.STUDY -> context.resources.getString(R.string.study_tag_text)
+            }
         }
 
         fun getDateString(task: Task): String {
@@ -127,7 +152,7 @@ class TaskAdapter(
         }
 
         fun onLongClick(): Boolean {
-            val builder = AlertDialog.Builder(mBinding.root.context, R.style.custom_alert_dialog)
+            val builder = AlertDialog.Builder(context, R.style.custom_alert_dialog)
             builder.setTitle("$deleteTaskMessage \"${task.name}\"?")
                 .setMessage(cancelWarningMessage)
                 .setPositiveButton(
@@ -144,7 +169,7 @@ class TaskAdapter(
 
         private fun deleteTask() {
             onDelete(task)
-            Toast.makeText(mBinding.root.context, deletedMessage, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, deletedMessage, Toast.LENGTH_SHORT).show()
         }
     }
 }

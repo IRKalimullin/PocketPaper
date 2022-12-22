@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.baleshapp.pocketpaper.data.database.converters.TaskTagConverter
 import com.baleshapp.pocketpaper.data.model.*
 
+@TypeConverters(TaskTagConverter::class)
 @Database(
     entities = [Task::class, Note::class, PurchaseList::class, PurchaseItem::class, FinancialReport::class, FinanceItem::class],
     version = 1, exportSchema = true

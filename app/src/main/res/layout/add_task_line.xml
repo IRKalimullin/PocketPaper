@@ -10,6 +10,7 @@
         <variable
             name="dialog"
             type="com.baleshapp.pocketpaper.view.task.dialogs.NewTaskDialog" />
+        <import type="com.baleshapp.pocketpaper.data.model.TaskTag"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,10 +21,60 @@
         android:background="@drawable/custom_shape_bottom_sheet_dialog"
         android:orientation="vertical">
 
-        <View
+
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="?attr/window_background_color_attr" />
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginHorizontal="12dp">
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_input_tag"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/general_tag_chip"
+                    android:text="@string/general_tag_text"
+                    android:checkable="true"
+                    app:checkedIconEnabled="true"
+                    app:chipBackgroundColor="@color/general_task_tag_color"
+                    />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/personal_tag_chip"
+                    android:text="@string/personal_tag_text"
+                    android:checkable="true"
+                    app:checkedIconEnabled="true"
+                    app:chipBackgroundColor="@color/personal_task_tag_color"
+                    />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/work_tag_chip"
+                    android:text="@string/work_tag_text"
+                    app:checkedIconEnabled="true"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/work_task_tag_color"
+                    />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/study_tag_chip"
+                    android:text="@string/study_tag_text"
+                    android:checkable="true"
+                    app:checkedIconEnabled="true"
+                    app:chipBackgroundColor="@color/study_task_tag_color"
+                    />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
 
         <LinearLayout
             android:id="@+id/add_task_buttons_container"

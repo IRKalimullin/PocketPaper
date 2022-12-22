@@ -38,6 +38,10 @@
     <string name="favorites">Избранное</string>
     <string name="main_page_title">Главная</string>
 
+    <string name="general_tag_text">Общее</string>
+    <string name="personal_tag_text">Личное</string>
+    <string name="work_tag_text">Работа</string>
+    <string name="study_tag_text">Учеба</string>
 
     <string-array name="finance_spent_categories">
         <item>Продукты</item>

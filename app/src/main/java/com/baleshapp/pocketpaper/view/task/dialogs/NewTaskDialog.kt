@@ -11,6 +11,7 @@ import androidx.core.content.getSystemService
 import androidx.databinding.DataBindingUtil
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Task
+import com.baleshapp.pocketpaper.data.model.TaskTag
 import com.baleshapp.pocketpaper.databinding.AddTaskLineBinding
 import com.baleshapp.pocketpaper.utils.DateTimeUtil
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -34,7 +35,8 @@ class NewTaskDialog(
         isDone = false,
         time = 0L,
         date = System.currentTimeMillis(),
-        timestampOfTask = System.currentTimeMillis()
+        timestampOfTask = System.currentTimeMillis(),
+        tag = TaskTag.GENERAL
     )
 
     init {
@@ -60,8 +62,19 @@ class NewTaskDialog(
 
     fun saveTask() {
         if (isValidated()) {
+            task.tag = selectedTag(binding.taskInputTag.checkedChipId)
             onSave(task)
             dialog.cancel()
+        }
+    }
+
+    fun selectedTag(chipId: Int): TaskTag{
+        return when (chipId){
+            R.id.general_tag_chip -> TaskTag.GENERAL
+            R.id.personal_tag_chip -> TaskTag.PERSONAL
+            R.id.work_tag_chip -> TaskTag.WORK
+            R.id.study_tag_chip -> TaskTag.STUDY
+            else -> TaskTag.GENERAL
         }
     }
 

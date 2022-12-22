@@ -17,4 +17,9 @@
     <color name="window_background_light_mode">#f2f3f5</color>
     <color name="violet">#7D88E7</color>
     <color name="light_green">#81E89E</color>
+
+    <color name="personal_task_tag_color">@color/crimson</color>
+    <color name="general_task_tag_color">@color/green</color>
+    <color name="work_task_tag_color">@color/violet</color>
+    <color name="study_task_tag_color">@color/yellow</color>
 </resources>
