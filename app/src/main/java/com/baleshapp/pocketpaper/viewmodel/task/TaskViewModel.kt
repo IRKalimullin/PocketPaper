@@ -34,6 +34,14 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
     fun getMissedTasks(): LiveData<List<Task>>  {
         return repository.getMissedTasks().asLiveData()
     }
+
+    fun getTasksDateList(): LiveData<List<Long>>{
+        return repository.getDateList().asLiveData()
+    }
+
+    fun getTasksOnDate(date1: Long,date2: Long): LiveData<List<Task>>{
+        return repository.getTasksOnDate(date1,date2).asLiveData()
+    }
 }
 
 

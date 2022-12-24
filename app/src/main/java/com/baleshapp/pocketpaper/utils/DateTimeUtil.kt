@@ -91,4 +91,24 @@ class DateTimeUtil {
         return longArrayOf(firstDate.time.time, secondDate.time.time)
     }
 
+    fun getDayBorders(year: Int, month: Int, dayOfMonth: Int): LongArray {
+
+        val calendar1 = Calendar.getInstance()
+        calendar1.set(Calendar.HOUR_OF_DAY, 23)
+        calendar1.set(Calendar.MINUTE, 59)
+        calendar1.set(Calendar.MILLISECOND, 0)
+        calendar1.set(Calendar.YEAR, year)
+        calendar1.set(Calendar.MONTH, month)
+        calendar1.set(Calendar.DAY_OF_MONTH, dayOfMonth - 1)
+
+        val calendar2 = Calendar.getInstance()
+        calendar2.set(Calendar.HOUR_OF_DAY, 23)
+        calendar2.set(Calendar.MINUTE, 59)
+        calendar2.set(Calendar.MILLISECOND, 0)
+        calendar2.set(Calendar.YEAR, year)
+        calendar2.set(Calendar.MONTH, month)
+        calendar2.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+        return longArrayOf(calendar1.time.time, calendar2.time.time)
+    }
 }

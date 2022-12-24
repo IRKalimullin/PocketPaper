@@ -43,6 +43,9 @@
     <string name="work_tag_text">Работа</string>
     <string name="study_tag_text">Учеба</string>
 
+    <string name="expand">Развернуть</string>
+    <string name="collapse">Свернуть</string>
+
     <string-array name="finance_spent_categories">
         <item>Продукты</item>
         <item>Автомобиль</item>

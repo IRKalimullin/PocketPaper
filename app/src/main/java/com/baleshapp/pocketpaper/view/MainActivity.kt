@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.baleshapp.pocketpaper.R
+import com.baleshapp.pocketpaper.view.calendarpage.CalendarFragment
 import com.baleshapp.pocketpaper.view.mainpage.MainPageFragment
 import com.baleshapp.pocketpaper.view.note.NoteListFragment
 import com.baleshapp.pocketpaper.view.purchase.PurchaseFragment
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         //New fragments
         val mainPageFragment = MainPageFragment()
+        val calendarPageFragment = CalendarFragment()
 
         val navigationView =
             findViewById<BottomNavigationView>(R.id.bottom_navigation_main_activity)
@@ -36,6 +38,8 @@ class MainActivity : AppCompatActivity() {
                     R.id.nav_menu_main_page -> fragmentManager.beginTransaction()
                         .replace(R.id.main_container, mainPageFragment).commit()
 
+                    R.id.nav_menu_calendar_page -> fragmentManager.beginTransaction()
+                        .replace(R.id.main_container, calendarPageFragment).commit()
                 }
                 return true
             }
