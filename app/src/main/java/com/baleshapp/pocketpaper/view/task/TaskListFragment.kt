@@ -46,9 +46,9 @@ class TaskListFragment(private val pageCount: Int) : Fragment() {
             taskViewModel.update(it)
         })
 
-        taskViewModel.getCurrentTasks(pageCount).observe(viewLifecycleOwner, {
+        taskViewModel.getCurrentTasks(pageCount).observe(viewLifecycleOwner) {
             updateTaskContainer(it)
-        })
+        }
 
         val layoutManager = LinearLayoutManager(fragmentContext, RecyclerView.VERTICAL, false)
         binding.currentTasksRecyclerView.layoutManager = layoutManager

@@ -58,4 +58,8 @@
     <style name="dialog_text_style">
         <item name="android:textColor">?attr/text_color_attr</item>
     </style>
+    
+    <style name="calendar_text_appearance" parent="TextAppearance.MaterialCalendarWidget.Date">
+        <item name="android:textColor">?attr/text_color_attr</item>
+    </style>
 </resources>

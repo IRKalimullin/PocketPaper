@@ -116,6 +116,8 @@ class CalendarFragment : Fragment() {
         calendarView.selectedDate = CalendarDay.today()
         calendarView.currentDate = CalendarDay.today()
         calendarView.addDecorator(SelectedDayDecorator(CalendarDay.today(), mContext))
+        val cal: Calendar = Calendar.getInstance()
+        setData(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
     }
 
     private fun setDecorator(datesList: List<CalendarDay>) {

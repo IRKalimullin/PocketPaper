@@ -26,7 +26,10 @@
             android:layout_marginBottom="6dp"
             android:visibility="visible"
             app:mcv_calendarMode="week"
-            app:mcv_dateTextAppearance="?attr/text_color_attr"
+            app:mcv_dateTextAppearance="@style/calendar_text_appearance"
+            app:mcv_headerTextAppearance="@style/calendar_text_appearance"
+            app:mcv_weekDayTextAppearance="@style/calendar_text_appearance"
+            android:switchTextAppearance="@style/calendar_text_appearance"
             app:mcv_selectionColor="@color/green"
             app:mcv_showOtherDates="all" />
 
@@ -39,7 +42,10 @@
             android:layout_marginBottom="6dp"
             android:visibility="gone"
             app:mcv_calendarMode="month"
-            app:mcv_dateTextAppearance="?attr/text_color_attr"
+            app:mcv_dateTextAppearance="@style/calendar_text_appearance"
+            app:mcv_headerTextAppearance="@style/calendar_text_appearance"
+            app:mcv_weekDayTextAppearance="@style/calendar_text_appearance"
+            android:switchTextAppearance="@style/calendar_text_appearance"
             app:mcv_selectionColor="@color/green"
             app:mcv_showOtherDates="all" />
 

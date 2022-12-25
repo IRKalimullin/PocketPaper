@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="fragment"
+            type="com.baleshapp.pocketpaper.view.SettingsFragment" />
+        <import type="android.view.View"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.SettingsFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/settings_title"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Настройки"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="28sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/text_color_attr"
+            android:text="@string/app_name"
+            android:gravity="center"
+            android:layout_marginTop="40dp"
+            android:textSize="30sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/text_color_attr"
+            android:text="ver. 0.1.0"
+            android:gravity="center"
+            android:textSize="20sp"
+            />
+
+        <RelativeLayout
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:paddingVertical="6dp"
+
+            android:background="@drawable/custom_layout_shape"
+            >
+            <TextView
+                android:id="@+id/app_theme_text"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Тема приожения"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="18sp"
+                />
+            <TextView
+                android:visibility="@{fragment.themeChanged ? View.VISIBLE : View.GONE}"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/app_theme_text"
+                android:layout_marginStart="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Требуется перезапуск"
+                android:textColor="@color/crimson"
+                android:textSize="12sp"
+                />
+
+            <ImageButton
+                android:id="@+id/app_theme_mode"
+                android:onClick="@{() -> fragment.setThemeMode()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:background="@android:color/transparent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="12dp"
+                app:tint="?attr/button_color_attr" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

@@ -64,7 +64,6 @@ class NewTaskDialog(
         if (isValidated()) {
             task.tag = selectedTag(binding.taskInputTag.checkedChipId)
             onSave(task)
-            println("-------sad-------" + task.date)
             dialog.cancel()
         }
     }
