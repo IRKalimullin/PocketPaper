@@ -31,7 +31,7 @@
             app:mcv_weekDayTextAppearance="@style/calendar_text_appearance"
             android:switchTextAppearance="@style/calendar_text_appearance"
             app:mcv_selectionColor="@color/green"
-            app:mcv_showOtherDates="all" />
+            app:mcv_showOtherDates="out_of_range" />
 
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/tasks_calendar_month"
@@ -47,7 +47,7 @@
             app:mcv_weekDayTextAppearance="@style/calendar_text_appearance"
             android:switchTextAppearance="@style/calendar_text_appearance"
             app:mcv_selectionColor="@color/green"
-            app:mcv_showOtherDates="all" />
+            app:mcv_showOtherDates="out_of_range" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                 android:layout_height="22dp"
                 android:layout_alignParentStart="true"
                 android:checkable="false"
-                android:onClick="@{() -> fragment.changeMode()}"
+                android:onClick="@{() -> fragment.changeCalendarMode()}"
                 android:text="@{fragment.open ? @string/collapse : @string/expand}"
                 android:textColor="@color/white"
                 app:chipBackgroundColor="@color/green"

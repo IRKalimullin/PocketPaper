@@ -1,6 +1,5 @@
 package com.baleshapp.pocketpaper.view.task.dialogs
 
-import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
@@ -49,12 +48,12 @@ class NewTaskDialog(
 
     private fun createDialog() {
         val inputManager: InputMethodManager = context.getSystemService()!!
-        inputManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        inputManager.showSoftInput(binding.root,InputMethodManager.SHOW_IMPLICIT)
         dialog = BottomSheetDialog(context, R.style.bottom_sheet_dialog_style)
         dialog.setContentView(binding.root)
 
         dialog.setOnCancelListener {
-            inputManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+            inputManager.showSoftInput(binding.root,InputMethodManager.HIDE_IMPLICIT_ONLY)
         }
         dialog.show()
         binding.taskAddInputName.requestFocus()
@@ -68,7 +67,7 @@ class NewTaskDialog(
         }
     }
 
-    fun selectedTag(chipId: Int): TaskTag{
+    private fun selectedTag(chipId: Int): TaskTag{
         return when (chipId){
             R.id.general_tag_chip -> TaskTag.GENERAL
             R.id.personal_tag_chip -> TaskTag.PERSONAL
@@ -91,7 +90,7 @@ class NewTaskDialog(
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         DatePickerDialog(
-            context, AlertDialog.THEME_DEVICE_DEFAULT_DARK,
+            context, android.R.style.Theme_DeviceDefault_Dialog_Alert,
             { _, year, month, dayOfMonth ->
                 task.date = dateTimeUtil.getDateLong(year, month, dayOfMonth)
                 dateText = dateTimeUtil.getDayName(task.date)
@@ -102,7 +101,7 @@ class NewTaskDialog(
 
     fun createTimeDialog() {
         TimePickerDialog(
-            context, AlertDialog.THEME_DEVICE_DEFAULT_DARK,
+            context, android.R.style.Theme_DeviceDefault_Dialog_Alert,
             { _, hourOfDay, minute ->
                 task.time = dateTimeUtil.getTimeLong(hourOfDay, minute)
                 timeText = dateTimeUtil.getTimeString(task.time)

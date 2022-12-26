@@ -19,7 +19,7 @@ import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModelFactory
 class TasksPageFragment(private val position: Int) : Fragment() {
 
     lateinit var binding: FragmentTasksPageBinding
-    lateinit var viewModelFactory: TaskViewModelFactory
+    private lateinit var viewModelFactory: TaskViewModelFactory
     lateinit var viewModel: TaskViewModel
 
     override fun onCreateView(

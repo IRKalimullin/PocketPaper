@@ -1,6 +1,5 @@
 package com.baleshapp.pocketpaper.view.task.adapters
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup

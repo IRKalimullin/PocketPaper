@@ -2,11 +2,14 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="fragment"
             type="com.baleshapp.pocketpaper.view.SettingsFragment" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -16,8 +19,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/settings_title"
@@ -33,62 +35,58 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="?attr/text_color_attr"
-            android:text="@string/app_name"
-            android:gravity="center"
             android:layout_marginTop="40dp"
-            android:textSize="30sp"
-            />
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="?attr/text_color_attr"
+            android:textSize="30sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="?attr/text_color_attr"
-            android:text="ver. 0.1.0"
             android:gravity="center"
-            android:textSize="20sp"
-            />
+            android:text="ver. 0.1.0"
+            android:textColor="?attr/text_color_attr"
+            android:textSize="20sp" />
 
         <RelativeLayout
-            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            android:paddingVertical="6dp"
-
+            android:layout_marginTop="40dp"
             android:background="@drawable/custom_layout_shape"
-            >
+            android:paddingVertical="6dp">
+
             <TextView
                 android:id="@+id/app_theme_text"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
                 android:text="Тема приожения"
                 android:textColor="?attr/text_color_attr"
-                android:textSize="18sp"
-                />
+                android:textSize="18sp" />
+
             <TextView
-                android:visibility="@{fragment.themeChanged ? View.VISIBLE : View.GONE}"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/app_theme_text"
-                android:layout_marginStart="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toRightOf="@id/app_theme_text"
                 android:text="Требуется перезапуск"
                 android:textColor="@color/crimson"
                 android:textSize="12sp"
-                />
+                android:visibility="@{fragment.themeChanged ? View.VISIBLE : View.GONE}" />
 
             <ImageButton
                 android:id="@+id/app_theme_mode"
-                android:onClick="@{() -> fragment.setThemeMode()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:background="@android:color/transparent"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="12dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{() -> fragment.setThemeMode()}"
+                android:scaleType="fitXY"
                 app:tint="?attr/button_color_attr" />
         </RelativeLayout>
 

@@ -13,9 +13,9 @@ import com.baleshapp.pocketpaper.utils.settings.ThemeModes
 
 class SettingsFragment : Fragment() {
 
-    var themeMode = ThemeModes.AUTO
+    private var themeMode = ThemeModes.AUTO
     lateinit var binding: FragmentSettingsBinding
-    lateinit var appSettings: AppSettings
+    private lateinit var appSettings: AppSettings
     var isThemeChanged = false
 
     override fun onCreateView(
@@ -52,7 +52,7 @@ class SettingsFragment : Fragment() {
         isThemeChanged = true
     }
 
-    private fun setThemeIcon(themeModes: ThemeModes){
+    private fun setThemeIcon(themeModes: ThemeModes) {
         when (themeModes) {
             ThemeModes.AUTO -> binding.appThemeMode.setImageResource(R.drawable.ic_baseline_hdr_auto_24)
             ThemeModes.LIGHT -> binding.appThemeMode.setImageResource(R.drawable.ic_baseline_light_mode_24)

@@ -22,8 +22,6 @@ import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import java.time.ZoneId
-import java.util.Calendar
 
 class CalendarFragment : Fragment() {
 
@@ -52,9 +50,6 @@ class CalendarFragment : Fragment() {
 
         taskViewModel = ViewModelProvider(this, viewModelFactory)[TaskViewModel::class.java]
 
-        val cal: Calendar = Calendar.getInstance()
-        setData(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
-
         tasksAdapter = TaskAdapter({ taskViewModel.delete(it) }, { taskViewModel.update(it) })
         binding.selectedDateRecyclerView.layoutManager = layoutManager
         binding.selectedDateRecyclerView.adapter = tasksAdapter
@@ -65,30 +60,18 @@ class CalendarFragment : Fragment() {
     }
 
     private fun initCalendar() {
-
         setCalendarView()
-
-        val list = mutableListOf<CalendarDay>()
+        var list = listOf<CalendarDay>()
 
         taskViewModel.getTasksDateList().observe(viewLifecycleOwner) {
-
-            for (i in it.indices) {
-                val calendar = Calendar.getInstance()
-                calendar.timeInMillis = it[i]
-                val day = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-                list.add(CalendarDay.from(day.year, day.monthValue, day.dayOfMonth))
-            }
-            setDecorator(list)
-
-            calendarView.addDecorator(SelectedDayDecorator(CalendarDay.today(), mContext))
+            list = taskViewModel.reformatDate(it)
+            setDecorator(list, CalendarDay.today())
         }
 
         calendarView.setOnDateChangedListener { _, date, _ ->
             setData(date.year, date.month - 1, date.day)
-            setDecorator(list)
-            calendarView.addDecorator(SelectedDayDecorator(date, mContext))
+            setDecorator(list, date)
         }
-
         setToday()
     }
 
@@ -96,34 +79,32 @@ class CalendarFragment : Fragment() {
         if (isOpen) {
             calendarView = binding.tasksCalendarMonth
             binding.tasksCalendarWeek.visibility = View.GONE
-            calendarView.visibility = View.VISIBLE
-            calendarView.invalidate()
         } else {
             calendarView = binding.tasksCalendarWeek
             binding.tasksCalendarMonth.visibility = View.GONE
-            calendarView.visibility = View.VISIBLE
-            calendarView.invalidate()
         }
+        calendarView.visibility = View.VISIBLE
+        calendarView.invalidate()
     }
 
-    fun changeMode() {
+    fun changeCalendarMode() {
         isOpen = !isOpen
         binding.invalidateAll()
         initCalendar()
     }
 
     fun setToday() {
-        calendarView.selectedDate = CalendarDay.today()
-        calendarView.currentDate = CalendarDay.today()
-        calendarView.addDecorator(SelectedDayDecorator(CalendarDay.today(), mContext))
-        val cal: Calendar = Calendar.getInstance()
-        setData(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
+        val today = CalendarDay.today()
+        calendarView.selectedDate = today
+        calendarView.currentDate = today
+        calendarView.addDecorator(SelectedDayDecorator(today, mContext))
+        setData(today.year, today.month - 1, today.day)
     }
 
-    private fun setDecorator(datesList: List<CalendarDay>) {
+    private fun setDecorator(datesList: List<CalendarDay>, selectedDay: CalendarDay) {
         calendarView.removeDecorators()
-        val decorator = DaysDecorator(datesList, mContext)
-        calendarView.addDecorators(decorator)
+        calendarView.addDecorators(DaysDecorator(datesList, mContext))
+        calendarView.addDecorator(SelectedDayDecorator(selectedDay, mContext))
         calendarView.invalidateDecorators()
     }
 

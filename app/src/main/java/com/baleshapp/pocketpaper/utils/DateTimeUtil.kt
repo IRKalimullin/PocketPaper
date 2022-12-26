@@ -4,20 +4,32 @@ import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Class for work with date and time properties
+ */
 class DateTimeUtil {
 
+    /**
+     * Method returns formatted date String property from Long
+     */
     @SuppressLint("SimpleDateFormat")
     fun getDateString(date: Long): String {
         val dateFormat = SimpleDateFormat("dd.MM.yyyy")
         return dateFormat.format(date)
     }
 
+    /**
+     * Method returns formatted time String property from Long
+     */
     @SuppressLint("SimpleDateFormat")
     fun getTimeString(time: Long): String {
         val timeFormat = SimpleDateFormat("HH:mm")
         return timeFormat.format(time)
     }
 
+    /**
+     * Method returns String name of day of week
+     */
     @SuppressLint("SimpleDateFormat")
     fun getDayNameOfPosition(position: Int): String {
         val calendar: Calendar = Calendar.getInstance()
@@ -27,6 +39,9 @@ class DateTimeUtil {
         return simpleDateFormat.format(date)
     }
 
+    /**
+     *
+     */
     @SuppressLint("SimpleDateFormat")
     fun getStringDateOfPosition(position: Int): String {
         val firstDate: Calendar = Calendar.getInstance()
@@ -36,6 +51,9 @@ class DateTimeUtil {
         return simpleDateFormat.format(date)
     }
 
+    /**
+     * Method returns time property in Long from hourOfDay and minute properties
+     */
     fun getTimeLong(hourOfDay: Int, minute: Int): Long {
         val cal: Calendar = Calendar.getInstance()
         cal.set(Calendar.HOUR_OF_DAY, hourOfDay)
@@ -43,6 +61,9 @@ class DateTimeUtil {
         return cal.timeInMillis
     }
 
+    /**
+     * Method returns date property in Long from year,month and dayOfMonth properties
+     */
     fun getDateLong(year: Int, month: Int, dayOfMonth: Int): Long {
         val cal: Calendar = Calendar.getInstance()
         cal.set(Calendar.HOUR_OF_DAY, 0)
@@ -54,6 +75,10 @@ class DateTimeUtil {
         return cal.time.time
     }
 
+    /**
+     * Method return nearest to today's date day's name
+     * @return Today or Tomorrow or String date
+     */
     @SuppressLint("SimpleDateFormat")
     fun getDayName(date: Long): String {
         val cal: Calendar = Calendar.getInstance()
@@ -91,6 +116,11 @@ class DateTimeUtil {
         return longArrayOf(firstDate.time.time, secondDate.time.time)
     }
 
+    /**
+     * Method calculate time borders of day
+     *
+     * @return LongArray, first value - lower border, second value - upper border
+     */
     fun getDayBorders(year: Int, month: Int, dayOfMonth: Int): LongArray {
 
         val calendar1 = Calendar.getInstance()
