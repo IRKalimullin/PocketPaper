@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginTop="20dp"
-                android:text="Настройки"
+                android:text="@string/settings"
                 android:textColor="?attr/text_color_attr"
                 android:textSize="28sp" />
 
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
-                android:text="Тема приожения"
+                android:text="@string/app_theme_mode"
                 android:textColor="?attr/text_color_attr"
                 android:textSize="18sp" />
 
@@ -72,8 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
-                android:layout_toRightOf="@id/app_theme_text"
-                android:text="Требуется перезапуск"
+                android:layout_toEndOf="@id/app_theme_text"
+                android:text="@string/restart_required"
                 android:textColor="@color/crimson"
                 android:textSize="12sp"
                 android:visibility="@{fragment.themeChanged ? View.VISIBLE : View.GONE}" />

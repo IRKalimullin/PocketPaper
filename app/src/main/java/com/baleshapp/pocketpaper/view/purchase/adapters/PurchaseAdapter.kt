@@ -3,7 +3,6 @@ package com.baleshapp.pocketpaper.view.purchase.adapters
 import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -101,7 +100,7 @@ class PurchaseAdapter(
             mBinding.executePendingBindings()
         }
 
-        fun saveCheckedState(compoundButton: CompoundButton, isChecked: Boolean) {
+        fun saveCheckedState(isChecked: Boolean) {
             item.isAdded = isChecked
             onUpdate(item)
             mBinding.invalidateAll()

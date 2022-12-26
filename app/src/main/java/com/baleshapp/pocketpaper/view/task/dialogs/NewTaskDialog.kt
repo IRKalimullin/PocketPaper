@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Task
 import com.baleshapp.pocketpaper.data.model.TaskTag
-import com.baleshapp.pocketpaper.databinding.AddTaskLineBinding
+import com.baleshapp.pocketpaper.databinding.DialogCreateNewTaskBinding
 import com.baleshapp.pocketpaper.utils.DateTimeUtil
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.*
@@ -25,7 +25,7 @@ class NewTaskDialog(
     private val dateTimeUtil = DateTimeUtil()
     var dateText: String = "Сегодня"
     var timeText: String = "Время"
-    private val binding: AddTaskLineBinding
+    private val binding: DialogCreateNewTaskBinding
 
     private val emptyNameMessage = context.resources.getString(R.string.empty_name)
 
@@ -40,7 +40,7 @@ class NewTaskDialog(
 
     init {
         val inflater = LayoutInflater.from(context)
-        binding = DataBindingUtil.inflate(inflater, R.layout.add_task_line, null, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_create_new_task, null, false)
         binding.task = task
         binding.dialog = this
         createDialog()

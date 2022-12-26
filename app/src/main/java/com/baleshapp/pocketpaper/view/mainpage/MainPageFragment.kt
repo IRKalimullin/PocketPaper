@@ -14,7 +14,7 @@ import com.baleshapp.pocketpaper.data.repository.TaskRepository
 import com.baleshapp.pocketpaper.databinding.FragmentMainPageBinding
 import com.baleshapp.pocketpaper.view.note.NoteListFragment
 import com.baleshapp.pocketpaper.view.purchase.PurchaseFragment
-import com.baleshapp.pocketpaper.view.task.AllTasksFragment
+import com.baleshapp.pocketpaper.view.task.alltasks.AllTasksFragment
 import com.baleshapp.pocketpaper.view.task.adapters.TaskAdapter
 import com.baleshapp.pocketpaper.view.task.dialogs.NewTaskDialog
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModel
@@ -49,7 +49,7 @@ class MainPageFragment : Fragment() {
         }, {
             taskViewModel.update(it)
         })
-        taskViewModel.getCurrentTasks(0).observe(viewLifecycleOwner) {
+        taskViewModel.getCurrentTasks().observe(viewLifecycleOwner) {
             taskAdapter.setItems(it)
         }
         val layoutManager =

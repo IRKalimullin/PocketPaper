@@ -11,7 +11,7 @@ import com.baleshapp.pocketpaper.data.model.*
 @TypeConverters(TaskTagConverter::class)
 @Database(
     entities = [Task::class, Note::class, PurchaseList::class, PurchaseItem::class, FinancialReport::class, FinanceItem::class],
-    version = 1, exportSchema = true
+    version = 1, exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
 

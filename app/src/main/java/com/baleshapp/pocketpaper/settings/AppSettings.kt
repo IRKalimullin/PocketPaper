@@ -1,4 +1,4 @@
-package com.baleshapp.pocketpaper.utils.settings
+package com.baleshapp.pocketpaper.settings
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate

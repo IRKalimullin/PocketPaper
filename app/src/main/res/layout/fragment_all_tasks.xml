@@ -7,7 +7,7 @@
 
         <variable
             name="fragment"
-            type="com.baleshapp.pocketpaper.view.task.AllTasksFragment" />
+            type="com.baleshapp.pocketpaper.view.task.alltasks.AllTasksFragment" />
     </data>
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:background="?attr/window_background_color_attr"
         android:orientation="vertical"
-        tools:context=".view.task.AllTasksFragment">
+        tools:context=".view.task.alltasks.AllTasksFragment">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/new_item_screen_toolbar"

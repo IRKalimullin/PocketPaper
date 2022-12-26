@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.baleshapp.pocketpaper.R
-import com.baleshapp.pocketpaper.utils.settings.AppSettings
-import com.baleshapp.pocketpaper.utils.settings.ThemeModes
+import com.baleshapp.pocketpaper.settings.AppSettings
+import com.baleshapp.pocketpaper.settings.ThemeModes
 import com.baleshapp.pocketpaper.view.calendarpage.CalendarFragment
 import com.baleshapp.pocketpaper.view.mainpage.MainPageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         val navigationView =
             findViewById<BottomNavigationView>(R.id.bottom_navigation_main_activity)
 
-
         fragmentManager.beginTransaction().add(R.id.main_container, mainPageFragment).commit()
 
         navigationView.setOnItemSelectedListener(object :
@@ -55,9 +54,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
-            override fun onNavigationItemReselected(item: MenuItem) {
-
-            }
+            override fun onNavigationItemReselected(item: MenuItem) {}
 
         })
     }

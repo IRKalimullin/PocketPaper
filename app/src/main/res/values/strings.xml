@@ -1,25 +1,23 @@
 <resources>
     <string name="app_name">Pocket Paper</string>
+
+    <!--Pages and titles -->
     <string name="title_tasks_fragment">Задачи</string>
     <string name="title_notes_fragment">Заметки</string>
     <string name="title_purchases_fragment">Покупки</string>
     <string name="title_finances_fragment">Финансы</string>
     <string name="title_current_tasks_fragment">Текущие задачи</string>
     <string name="all_tasks">Все задачи</string>
-    <string name="empty_task_list_message">На этот день ничего не запланировано</string>
-    <string name="note">Заметка</string>
-    <string name="name_hint">Название</string>
-    <string name="note_text_hint">Текст заметки</string>
-    <string name="add_new_item_hint">Добавьте предмет</string>
-    <string name="new_list_hint">Новый список</string>
+    <string name="main_page_title">Главная</string>
 
-
+    <!-- Different buttons content descriptions -->
     <string name="new_task_button_description">Добавить задачу</string>
     <string name="save_note_button_description">Сохранить заметку</string>
     <string name="save_item_button_description">Сохранить предмет</string>
     <string name="save_list_button_description">Сохранить список</string>
     <string name="back_button_description">Назад</string>
 
+    <!--Text messages in dialogs -->
     <string name="cancel_warning_message">(Это действие невозможно отменить!)</string>
     <string name="delete">Удалить</string>
     <string name="cancel">Отмена</string>
@@ -29,20 +27,33 @@
     <string name="empty_note_text">Текст заметки не может быть пустым</string>
     <string name="empty_name">Название не может быть пустым</string>
     <string name="delete_task">Удалить задачу</string>
-    <string name="today">Сегодня</string>
+
+    <!--Task status titles -->
     <string name="active_tasks">Активные</string>
     <string name="completed_tasks">Выполненные</string>
     <string name="missed_tasks">Просроченные</string>
-    <string name="open_all">Открыть все</string>
-    <string name="today_tasks">Задачи на сегодня</string>
-    <string name="favorites">Избранное</string>
-    <string name="main_page_title">Главная</string>
 
+    <!--Task's tags name -->
     <string name="general_tag_text">Общее</string>
     <string name="personal_tag_text">Личное</string>
     <string name="work_tag_text">Работа</string>
     <string name="study_tag_text">Учеба</string>
 
+    <string name="today">Сегодня</string>
+    <string name="open_all">Открыть все</string>
+    <string name="today_tasks">Задачи на сегодня</string>
+    <string name="favorites">Избранное</string>
+    <string name="settings">Настройки</string>
+    <string name="app_theme_mode">Тема приложения</string>
+    <string name="restart_required">Требуется перезапуск</string>
+    <string name="empty_task_list_message">На этот день ничего не запланировано</string>
+    <string name="note">Заметка</string>
+    <string name="name_hint">Название</string>
+    <string name="note_text_hint">Текст заметки</string>
+    <string name="add_new_item_hint">Добавьте предмет</string>
+    <string name="new_list_hint">Новый список</string>
+    <string name="new_task">Новая задача</string>
+    <string name="tasks_on_date">Задачи на выбранную дату</string>
     <string name="expand">Развернуть</string>
     <string name="collapse">Свернуть</string>
 
@@ -65,6 +76,4 @@
     </string-array>
     <string name="finance_transaction_type_spent">Расходы</string>
     <string name="finance_transaction_type_receive">Доходы</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

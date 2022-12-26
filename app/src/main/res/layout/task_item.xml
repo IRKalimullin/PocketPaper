@@ -37,11 +37,11 @@
                 android:layout_gravity="top|center_vertical"
                 android:checked="@{task.done}"
                 android:gravity="center_vertical|center_horizontal"
-                android:onCheckedChanged="@{(compoundButton, checked) -> viewHolder.saveCheckedState(compoundButton, checked)}"
+                android:onCheckedChanged="@{(compoundButton, checked) -> viewHolder.saveCheckedState(checked)}"
                 android:theme="@style/custom_checkbox_style" />
 
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_weight="1">

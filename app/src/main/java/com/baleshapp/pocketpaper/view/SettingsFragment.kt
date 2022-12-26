@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.databinding.FragmentSettingsBinding
-import com.baleshapp.pocketpaper.utils.settings.AppSettings
-import com.baleshapp.pocketpaper.utils.settings.ThemeModes
+import com.baleshapp.pocketpaper.settings.AppSettings
+import com.baleshapp.pocketpaper.settings.ThemeModes
 
 class SettingsFragment : Fragment() {
 

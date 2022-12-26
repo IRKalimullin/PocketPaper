@@ -14,8 +14,8 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         repository.insert(task)
     }
 
-    fun getCurrentTasks(dayOfWeekNumber: Int): LiveData<List<Task>> {
-        return repository.getCurrentTasks(dayOfWeekNumber).asLiveData()
+    fun getCurrentTasks(): LiveData<List<Task>> {
+        return repository.getCurrentTasks().asLiveData()
     }
 
     fun delete(task: Task) = viewModelScope.launch {

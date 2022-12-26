@@ -1,4 +1,4 @@
-package com.baleshapp.pocketpaper.view.task
+package com.baleshapp.pocketpaper.view.task.alltasks
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.databinding.FragmentAllTasksBinding
-import com.baleshapp.pocketpaper.view.task.alltasks.TasksPageFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class AllTasksFragment : Fragment() {

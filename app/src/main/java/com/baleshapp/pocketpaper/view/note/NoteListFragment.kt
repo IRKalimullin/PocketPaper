@@ -16,13 +16,11 @@ import com.baleshapp.pocketpaper.view.note.dialogs.NoteDialog
 import com.baleshapp.pocketpaper.viewmodel.note.NoteViewModelFactory
 import com.baleshapp.pocketpaper.viewmodel.note.NoteViewModel as NoteViewModel1
 
-
 class NoteListFragment : Fragment() {
 
     lateinit var binding: FragmentNoteListBinding
     private lateinit var gridLayoutManager: GridLayoutManager
     private lateinit var noteViewModel: NoteViewModel1
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

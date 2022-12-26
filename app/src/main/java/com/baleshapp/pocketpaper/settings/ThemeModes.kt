@@ -1,4 +1,4 @@
-package com.baleshapp.pocketpaper.utils.settings
+package com.baleshapp.pocketpaper.settings
 
 /**
  * Enum class contains application theme modes

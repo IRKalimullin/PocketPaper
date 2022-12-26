@@ -28,30 +28,6 @@ class DateTimeUtil {
     }
 
     /**
-     * Method returns String name of day of week
-     */
-    @SuppressLint("SimpleDateFormat")
-    fun getDayNameOfPosition(position: Int): String {
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.add(Calendar.DAY_OF_MONTH, position)
-        val date: Date = calendar.time
-        val simpleDateFormat = SimpleDateFormat("EEEE")
-        return simpleDateFormat.format(date)
-    }
-
-    /**
-     *
-     */
-    @SuppressLint("SimpleDateFormat")
-    fun getStringDateOfPosition(position: Int): String {
-        val firstDate: Calendar = Calendar.getInstance()
-        firstDate.add(Calendar.DAY_OF_MONTH, position)
-        val date: Date = firstDate.time
-        val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy")
-        return simpleDateFormat.format(date)
-    }
-
-    /**
      * Method returns time property in Long from hourOfDay and minute properties
      */
     fun getTimeLong(hourOfDay: Int, minute: Int): Long {
@@ -102,12 +78,14 @@ class DateTimeUtil {
         }
     }
 
-
-    fun getDayBorders(dayNumber: Int): LongArray {
+    /**
+     * Method calculate time borders of today
+     *
+     * @return LongArray, first value - lower border, second value - upper border
+     */
+    fun getTodayDayBorders(): LongArray {
         val firstDate: Calendar = Calendar.getInstance()
         val secondDate: Calendar = Calendar.getInstance()
-        firstDate.add(Calendar.DAY_OF_MONTH, dayNumber)
-        secondDate.add(Calendar.DAY_OF_MONTH, dayNumber)
         firstDate.add(Calendar.DAY_OF_MONTH, -1)
         firstDate.set(Calendar.HOUR_OF_DAY, 23)
         firstDate.set(Calendar.MINUTE, 59)

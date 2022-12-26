@@ -35,12 +35,12 @@ class NewPurchaseListDialog(
 
     private fun createDialog() {
         val inputManager: InputMethodManager = context.getSystemService()!!
-        inputManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        inputManager.showSoftInput(binding.root,InputMethodManager.SHOW_IMPLICIT)
         dialog = BottomSheetDialog(context, R.style.bottom_sheet_dialog_style)
         dialog.setContentView(binding.root)
 
         dialog.setOnCancelListener {
-            inputManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+            inputManager.showSoftInput(binding.root,InputMethodManager.HIDE_IMPLICIT_ONLY)
         }
         dialog.show()
         binding.categoryAddInputName.requestFocus()

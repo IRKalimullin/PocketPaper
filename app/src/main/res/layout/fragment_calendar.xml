@@ -92,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                android:text="Задачи на эту дату"
+                android:text="@string/tasks_on_date"
                 android:textColor="?attr/text_color_attr"
                 android:textSize="16sp" />
 
