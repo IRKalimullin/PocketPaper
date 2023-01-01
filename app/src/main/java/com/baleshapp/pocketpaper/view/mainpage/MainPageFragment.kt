@@ -53,7 +53,7 @@ class MainPageFragment : Fragment() {
             taskAdapter.setItems(it)
         }
         val layoutManager =
-            LinearLayoutManager(binding.root.context, RecyclerView.HORIZONTAL, false)
+            LinearLayoutManager(binding.root.context, RecyclerView.VERTICAL, false)
 
         binding.tasksRecyclerView.layoutManager = layoutManager
         binding.tasksRecyclerView.adapter = taskAdapter

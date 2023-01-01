@@ -4,6 +4,7 @@
     <attr name="button_color_attr" format="color"/>
     <attr name="window_background_color_attr" format="color"/>
     <attr name="item_background_color_attr" format="color"/>
+    <attr name="item_checked_background_color_attr" format="color"/>
     <attr name="navigation_bar_background_color_attr" format="color"/>
     <attr name="navigation_bar_buttons_color_attr" format="color"/>
 </resources>

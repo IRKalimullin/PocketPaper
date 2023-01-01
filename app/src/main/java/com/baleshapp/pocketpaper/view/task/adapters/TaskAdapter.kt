@@ -1,6 +1,7 @@
 package com.baleshapp.pocketpaper.view.task.adapters
 
 import android.app.AlertDialog
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -106,6 +107,7 @@ class TaskAdapter(
         fun bind(task: Task) {
             this.task = task
             mBinding.taskTagChip.setChipBackgroundColorResource(getTagColor(task.tag))
+            setTextStyle(task.isDone)
             tagText = getTagText(task.tag)
             mBinding.task = this.task
             mBinding.invalidateAll()
@@ -144,8 +146,19 @@ class TaskAdapter(
 
         fun saveCheckedState(isChecked: Boolean) {
             task.isDone = isChecked
+            setTextStyle(isChecked)
             onUpdate(task)
             mBinding.invalidateAll()
+        }
+
+        private fun setTextStyle(isChecked: Boolean) {
+            if (isChecked) {
+                mBinding.taskName.paintFlags =
+                    mBinding.taskName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            } else {
+                mBinding.taskName.paintFlags =
+                    mBinding.taskName.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            }
         }
 
         fun onLongClick(): Boolean {
