@@ -19,6 +19,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/purchases_back_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="24dp"
+                android:contentDescription="@string/back_button_description"
+                android:onClick="@{() -> fragment.onBack()}"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                app:tint="?attr/button_color_attr" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

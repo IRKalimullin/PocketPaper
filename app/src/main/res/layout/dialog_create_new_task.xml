@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="task"
+            type="com.baleshapp.pocketpaper.data.model.Task" />
+
+        <variable
+            name="dialog"
+            type="com.baleshapp.pocketpaper.view.task.dialogs.NewTaskDialog" />
+
+        <import type="com.baleshapp.pocketpaper.data.model.TaskTag" />
+    </data>
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/custom_shape_bottom_sheet_dialog"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/task_input_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/general_tag_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:checked="true"
+                    android:text="@string/general_tag_text"
+                    app:checkedIconEnabled="true"
+                    app:chipBackgroundColor="@color/general_task_tag_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/personal_tag_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/personal_tag_text"
+                    app:checkedIconEnabled="true"
+                    app:chipBackgroundColor="@color/personal_task_tag_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/work_tag_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/work_tag_text"
+                    app:checkedIconEnabled="true"
+                    app:chipBackgroundColor="@color/work_task_tag_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/study_tag_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/study_tag_text"
+                    app:checkedIconEnabled="true"
+                    app:chipBackgroundColor="@color/study_task_tag_color" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:id="@+id/add_task_buttons_container"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp">
+
+            <LinearLayout
+                android:id="@+id/date_picker_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/layout_stroke_out"
+                android:onClick="@{() -> dialog.createDateDialog()}"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <ImageButton
+                    android:id="@+id/attach_date_to_task"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/set_date_button_description"
+                    android:src="@drawable/ic_baseline_date_range_24"
+                    app:tint="?attr/button_color_attr" />
+
+                <TextView
+                    android:id="@+id/date_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="6dp"
+                    android:gravity="center"
+                    android:text="@{dialog.dateText}"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp"
+                    tools:text="Date" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/time_picker_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="3dp"
+                android:background="@drawable/layout_stroke_out"
+                android:onClick="@{() -> dialog.createTimeDialog()}"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <ImageButton
+                    android:id="@+id/attach_time_to_task"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/set_time_button_description"
+                    android:src="@drawable/ic_baseline_access_time_24"
+                    app:tint="?attr/button_color_attr" />
+
+                <TextView
+                    android:id="@+id/time_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:gravity="center"
+                    android:text="@{dialog.timeText}"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp"
+                    tools:text="Время" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp">
+
+            <EditText
+                android:id="@+id/task_add_input_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/transparent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="@string/new_task"
+                android:inputType="textCapSentences|textNoSuggestions"
+                android:minHeight="60dp"
+                android:text="@={task.name}"
+                android:textColor="?attr/text_color_attr"
+                android:textColorHint="@color/light_grey"
+                tools:ignore="Autofill" />
+
+            <ImageButton
+                android:id="@+id/send_task_to_list"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/save_task_button_description"
+                android:onClick="@{() -> dialog.saveTask()}"
+                android:src="@drawable/ic_baseline_send_24"
+                app:tint="?attr/button_color_attr" />
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

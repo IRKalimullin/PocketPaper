@@ -50,7 +50,7 @@
                 android:layout_weight="1"
                 android:button="@drawable/custom_checkbox_favorite"
                 android:checked="@{note.isFavorite}"
-                android:onCheckedChanged="@{(compoundButton, checked) -> viewHolder.saveCheckedState(compoundButton, checked) }" />
+                android:onCheckedChanged="@{(compoundButton, checked) -> viewHolder.saveCheckedState(checked) }" />
 
         </LinearLayout>
 

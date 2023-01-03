@@ -38,9 +38,9 @@ class PurchaseFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[PurchaseViewModel::class.java]
         val listAdapter = PurchaseListAdapter({ viewModel.deleteList(it) }, { openList(it) })
 
-        viewModel.getAllLists().observe(viewLifecycleOwner, {
+        viewModel.getAllLists().observe(viewLifecycleOwner) {
             listAdapter.setItems(it)
-        })
+        }
 
         val layoutManager = LinearLayoutManager(binding.root.context, RecyclerView.VERTICAL, false)
         binding.purchaseListRecyclerView.layoutManager = layoutManager
@@ -59,8 +59,13 @@ class PurchaseFragment : Fragment() {
             { viewModel.insertItem(it) },
             { viewModel.deleteItem(it) },
             { viewModel.updateItem(it) })
-        viewModel.getItemList(list).observe(viewLifecycleOwner, {
+        viewModel.getItemList(list).observe(viewLifecycleOwner) {
             dialog.setData(it)
-        })
+        }
+    }
+
+    fun onBack() {
+        val fragmentManager = parentFragmentManager
+        fragmentManager.popBackStack()
     }
 }

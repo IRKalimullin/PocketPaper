@@ -4,38 +4,32 @@ import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Class for work with date and time properties
+ */
 class DateTimeUtil {
 
+    /**
+     * Method returns formatted date String property from Long
+     */
     @SuppressLint("SimpleDateFormat")
     fun getDateString(date: Long): String {
         val dateFormat = SimpleDateFormat("dd.MM.yyyy")
         return dateFormat.format(date)
     }
 
+    /**
+     * Method returns formatted time String property from Long
+     */
     @SuppressLint("SimpleDateFormat")
     fun getTimeString(time: Long): String {
         val timeFormat = SimpleDateFormat("HH:mm")
         return timeFormat.format(time)
     }
 
-    @SuppressLint("SimpleDateFormat")
-    fun getDayNameOfPosition(position: Int): String {
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.add(Calendar.DAY_OF_MONTH, position)
-        val date: Date = calendar.time
-        val simpleDateFormat = SimpleDateFormat("EEEE")
-        return simpleDateFormat.format(date)
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    fun getStringDateOfPosition(position: Int): String {
-        val firstDate: Calendar = Calendar.getInstance()
-        firstDate.add(Calendar.DAY_OF_MONTH, position)
-        val date: Date = firstDate.time
-        val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy")
-        return simpleDateFormat.format(date)
-    }
-
+    /**
+     * Method returns time property in Long from hourOfDay and minute properties
+     */
     fun getTimeLong(hourOfDay: Int, minute: Int): Long {
         val cal: Calendar = Calendar.getInstance()
         cal.set(Calendar.HOUR_OF_DAY, hourOfDay)
@@ -43,6 +37,9 @@ class DateTimeUtil {
         return cal.timeInMillis
     }
 
+    /**
+     * Method returns date property in Long from year,month and dayOfMonth properties
+     */
     fun getDateLong(year: Int, month: Int, dayOfMonth: Int): Long {
         val cal: Calendar = Calendar.getInstance()
         cal.set(Calendar.HOUR_OF_DAY, 0)
@@ -54,6 +51,10 @@ class DateTimeUtil {
         return cal.time.time
     }
 
+    /**
+     * Method return nearest to today's date day's name
+     * @return Today or Tomorrow or String date
+     */
     @SuppressLint("SimpleDateFormat")
     fun getDayName(date: Long): String {
         val cal: Calendar = Calendar.getInstance()
@@ -77,12 +78,14 @@ class DateTimeUtil {
         }
     }
 
-
-    fun getDayBorders(dayNumber: Int): LongArray {
+    /**
+     * Method calculate time borders of today
+     *
+     * @return LongArray, first value - lower border, second value - upper border
+     */
+    fun getTodayDayBorders(): LongArray {
         val firstDate: Calendar = Calendar.getInstance()
         val secondDate: Calendar = Calendar.getInstance()
-        firstDate.add(Calendar.DAY_OF_MONTH, dayNumber)
-        secondDate.add(Calendar.DAY_OF_MONTH, dayNumber)
         firstDate.add(Calendar.DAY_OF_MONTH, -1)
         firstDate.set(Calendar.HOUR_OF_DAY, 23)
         firstDate.set(Calendar.MINUTE, 59)
@@ -91,4 +94,29 @@ class DateTimeUtil {
         return longArrayOf(firstDate.time.time, secondDate.time.time)
     }
 
+    /**
+     * Method calculate time borders of day
+     *
+     * @return LongArray, first value - lower border, second value - upper border
+     */
+    fun getDayBorders(year: Int, month: Int, dayOfMonth: Int): LongArray {
+
+        val calendar1 = Calendar.getInstance()
+        calendar1.set(Calendar.HOUR_OF_DAY, 23)
+        calendar1.set(Calendar.MINUTE, 59)
+        calendar1.set(Calendar.MILLISECOND, 0)
+        calendar1.set(Calendar.YEAR, year)
+        calendar1.set(Calendar.MONTH, month)
+        calendar1.set(Calendar.DAY_OF_MONTH, dayOfMonth - 1)
+
+        val calendar2 = Calendar.getInstance()
+        calendar2.set(Calendar.HOUR_OF_DAY, 23)
+        calendar2.set(Calendar.MINUTE, 59)
+        calendar2.set(Calendar.MILLISECOND, 0)
+        calendar2.set(Calendar.YEAR, year)
+        calendar2.set(Calendar.MONTH, month)
+        calendar2.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+        return longArrayOf(calendar1.time.time, calendar2.time.time)
+    }
 }

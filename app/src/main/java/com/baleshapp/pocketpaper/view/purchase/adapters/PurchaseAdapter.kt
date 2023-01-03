@@ -3,7 +3,6 @@ package com.baleshapp.pocketpaper.view.purchase.adapters
 import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -21,9 +20,9 @@ class PurchaseAdapter(
         SortedList(PurchaseItem::class.java, object : SortedList.Callback<PurchaseItem>() {
             override fun compare(o1: PurchaseItem, o2: PurchaseItem): Int {
                 return if (!o2.isAdded && o1.isAdded) {
-                    -1
-                } else if (o2.isAdded && !o1.isAdded) {
                     1
+                } else if (o2.isAdded && !o1.isAdded) {
+                    -1
                 } else {
                     (o2.timestampOfItem - o1.timestampOfItem).toInt()
                 }
@@ -75,6 +74,7 @@ class PurchaseAdapter(
 
     fun setItems(itemList: List<PurchaseItem>) {
         this.itemList.replaceAll(itemList)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = itemList.size()
@@ -100,7 +100,7 @@ class PurchaseAdapter(
             mBinding.executePendingBindings()
         }
 
-        fun saveCheckedState(compoundButton: CompoundButton, isChecked: Boolean) {
+        fun saveCheckedState(isChecked: Boolean) {
             item.isAdded = isChecked
             onUpdate(item)
             mBinding.invalidateAll()

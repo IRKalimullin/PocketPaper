@@ -3,7 +3,6 @@ package com.baleshapp.pocketpaper.view.note.adapters
 import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +11,6 @@ import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Note
 import com.baleshapp.pocketpaper.databinding.NoteItemBinding
 import com.baleshapp.pocketpaper.view.note.dialogs.NoteDialog
-
 
 class NoteAdapter(
     private val onDelete: (note: Note) -> Unit,
@@ -100,7 +98,7 @@ class NoteAdapter(
             mBinding.executePendingBindings()
         }
 
-        fun saveCheckedState(compoundButton: CompoundButton, isChecked: Boolean) {
+        fun saveCheckedState(isChecked: Boolean) {
             note.isFavorite = isChecked
             onUpdate(note)
             mBinding.invalidateAll()

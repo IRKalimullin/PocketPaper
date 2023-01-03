@@ -11,7 +11,8 @@ android {
         minSdk 26
         targetSdk 33
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
+        archivesBaseName = "Pocket Paper-" + defaultConfig.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,6 +36,7 @@ android {
     dataBinding{
         enabled=true
     }
+    namespace 'com.baleshapp.pocketpaper'
 
 }
 apply plugin: 'kotlin-kapt'
@@ -78,5 +80,7 @@ dependencies {
     kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
 
 }

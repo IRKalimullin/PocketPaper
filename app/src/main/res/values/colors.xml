@@ -13,6 +13,14 @@
     <color name="green">#028A0F</color>
     <color name="black_200">#89000000</color>
     <color name="gray">#262626</color>
-    <color name="item_background_dark_mode">#282828</color>
+    <color name="item_background_dark_mode">#DE282828</color>
     <color name="window_background_light_mode">#f2f3f5</color>
+    <color name="violet">#7D88E7</color>
+    <color name="light_green">#81E89E</color>
+    <color name="dark_grey_80">#64282828</color>
+
+    <color name="personal_task_tag_color">@color/crimson</color>
+    <color name="general_task_tag_color">@color/green</color>
+    <color name="work_task_tag_color">@color/violet</color>
+    <color name="study_task_tag_color">@color/yellow</color>
 </resources>

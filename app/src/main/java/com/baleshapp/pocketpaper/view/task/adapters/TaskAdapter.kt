@@ -1,18 +1,18 @@
 package com.baleshapp.pocketpaper.view.task.adapters
 
 import android.app.AlertDialog
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SortedList
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Task
+import com.baleshapp.pocketpaper.data.model.TaskTag
 import com.baleshapp.pocketpaper.databinding.TaskItemBinding
 import com.baleshapp.pocketpaper.utils.DateTimeUtil
-
 
 class TaskAdapter(
     private val onDelete: (task: Task) -> Unit,
@@ -22,14 +22,12 @@ class TaskAdapter(
     private var taskList: SortedList<Task> =
         SortedList(Task::class.java, object : SortedList.Callback<Task>() {
             override fun compare(o1: Task, o2: Task): Int {
-                return if (o2.isDone && o1.isDone) {
+                return if (!o2.isDone && o1.isDone) {
                     1
                 } else if (o2.isDone && !o1.isDone) {
                     -1
-                } else if (o1.isDone == o2.isDone) {
-                    (o2.timestampOfTask - o1.timestampOfTask).toInt()
                 } else {
-                    (o1.date - o2.date).toInt()
+                    (o2.timestampOfTask - o1.timestampOfTask).toInt()
                 }
             }
 
@@ -49,8 +47,8 @@ class TaskAdapter(
                 notifyItemRangeChanged(position, count)
             }
 
-            override fun areContentsTheSame(oldItem: Task?, newItem: Task?): Boolean {
-                return oldItem?.equals(newItem)!!
+            override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
+                return oldItem == newItem
             }
 
             override fun areItemsTheSame(item1: Task, item2: Task): Boolean {
@@ -71,11 +69,12 @@ class TaskAdapter(
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.bind(taskList.get(position))
+        holder.bind(taskList[position])
     }
 
     fun setItems(taskList: List<Task>) {
         this.taskList.replaceAll(taskList)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = taskList.size()
@@ -89,19 +88,47 @@ class TaskAdapter(
         lateinit var task: Task
         private val mBinding: TaskItemBinding = binding
         private val dateTimeUtil = DateTimeUtil()
+        private val context = binding.root.context
+
+        var tagText: String = context.resources.getString(R.string.general_tag_text)
+
         private val deleteTaskMessage =
-            binding.root.context.resources.getString(R.string.delete_task)
-        private val deleteMessage = binding.root.context.resources.getString(R.string.delete)
-        private val cancelMessage = binding.root.context.resources.getString(R.string.cancel)
+            context.resources.getString(R.string.delete_task)
+        private val deleteMessage = context.resources.getString(R.string.delete)
+        private val cancelMessage = context.resources.getString(R.string.cancel)
         private val cancelWarningMessage =
-            binding.root.context.resources.getString(R.string.cancel_warning_message)
-        private val deletedMessage = binding.root.context.resources.getString(R.string.deleted)
+            context.resources.getString(R.string.cancel_warning_message)
+        private val deletedMessage = context.resources.getString(R.string.deleted)
+
+        init {
+            mBinding.viewHolder = this
+        }
 
         fun bind(task: Task) {
             this.task = task
+            mBinding.taskTagChip.setChipBackgroundColorResource(getTagColor(task.tag))
+            setTextStyle(task.isDone)
+            tagText = getTagText(task.tag)
             mBinding.task = this.task
-            mBinding.viewHolder = this
-            mBinding.executePendingBindings()
+            mBinding.invalidateAll()
+        }
+
+        private fun getTagColor(tag: TaskTag): Int {
+            return when (tag) {
+                TaskTag.GENERAL -> R.color.general_task_tag_color
+                TaskTag.PERSONAL -> R.color.personal_task_tag_color
+                TaskTag.WORK -> R.color.work_task_tag_color
+                TaskTag.STUDY -> R.color.study_task_tag_color
+            }
+        }
+
+        private fun getTagText(tag: TaskTag): String {
+            return when (tag) {
+                TaskTag.GENERAL -> context.resources.getString(R.string.general_tag_text)
+                TaskTag.PERSONAL -> context.resources.getString(R.string.personal_tag_text)
+                TaskTag.WORK -> context.resources.getString(R.string.work_tag_text)
+                TaskTag.STUDY -> context.resources.getString(R.string.study_tag_text)
+            }
         }
 
         fun getDateString(task: Task): String {
@@ -117,14 +144,25 @@ class TaskAdapter(
             }
         }
 
-        fun saveCheckedState(compoundButton: CompoundButton, isChecked: Boolean) {
+        fun saveCheckedState(isChecked: Boolean) {
             task.isDone = isChecked
+            setTextStyle(isChecked)
             onUpdate(task)
             mBinding.invalidateAll()
         }
 
+        private fun setTextStyle(isChecked: Boolean) {
+            if (isChecked) {
+                mBinding.taskName.paintFlags =
+                    mBinding.taskName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            } else {
+                mBinding.taskName.paintFlags =
+                    mBinding.taskName.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            }
+        }
+
         fun onLongClick(): Boolean {
-            val builder = AlertDialog.Builder(mBinding.root.context, R.style.custom_alert_dialog)
+            val builder = AlertDialog.Builder(context, R.style.custom_alert_dialog)
             builder.setTitle("$deleteTaskMessage \"${task.name}\"?")
                 .setMessage(cancelWarningMessage)
                 .setPositiveButton(
@@ -141,7 +179,7 @@ class TaskAdapter(
 
         private fun deleteTask() {
             onDelete(task)
-            Toast.makeText(mBinding.root.context, deletedMessage, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, deletedMessage, Toast.LENGTH_SHORT).show()
         }
     }
 }
