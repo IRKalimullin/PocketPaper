@@ -12,10 +12,16 @@
 
     <!-- Different buttons content descriptions -->
     <string name="new_task_button_description">Добавить задачу</string>
+    <string name="save_task_button_description">Сохранить задачу</string>
     <string name="save_note_button_description">Сохранить заметку</string>
     <string name="save_item_button_description">Сохранить предмет</string>
     <string name="save_list_button_description">Сохранить список</string>
+    <string name="new_note_button_description">Добавить заметку</string>
     <string name="back_button_description">Назад</string>
+    <string name="set_date_button_description">Задать дату</string>
+    <string name="set_time_button_description">Задать время</string>
+    <string name="notes_fragment_button_description">Открыть заметки</string>
+    <string name="purchases_fragment_button_description">Открыть покупки</string>
 
     <!--Text messages in dialogs -->
     <string name="cancel_warning_message">(Это действие невозможно отменить!)</string>
@@ -44,6 +50,7 @@
     <string name="today_tasks">Задачи на сегодня</string>
     <string name="favorites">Избранное</string>
     <string name="settings">Настройки</string>
+    <string name="calendar">Календарь</string>
     <string name="app_theme_mode">Тема приложения</string>
     <string name="restart_required">Требуется перезапуск</string>
     <string name="empty_task_list_message">На этот день ничего не запланировано</string>
@@ -56,6 +63,8 @@
     <string name="tasks_on_date">Задачи на выбранную дату</string>
     <string name="expand">Развернуть</string>
     <string name="collapse">Свернуть</string>
+
+    <string name="app_description">Все ваши списки дел, покупок и заметки в одном месте.</string>
 
     <string-array name="finance_spent_categories">
         <item>Продукты</item>

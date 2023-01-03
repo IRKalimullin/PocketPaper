@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -8,8 +8,7 @@
             type="com.baleshapp.pocketpaper.view.note.NoteListFragment" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -47,6 +46,7 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="10dp"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/new_note_button_description"
                 android:onClick="@{() -> notesFragment.createNewNote()}"
                 android:src="@drawable/ic_baseline_edit_note_24"
                 app:tint="?attr/button_color_attr" />

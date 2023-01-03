@@ -53,8 +53,8 @@
             app:tabIconTint="?attr/text_color_attr"
             app:tabIndicatorColor="@color/green"
             app:tabIndicatorHeight="2dp"
-            app:tabTextColor="?attr/text_color_attr"
-            app:tabMode="auto" />
+            app:tabMode="auto"
+            app:tabTextColor="?attr/text_color_attr" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/all_tasks_view_pager"

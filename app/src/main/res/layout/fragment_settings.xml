@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,7 +12,6 @@
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -44,8 +44,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:gravity="center"
-            android:text="ver. 0.1.0"
+            android:text="@{fragment.versionName}"
+            android:textColor="?attr/text_color_attr"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/app_description"
             android:textColor="?attr/text_color_attr"
             android:textSize="20sp" />
 
@@ -71,12 +82,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="6dp"
                 android:layout_toEndOf="@id/app_theme_text"
                 android:text="@string/restart_required"
                 android:textColor="@color/crimson"
                 android:textSize="12sp"
-                android:visibility="@{fragment.themeChanged ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{fragment.themeChanged ? View.VISIBLE : View.GONE}"
+                tools:ignore="RelativeOverlap" />
 
             <ImageButton
                 android:id="@+id/app_theme_mode"
@@ -87,7 +99,8 @@
                 android:background="@android:color/transparent"
                 android:onClick="@{() -> fragment.setThemeMode()}"
                 android:scaleType="fitXY"
-                app:tint="?attr/button_color_attr" />
+                app:tint="?attr/button_color_attr"
+                tools:ignore="ContentDescription" />
         </RelativeLayout>
 
     </LinearLayout>

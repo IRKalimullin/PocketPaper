@@ -12,7 +12,6 @@ import com.baleshapp.pocketpaper.data.model.Note
 import com.baleshapp.pocketpaper.databinding.NoteItemBinding
 import com.baleshapp.pocketpaper.view.note.dialogs.NoteDialog
 
-
 class NoteAdapter(
     private val onDelete: (note: Note) -> Unit,
     private val onUpdate: (note: Note) -> Unit

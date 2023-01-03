@@ -13,6 +13,7 @@
             type="com.baleshapp.pocketpaper.view.purchase.dialogs.NewPurchaseListDialog" />
     </data>
 
+
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fragment_linear_layout"
         android:layout_width="match_parent"

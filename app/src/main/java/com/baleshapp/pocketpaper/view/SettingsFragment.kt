@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.baleshapp.pocketpaper.BuildConfig
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.databinding.FragmentSettingsBinding
 import com.baleshapp.pocketpaper.settings.AppSettings
@@ -17,6 +18,7 @@ class SettingsFragment : Fragment() {
     lateinit var binding: FragmentSettingsBinding
     private lateinit var appSettings: AppSettings
     var isThemeChanged = false
+    val versionName = "v" + BuildConfig.VERSION_NAME
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
