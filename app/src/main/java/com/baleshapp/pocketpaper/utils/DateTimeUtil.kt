@@ -1,6 +1,8 @@
 package com.baleshapp.pocketpaper.utils
 
 import android.annotation.SuppressLint
+import android.content.Context
+import com.baleshapp.pocketpaper.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -56,7 +58,7 @@ class DateTimeUtil {
      * @return Today or Tomorrow or String date
      */
     @SuppressLint("SimpleDateFormat")
-    fun getDayName(date: Long): String {
+    fun getDayName(date: Long, context: Context): String {
         val cal: Calendar = Calendar.getInstance()
         val current = Date(date)
         val today = Date()
@@ -67,10 +69,10 @@ class DateTimeUtil {
         val sdf = SimpleDateFormat("ddMMy")
         return when {
             sdf.format(current).equals(sdf.format(today)) -> {
-                "Сегодня"
+                context.resources.getString(R.string.today)
             }
             sdf.format(date).equals(sdf.format(tomorrow)) -> {
-                "Завтра"
+                context.resources.getString(R.string.tomorrow)
             }
             else -> {
                 getDateString(date)

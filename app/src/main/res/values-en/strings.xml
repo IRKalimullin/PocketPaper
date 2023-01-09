@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">Pocket Paper</string>
+
+    <!--Pages and titles -->
+    <string name="title_tasks_fragment">Tasks</string>
+    <string name="title_notes_fragment">Notes</string>
+    <string name="title_purchases_fragment">Purchases</string>
+    <string name="title_finances_fragment">Finances</string>
+    <string name="title_current_tasks_fragment">Current tasks</string>
+    <string name="all_tasks">All tasks</string>
+    <string name="main_page_title">Home</string>
+
+    <!-- Different buttons content descriptions -->
+    <string name="new_task_button_description">Add task</string>
+    <string name="save_task_button_description">Save task</string>
+    <string name="save_note_button_description">Save note</string>
+    <string name="save_item_button_description">Save item</string>
+    <string name="save_list_button_description">Save list</string>
+    <string name="new_note_button_description">Add note</string>
+    <string name="back_button_description">Back</string>
+    <string name="set_date_button_description">Set date</string>
+    <string name="set_time_button_description">Set time</string>
+    <string name="notes_fragment_button_description">Open notes</string>
+    <string name="purchases_fragment_button_description">Open purchases</string>
+
+    <!--Text messages in dialogs -->
+    <string name="cancel_warning_message">(This action cannot be undone!)</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_note">Delete note</string>
+    <string name="deleted">Deleted</string>
+    <string name="untitled">Untitled</string>
+    <string name="empty_note_text">The text of the note cannot be blank</string>
+    <string name="empty_name">The title cannot be empty</string>
+    <string name="delete_task">Delete task</string>
+
+    <!--Task status titles -->
+    <string name="active_tasks">Active</string>
+    <string name="completed_tasks">Completed</string>
+    <string name="missed_tasks">Missed</string>
+
+    <!--Task's tags name -->
+    <string name="general_tag_text">General</string>
+    <string name="personal_tag_text">Personal</string>
+    <string name="work_tag_text">Work</string>
+    <string name="study_tag_text">Study</string>
+
+    <string name="today">Today</string>
+    <string name="time">Time</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="open_all">Open all</string>
+    <string name="today_tasks">Tasks for today</string>
+    <string name="favorites">Favorites</string>
+    <string name="settings">Settings</string>
+    <string name="calendar">Calendar</string>
+    <string name="app_theme_mode">Application theme</string>
+    <string name="restart_required">Restart required</string>
+    <string name="empty_task_list_message">Nothing is planned for this day</string>
+    <string name="note">Note</string>
+    <string name="name_hint">Name</string>
+    <string name="note_text_hint">Note text</string>
+    <string name="add_new_item_hint">Add an item</string>
+    <string name="new_list_hint">New list</string>
+    <string name="new_task">New task</string>
+    <string name="tasks_on_date">Tasks for selected date</string>
+    <string name="expand">Expand</string>
+    <string name="collapse">Collapse</string>
+
+    <string name="app_description">All your to-do lists, shopping lists and notes in one place.</string>
+
+    <string-array name="finance_spent_categories">
+        <item>Products</item>
+        <item>Car</item>
+        <item>House</item>
+        <item>Services</item>
+        <item>Clothes</item>
+        <item>Entertainment</item>
+        <item>Transport</item>
+        <item>Health</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="finance_receive_categories">
+        <item>Salary</item>
+        <item>Gift</item>
+        <item>Investing</item>
+        <item>Other</item>
+    </string-array>
+    <string name="finance_transaction_type_spent">Expenses</string>
+    <string name="finance_transaction_type_receive">Revenues</string>
+</resources>

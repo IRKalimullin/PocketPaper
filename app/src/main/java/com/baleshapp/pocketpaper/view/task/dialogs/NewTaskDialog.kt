@@ -23,8 +23,8 @@ class NewTaskDialog(
 
     private lateinit var dialog: BottomSheetDialog
     private val dateTimeUtil = DateTimeUtil()
-    var dateText: String = "Сегодня"
-    var timeText: String = "Время"
+    var dateText: String
+    var timeText: String
     private val binding: DialogCreateNewTaskBinding
 
     private val emptyNameMessage = context.resources.getString(R.string.empty_name)
@@ -43,6 +43,8 @@ class NewTaskDialog(
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_create_new_task, null, false)
         binding.task = task
         binding.dialog = this
+        dateText = context.resources.getString(R.string.today)
+        timeText = context.resources.getString(R.string.time)
         createDialog()
     }
 
@@ -93,7 +95,7 @@ class NewTaskDialog(
             context, android.R.style.Theme_DeviceDefault_Dialog_Alert,
             { _, year, month, dayOfMonth ->
                 task.date = dateTimeUtil.getDateLong(year, month, dayOfMonth)
-                dateText = dateTimeUtil.getDayName(task.date)
+                dateText = dateTimeUtil.getDayName(task.date,context)
                 binding.invalidateAll()
             }, year, month, day
         ).show()
