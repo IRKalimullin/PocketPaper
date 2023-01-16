@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.baleshapp.pocketpaper.view.habit.HabitListFragment" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/window_background_color_attr"
+        android:orientation="vertical"
+        tools:context=".view.habit.HabitListFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/habit_list_fragment_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/habit_list_back_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="24dp"
+                android:contentDescription="@string/back_button_description"
+                android:onClick="@{() -> fragment.onBack()}"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                app:tint="?attr/button_color_attr" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/habits"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="24sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/habits_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginTop="12dp"
+                android:background="?attr/window_background_color_attr"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <Button
+                android:drawableLeft="@drawable/ic_baseline_add_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/custom_layout_shape"
+                android:elevation="12dp"
+                android:onClick="@{() -> fragment.createNewHabit()}"
+                android:padding="10dp"
+                android:stateListAnimator="@null"
+                android:text="@string/new_habit"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:ignore="RtlHardcoded" />
+
+        </FrameLayout>
+    </LinearLayout>
+</layout>

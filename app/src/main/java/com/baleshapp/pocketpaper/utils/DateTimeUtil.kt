@@ -46,6 +46,7 @@ class DateTimeUtil {
         val cal: Calendar = Calendar.getInstance()
         cal.set(Calendar.HOUR_OF_DAY, 0)
         cal.set(Calendar.MINUTE, 0)
+        cal.set(Calendar.SECOND, 0)
         cal.set(Calendar.MILLISECOND, 0)
         cal.set(Calendar.YEAR, year)
         cal.set(Calendar.MONTH, month)
@@ -81,6 +82,18 @@ class DateTimeUtil {
     }
 
     /**
+     * Method returns today date property in Long
+     */
+    fun getTodayDate(): Long {
+        val cal: Calendar = Calendar.getInstance()
+        cal.set(Calendar.HOUR_OF_DAY, 0)
+        cal.set(Calendar.MINUTE, 0)
+        cal.set(Calendar.SECOND, 0)
+        cal.set(Calendar.MILLISECOND, 0)
+        return cal.time.time
+    }
+
+    /**
      * Method calculate time borders of today
      *
      * @return LongArray, first value - lower border, second value - upper border
@@ -106,6 +119,7 @@ class DateTimeUtil {
         val calendar1 = Calendar.getInstance()
         calendar1.set(Calendar.HOUR_OF_DAY, 23)
         calendar1.set(Calendar.MINUTE, 59)
+        calendar1.set(Calendar.SECOND, 0)
         calendar1.set(Calendar.MILLISECOND, 0)
         calendar1.set(Calendar.YEAR, year)
         calendar1.set(Calendar.MONTH, month)
@@ -114,6 +128,7 @@ class DateTimeUtil {
         val calendar2 = Calendar.getInstance()
         calendar2.set(Calendar.HOUR_OF_DAY, 23)
         calendar2.set(Calendar.MINUTE, 59)
+        calendar2.set(Calendar.SECOND, 0)
         calendar2.set(Calendar.MILLISECOND, 0)
         calendar2.set(Calendar.YEAR, year)
         calendar2.set(Calendar.MONTH, month)

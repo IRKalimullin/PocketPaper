@@ -9,6 +9,7 @@
     <string name="title_current_tasks_fragment">Tareas en curso</string>
     <string name="all_tasks">Todas las tareas</string>
     <string name="main_page_title">Inicio</string>
+    <string name="habits">Hábitos</string>
 
     <!-- Different buttons content descriptions -->
     <string name="new_task_button_description">Agregar tarea</string>
@@ -65,6 +66,15 @@
     <string name="tasks_on_date">Tareas para la fecha seleccionada</string>
     <string name="expand">Expandir</string>
     <string name="collapse">Colapsar</string>
+    <string name="changed">Cambió</string>
+    <string name="old_not_change">Lo viejo no se puede cambiar</string>
+    <string name="delete_habit">Eliminar el hábito</string>
+    <string name="new_habit">Nuevo hábito</string>
+    <string name="description">Descripción</string>
+    <string name="start_date">Fecha de inicio</string>
+    <string name="details">Más</string>
+    <string name="current_date">La fecha actual</string>
+    <string name="no_description">Sin descripción</string>
 
     <string name="app_description">Todas tus listas de tareas, listas de compras y notas en un solo lugar.</string>
 

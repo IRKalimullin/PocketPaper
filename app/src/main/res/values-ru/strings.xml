@@ -9,6 +9,7 @@
     <string name="title_current_tasks_fragment">Текущие задачи</string>
     <string name="all_tasks">Все задачи</string>
     <string name="main_page_title">Главная</string>
+    <string name="habits">Привычки</string>
 
     <!-- Different buttons content descriptions -->
     <string name="new_task_button_description">Добавить задачу</string>
@@ -65,7 +66,16 @@
     <string name="tasks_on_date">Задачи на выбранную дату</string>
     <string name="expand">Развернуть</string>
     <string name="collapse">Свернуть</string>
-
+    <string name="changed">Изменено</string>
+    <string name="old_not_change">Старое нельзя изменить</string>
+    <string name="delete_habit">Удалить привычку</string>
+    <string name="new_habit">Новая привычка</string>
+    <string name="description">Описание</string>
+    <string name="start_date">Дата начала</string>
+    <string name="details">Подробнее</string>
+    <string name="current_date">Текущая дата</string>
+    <string name="no_description">Описание отсутствует</string>
+    
     <string name="app_description">Все ваши списки дел, покупок и заметки в одном месте.</string>
 
     <string-array name="finance_spent_categories">
