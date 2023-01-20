@@ -75,6 +75,11 @@
     <string name="details">Details</string>
     <string name="current_date">Current date</string>
     <string name="no_description">No description</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="done">Done</string>
+    <string name="add_description_text">Add a description for the task</string>
+
 
     <string name="app_description">All your to-do lists, shopping lists and notes in one place.</string>
 

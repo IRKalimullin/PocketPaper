@@ -12,6 +12,7 @@ import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Task
 import com.baleshapp.pocketpaper.data.model.TaskTag
 import com.baleshapp.pocketpaper.databinding.DialogCreateNewTaskBinding
+
 import com.baleshapp.pocketpaper.utils.DateTimeUtil
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.*
@@ -26,6 +27,7 @@ class NewTaskDialog(
     var dateText: String
     var timeText: String
     private val binding: DialogCreateNewTaskBinding
+    var isDescription = false
 
     private val emptyNameMessage = context.resources.getString(R.string.empty_name)
 
@@ -34,6 +36,7 @@ class NewTaskDialog(
         isDone = false,
         time = 0L,
         date = System.currentTimeMillis(),
+        description = "",
         timestampOfTask = System.currentTimeMillis(),
         tag = TaskTag.GENERAL
     )
@@ -67,6 +70,11 @@ class NewTaskDialog(
             onSave(task)
             dialog.cancel()
         }
+    }
+
+    fun changeDescriptionState(){
+        isDescription = !isDescription
+        binding.invalidateAll()
     }
 
     private fun selectedTag(chipId: Int): TaskTag{

@@ -75,6 +75,10 @@
     <string name="details">Подробнее</string>
     <string name="current_date">Текущая дата</string>
     <string name="no_description">Описание отсутствует</string>
+    <string name="save">Сохранить</string>
+    <string name="edit">Редактировать</string>
+    <string name="done">Выполнено</string>
+    <string name="add_description_text">Добавьте описание для задачи</string>
     
     <string name="app_description">Все ваши списки дел, покупок и заметки в одном месте.</string>
 

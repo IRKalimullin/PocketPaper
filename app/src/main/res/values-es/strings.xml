@@ -75,6 +75,11 @@
     <string name="details">Más</string>
     <string name="current_date">La fecha actual</string>
     <string name="no_description">Sin descripción</string>
+    <string name="save">Salvar</string>
+    <string name="edit">Editar</string>
+    <string name="done">Hecho</string>
+    <string name="add_description_text">Agregar una descripción para la tarea</string>
+
 
     <string name="app_description">Todas tus listas de tareas, listas de compras y notas en un solo lugar.</string>
 
