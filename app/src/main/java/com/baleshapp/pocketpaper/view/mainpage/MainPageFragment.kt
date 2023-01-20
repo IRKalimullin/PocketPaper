@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.repository.TaskRepository
 import com.baleshapp.pocketpaper.databinding.FragmentMainPageBinding
+import com.baleshapp.pocketpaper.view.habit.HabitListFragment
 import com.baleshapp.pocketpaper.view.note.NoteListFragment
 import com.baleshapp.pocketpaper.view.purchase.PurchaseFragment
 import com.baleshapp.pocketpaper.view.task.alltasks.AllTasksFragment
@@ -49,9 +50,11 @@ class MainPageFragment : Fragment() {
         }, {
             taskViewModel.update(it)
         })
+
         taskViewModel.getCurrentTasks().observe(viewLifecycleOwner) {
             taskAdapter.setItems(it)
         }
+
         val layoutManager =
             LinearLayoutManager(binding.root.context, RecyclerView.VERTICAL, false)
 
@@ -82,6 +85,12 @@ class MainPageFragment : Fragment() {
     fun openAllTasks() {
         val fragmentManager = parentFragmentManager
         fragmentManager.beginTransaction().replace(R.id.main_container, AllTasksFragment())
+            .addToBackStack(null).commit()
+    }
+
+    fun openHabitList(){
+        val fragmentManager = parentFragmentManager
+        fragmentManager.beginTransaction().add(R.id.master_container, HabitListFragment())
             .addToBackStack(null).commit()
     }
 }

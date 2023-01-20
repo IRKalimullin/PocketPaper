@@ -14,6 +14,7 @@ data class Task(
     @ColumnInfo(name = "date") var date: Long,
     @ColumnInfo(name = "time") var time: Long,
     @ColumnInfo(name = "timestampOfTask") var timestampOfTask: Long,
+    @ColumnInfo(name = "description") var description: String,
 
     @TypeConverters(TaskTagConverter::class)
     @ColumnInfo(name = "tag") var tag: TaskTag

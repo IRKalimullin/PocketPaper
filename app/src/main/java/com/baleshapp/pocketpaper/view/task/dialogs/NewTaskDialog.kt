@@ -12,6 +12,7 @@ import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Task
 import com.baleshapp.pocketpaper.data.model.TaskTag
 import com.baleshapp.pocketpaper.databinding.DialogCreateNewTaskBinding
+
 import com.baleshapp.pocketpaper.utils.DateTimeUtil
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.*
@@ -23,9 +24,10 @@ class NewTaskDialog(
 
     private lateinit var dialog: BottomSheetDialog
     private val dateTimeUtil = DateTimeUtil()
-    var dateText: String = "Сегодня"
-    var timeText: String = "Время"
+    var dateText: String
+    var timeText: String
     private val binding: DialogCreateNewTaskBinding
+    var isDescription = false
 
     private val emptyNameMessage = context.resources.getString(R.string.empty_name)
 
@@ -34,6 +36,7 @@ class NewTaskDialog(
         isDone = false,
         time = 0L,
         date = System.currentTimeMillis(),
+        description = "",
         timestampOfTask = System.currentTimeMillis(),
         tag = TaskTag.GENERAL
     )
@@ -43,6 +46,8 @@ class NewTaskDialog(
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_create_new_task, null, false)
         binding.task = task
         binding.dialog = this
+        dateText = context.resources.getString(R.string.today)
+        timeText = context.resources.getString(R.string.time)
         createDialog()
     }
 
@@ -65,6 +70,11 @@ class NewTaskDialog(
             onSave(task)
             dialog.cancel()
         }
+    }
+
+    fun changeDescriptionState(){
+        isDescription = !isDescription
+        binding.invalidateAll()
     }
 
     private fun selectedTag(chipId: Int): TaskTag{
@@ -93,7 +103,7 @@ class NewTaskDialog(
             context, android.R.style.Theme_DeviceDefault_Dialog_Alert,
             { _, year, month, dayOfMonth ->
                 task.date = dateTimeUtil.getDateLong(year, month, dayOfMonth)
-                dateText = dateTimeUtil.getDayName(task.date)
+                dateText = dateTimeUtil.getDayName(task.date,context)
                 binding.invalidateAll()
             }, year, month, day
         ).show()

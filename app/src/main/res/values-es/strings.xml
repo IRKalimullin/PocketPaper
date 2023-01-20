@@ -1,0 +1,105 @@
+<resources>
+    <string name="app_name">Pocket Paper</string>
+
+    <!--Pages and titles -->
+    <string name="title_tasks_fragment">Tareas</string>
+    <string name="title_notes_fragment">Notas</string>
+    <string name="title_purchases_fragment">Compras</string>
+    <string name="title_finances_fragment">Finanzas</string>
+    <string name="title_current_tasks_fragment">Tareas en curso</string>
+    <string name="all_tasks">Todas las tareas</string>
+    <string name="main_page_title">Inicio</string>
+    <string name="habits">Hábitos</string>
+
+    <!-- Different buttons content descriptions -->
+    <string name="new_task_button_description">Agregar tarea</string>
+    <string name="save_task_button_description">Guardar tarea</string>
+    <string name="save_note_button_description">Guardar nota</string>
+    <string name="save_item_button_description">Guardar artículo</string>
+    <string name="save_list_button_description">Guardar lista</string>
+    <string name="new_note_button_description">Añadir la nota</string>
+    <string name="back_button_description">Atrás</string>
+    <string name="set_date_button_description">Fijar la fecha</string>
+    <string name="set_time_button_description">Fijar tiempo</string>
+    <string name="notes_fragment_button_description">Abrir notas</string>
+    <string name="purchases_fragment_button_description">Compras abiertas</string>
+
+    <!--Text messages in dialogs -->
+    <string name="cancel_warning_message">(Esta acción no puede deshacerse!)</string>
+    <string name="delete">Borrar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete_note">Borrar nota</string>
+    <string name="deleted">Eliminado</string>
+    <string name="untitled">Sin nombre</string>
+    <string name="empty_note_text">El texto de la nota no puede estar vacío</string>
+    <string name="empty_name">El título no puede estar vacío</string>
+    <string name="delete_task">Eliminar tarea</string>
+
+    <!--Task status titles -->
+    <string name="active_tasks">Activo</string>
+    <string name="completed_tasks">Terminado</string>
+    <string name="missed_tasks">Atrasado</string>
+
+    <!--Task's tags name -->
+    <string name="general_tag_text">General</string>
+    <string name="personal_tag_text">Personal</string>
+    <string name="work_tag_text">Trabaja</string>
+    <string name="study_tag_text">Estudios</string>
+
+    <string name="today">Hoy</string>
+    <string name="time">Hora</string>
+    <string name="tomorrow">Mañana</string>
+    <string name="open_all">Abrir todo</string>
+    <string name="today_tasks">Tareas para hoy</string>
+    <string name="favorites">Favoritos</string>
+    <string name="settings">Ajustes</string>
+    <string name="calendar">El calendario</string>
+    <string name="app_theme_mode">Tema aplicación</string>
+    <string name="restart_required">Reinicio requerido</string>
+    <string name="empty_task_list_message">Nada programado para este día</string>
+    <string name="note">La nota</string>
+    <string name="name_hint">Nombre</string>
+    <string name="note_text_hint">Nota de texto</string>
+    <string name="add_new_item_hint">Añadir artículo</string>
+    <string name="new_list_hint">Lista nueva</string>
+    <string name="new_task">Nueva tarea</string>
+    <string name="tasks_on_date">Tareas para la fecha seleccionada</string>
+    <string name="expand">Expandir</string>
+    <string name="collapse">Colapsar</string>
+    <string name="changed">Cambió</string>
+    <string name="old_not_change">Lo viejo no se puede cambiar</string>
+    <string name="delete_habit">Eliminar el hábito</string>
+    <string name="new_habit">Nuevo hábito</string>
+    <string name="description">Descripción</string>
+    <string name="start_date">Fecha de inicio</string>
+    <string name="details">Más</string>
+    <string name="current_date">La fecha actual</string>
+    <string name="no_description">Sin descripción</string>
+    <string name="save">Salvar</string>
+    <string name="edit">Editar</string>
+    <string name="done">Hecho</string>
+    <string name="add_description_text">Agregar una descripción para la tarea</string>
+
+
+    <string name="app_description">Todas tus listas de tareas, listas de compras y notas en un solo lugar.</string>
+
+    <string-array name="finance_spent_categories">
+        <item>Productos</item>
+        <item>Automóvil</item>
+        <item>Casa</item>
+        <item>Servicios</item>
+        <item>Paño</item>
+        <item>Entretenimiento</item>
+        <item>Transporte</item>
+        <item>Salud</item>
+        <item>Otro</item>
+    </string-array>
+    <string-array name="finance_receive_categories">
+        <item>Sueldo</item>
+        <item>Regalo</item>
+        <item>Inversiones</item>
+        <item>Otro</item>
+    </string-array>
+    <string name="finance_transaction_type_spent">Gastos</string>
+    <string name="finance_transaction_type_receive">Ingreso</string>
+</resources>

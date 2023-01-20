@@ -1,6 +1,8 @@
 package com.baleshapp.pocketpaper.utils
 
 import android.annotation.SuppressLint
+import android.content.Context
+import com.baleshapp.pocketpaper.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -44,6 +46,7 @@ class DateTimeUtil {
         val cal: Calendar = Calendar.getInstance()
         cal.set(Calendar.HOUR_OF_DAY, 0)
         cal.set(Calendar.MINUTE, 0)
+        cal.set(Calendar.SECOND, 0)
         cal.set(Calendar.MILLISECOND, 0)
         cal.set(Calendar.YEAR, year)
         cal.set(Calendar.MONTH, month)
@@ -56,7 +59,7 @@ class DateTimeUtil {
      * @return Today or Tomorrow or String date
      */
     @SuppressLint("SimpleDateFormat")
-    fun getDayName(date: Long): String {
+    fun getDayName(date: Long, context: Context): String {
         val cal: Calendar = Calendar.getInstance()
         val current = Date(date)
         val today = Date()
@@ -67,15 +70,27 @@ class DateTimeUtil {
         val sdf = SimpleDateFormat("ddMMy")
         return when {
             sdf.format(current).equals(sdf.format(today)) -> {
-                "Сегодня"
+                context.resources.getString(R.string.today)
             }
             sdf.format(date).equals(sdf.format(tomorrow)) -> {
-                "Завтра"
+                context.resources.getString(R.string.tomorrow)
             }
             else -> {
                 getDateString(date)
             }
         }
+    }
+
+    /**
+     * Method returns today date property in Long
+     */
+    fun getTodayDate(): Long {
+        val cal: Calendar = Calendar.getInstance()
+        cal.set(Calendar.HOUR_OF_DAY, 0)
+        cal.set(Calendar.MINUTE, 0)
+        cal.set(Calendar.SECOND, 0)
+        cal.set(Calendar.MILLISECOND, 0)
+        return cal.time.time
     }
 
     /**
@@ -104,6 +119,7 @@ class DateTimeUtil {
         val calendar1 = Calendar.getInstance()
         calendar1.set(Calendar.HOUR_OF_DAY, 23)
         calendar1.set(Calendar.MINUTE, 59)
+        calendar1.set(Calendar.SECOND, 0)
         calendar1.set(Calendar.MILLISECOND, 0)
         calendar1.set(Calendar.YEAR, year)
         calendar1.set(Calendar.MONTH, month)
@@ -112,6 +128,7 @@ class DateTimeUtil {
         val calendar2 = Calendar.getInstance()
         calendar2.set(Calendar.HOUR_OF_DAY, 23)
         calendar2.set(Calendar.MINUTE, 59)
+        calendar2.set(Calendar.SECOND, 0)
         calendar2.set(Calendar.MILLISECOND, 0)
         calendar2.set(Calendar.YEAR, year)
         calendar2.set(Calendar.MONTH, month)

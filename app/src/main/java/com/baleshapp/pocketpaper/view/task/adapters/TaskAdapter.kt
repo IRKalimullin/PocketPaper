@@ -13,6 +13,7 @@ import com.baleshapp.pocketpaper.data.model.Task
 import com.baleshapp.pocketpaper.data.model.TaskTag
 import com.baleshapp.pocketpaper.databinding.TaskItemBinding
 import com.baleshapp.pocketpaper.utils.DateTimeUtil
+import com.baleshapp.pocketpaper.view.task.dialogs.TaskDetailDialog
 
 class TaskAdapter(
     private val onDelete: (task: Task) -> Unit,
@@ -89,6 +90,7 @@ class TaskAdapter(
         private val mBinding: TaskItemBinding = binding
         private val dateTimeUtil = DateTimeUtil()
         private val context = binding.root.context
+        var isDescription = false
 
         var tagText: String = context.resources.getString(R.string.general_tag_text)
 
@@ -110,6 +112,7 @@ class TaskAdapter(
             setTextStyle(task.isDone)
             tagText = getTagText(task.tag)
             mBinding.task = this.task
+            isDescription = task.description.isNotEmpty()
             mBinding.invalidateAll()
         }
 
@@ -175,6 +178,10 @@ class TaskAdapter(
             val alertDialog = builder.create()
             alertDialog.show()
             return true
+        }
+
+        fun openTaskDetails(){
+            TaskDetailDialog(context, task, onDelete, onUpdate)
         }
 
         private fun deleteTask() {
