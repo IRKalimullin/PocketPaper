@@ -21,6 +21,24 @@
         <item name="button_color_attr">@color/black</item>
         <item name="navigation_bar_background_color_attr">@color/window_background_light_mode</item>
         <item name="alertDialogTheme">@style/custom_alert_dialog</item>
+
+        <!-- new app style colors -->
+        <item name="app_window_background_color">@color/white</item>
+        <item name="app_item_background_color">@color/porcelain</item>
+        <item name="app_primary_color">@color/dim_purple</item>
+
+        <item name="notes_section_button_color">@color/sandy_brown</item>
+        <item name="habits_section_button_color">@color/amulet</item>
+        <item name="purchases_section_button_color">@color/ming</item>
+        <item name="targets_section_button_color">@color/copper_canyon</item>
+
+        <item name="general_task_tag_color">@color/wild_willow</item>
+        <item name="work_task_tag_color">@color/malibu</item>
+        <item name="personal_task_tag_color">@color/macaroni_and_cheese</item>
+        <item name="study_task_tag_color">@color/golden_tainoi</item>
+
+        <item name="deactivated_button_color">@color/stack</item>
+
     </style>
 
     <style name="bottom_sheet_dialog_style" parent="Theme.Design.BottomSheetDialog">
@@ -74,4 +92,5 @@
         <item name="android:background">@drawable/custom_layout_shape</item>
         <item name="android:backgroundTint">?attr/item_background_color_attr</item>
     </style>
+
 </resources>
