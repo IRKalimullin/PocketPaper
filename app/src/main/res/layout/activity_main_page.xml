@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.baleshapp.pocketpaper.view.mainpage.MainPageActivity" />
+
+        <import type="android.view.View"/>
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/app_window_background_color">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="12dp">
+
+            <RelativeLayout
+                android:id="@+id/main_page_up_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageButton
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toStartOf="@id/main_page_settings_button"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    android:src="@drawable/calendar" />
+
+                <ImageButton
+                    android:id="@+id/main_page_settings_button"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    android:src="@drawable/settings_03" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/main_page_title"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="40sp" />
+            </RelativeLayout>
+
+
+            <GridLayout
+                android:id="@+id/app_sections_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/main_page_up_bar"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:columnCount="2"
+                android:paddingVertical="6dp"
+
+                android:rowCount="2">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/notes_section_button_color"
+                    android:padding="6dp">
+
+                    <ImageView
+                        android:id="@+id/note_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="3dp"
+                        android:contentDescription="@string/notes_fragment_button_description"
+                        android:src="@drawable/file_02" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_toRightOf="@id/note_icon"
+                        android:text="@string/title_notes_fragment"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/habits_section_button_color"
+                    android:padding="6dp">
+
+                    <ImageView
+                        android:id="@+id/habit_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="3dp"
+                        android:contentDescription="@string/notes_fragment_button_description"
+                        android:src="@drawable/star_06" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_toRightOf="@id/habit_icon"
+                        android:text="@string/habits"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/purchases_section_button_color"
+                    android:padding="6dp">
+
+                    <ImageView
+                        android:id="@+id/purchases_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="3dp"
+                        android:contentDescription="@string/notes_fragment_button_description"
+                        android:src="@drawable/shopping_bag_03" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_toRightOf="@id/purchases_icon"
+                        android:text="@string/title_purchases_fragment"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/finances_section_button_color"
+                    android:padding="6dp">
+
+                    <ImageView
+                        android:id="@+id/finances_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="3dp"
+                        android:contentDescription="@string/notes_fragment_button_description"
+                        android:src="@drawable/bank_note_01" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_toRightOf="@id/finances_icon"
+                        android:text="@string/title_finances_fragment"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+            </GridLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/task_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/app_sections_container"
+                android:layout_marginTop="12dp">
+
+                <ImageButton
+                    android:onClick="@{() -> activity.openTagMenu()}"
+                    android:id="@+id/tag_selector_button"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    android:src="@drawable/tag_03" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/tag_selector_button"
+                    android:text="@string/today"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    android:padding="6dp"
+                    android:text="@string/open_all"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+
+            <include
+                android:visibility="@{activity.taskListEmpty ? View.VISIBLE : View.GONE}"
+                android:layout_marginTop="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/task_menu"
+                android:id="@+id/empty_task_list_layout"
+                layout="@layout/empty_task_list_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/today_active_task_list_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/task_menu"
+                android:overScrollMode="never"
+                android:layout_marginTop="12dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <TextView
+                android:visibility="@{activity.completedListEmpty ? View.GONE : View.VISIBLE}"
+                android:id="@+id/completed_task_list_text"
+                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_below="@id/today_active_task_list_rv"
+                android:text="Завершенные"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="20sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:visibility="@{activity.completedListEmpty ? View.GONE : View.VISIBLE}"
+                android:id="@+id/today_completed_task_list_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/completed_task_list_text"
+                android:overScrollMode="never"
+                android:layout_marginTop="12dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+
+        </RelativeLayout>
+
+        <Button
+            android:onClick="@{() -> activity.createNewTask()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/rounded_20_corners_shape"
+            android:drawableLeft="@drawable/ic_baseline_add_24"
+            android:elevation="4dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:stateListAnimator="@null"
+            android:text="Новая задача"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </FrameLayout>
+</layout>

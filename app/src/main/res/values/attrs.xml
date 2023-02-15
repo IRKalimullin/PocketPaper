@@ -16,7 +16,7 @@
     <attr name="notes_section_button_color" format="color"/>
     <attr name="habits_section_button_color" format="color"/>
     <attr name="purchases_section_button_color" format="color"/>
-    <attr name="targets_section_button_color" format="color"/>
+    <attr name="finances_section_button_color" format="color"/>
 
     <attr name="general_task_tag_color" format="color"/>
     <attr name="work_task_tag_color" format="color"/>

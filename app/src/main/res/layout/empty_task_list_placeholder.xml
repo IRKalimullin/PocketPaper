@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/pencil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pencil_line"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:id="@+id/text1"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/pencil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="На сегодня у вас ничего не \n запланировано"
+        android:textSize="14sp"
+        android:textColor="?attr/text_color_attr"
+        />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Нажмите чтобы добавить новую задачу"
+        android:textSize="12sp"
+        android:textColor="?attr/text_color_attr"
+        />
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/big_arrow_narrow_down"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>

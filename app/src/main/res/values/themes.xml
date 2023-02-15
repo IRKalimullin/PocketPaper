@@ -3,7 +3,7 @@
     <style name="Theme.PocketPaper" parent="Theme.MaterialComponents.NoActionBar">
 
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimary">@color/dim_purple</item>
         <item name="colorPrimaryVariant">@color/green</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -30,7 +30,7 @@
         <item name="notes_section_button_color">@color/sandy_brown</item>
         <item name="habits_section_button_color">@color/amulet</item>
         <item name="purchases_section_button_color">@color/ming</item>
-        <item name="targets_section_button_color">@color/copper_canyon</item>
+        <item name="finances_section_button_color">@color/copper_canyon</item>
 
         <item name="general_task_tag_color">@color/wild_willow</item>
         <item name="work_task_tag_color">@color/malibu</item>
@@ -39,8 +39,30 @@
 
         <item name="deactivated_button_color">@color/stack</item>
 
+        <item name="android:popupMenuStyle">@style/popup_menu_style</item>
+        <item name="android:textColor">?attr/text_color_attr</item>
+
     </style>
 
+    <!-- Новые стили-->
+    
+    <style name="popup_menu_style" parent="Widget.Material3.PopupMenu">
+        <item name="android:titleTextColor">?attr/text_color_attr</item>
+        <item name="android:popupBackground">@drawable/rounded_10_corners_shape</item>
+        <item name="android:backgroundTint">?attr/app_item_background_color</item>
+    </style>
+
+    <style name="app_bottom_sheet_dialog_style" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/new_modal_sheet_style</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="new_modal_sheet_style" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_20_corners_shape</item>
+    </style>
+    
+    <!-- Старое-->
     <style name="bottom_sheet_dialog_style" parent="Theme.Design.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/modal_sheet_style</item>
         <item name="android:windowIsFloating">false</item>

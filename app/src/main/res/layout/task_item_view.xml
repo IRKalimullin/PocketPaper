@@ -1,7 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</LinearLayout>
+    <data>
+
+        <variable
+            name="viewHolder"
+            type="com.baleshapp.pocketpaper.view.task.adapters.TaskListAdapter.TaskItemViewHolder" />
+
+        <variable
+            name="task"
+            type="com.baleshapp.pocketpaper.data.model.Task" />
+        <import type="android.view.View"/>
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:background="@drawable/rounded_10_corners_shape"
+        android:backgroundTint="?attr/app_item_background_color"
+        android:layout_height="85dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/task_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/text_color_attr"
+            android:textSize="20sp"
+            android:text="@{task.name}"/>
+        
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/task_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="14sp"
+                android:text="@{viewHolder.getTimeString(task)}"
+                />
+
+            <ImageView
+                android:visibility="@{task.description != null ? View.VISIBLE : View.GONE}"
+                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu_03"/>
+
+            <ImageView
+                android:visibility="@{View.GONE}"
+                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bell_01"/>
+
+            <ImageView
+                android:visibility="@{View.GONE}"
+                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/branch_01"/>
+
+        </LinearLayout>
+
+        <CheckBox
+            android:checked="@{task.done}"
+            android:gravity="top"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:button="@drawable/circle_checkbox_selector"
+            android:layout_alignParentEnd="true"
+            android:buttonTint="?attr/button_color_attr"
+            />
+
+        <com.google.android.material.chip.Chip
+            app:chipCornerRadius="10dp"
+            android:id="@+id/task_tag_item_view"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/task_name_view"
+            android:layout_alignParentEnd="true"
+            android:padding="2dp"
+            app:chipMinTouchTargetSize="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_10_corners_shape"
+            android:backgroundTint="?attr/general_task_tag_color"
+            android:text="@string/general_tag_text"
+            />
+
+    </RelativeLayout>
+</layout>

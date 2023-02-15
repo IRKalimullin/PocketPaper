@@ -77,9 +77,9 @@ class MainPageFragment : Fragment() {
     }
 
     fun createNewTask() {
-        NewTaskDialog(binding.root.context) {
+      /*  NewTaskDialog(binding.root.context) {
             taskViewModel.insert(it)
-        }
+        }*/
     }
 
     fun openAllTasks() {
