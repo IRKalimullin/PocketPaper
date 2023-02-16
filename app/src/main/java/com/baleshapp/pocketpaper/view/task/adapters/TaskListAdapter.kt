@@ -2,14 +2,19 @@ package com.baleshapp.pocketpaper.view.task.adapters
 
 import android.app.AlertDialog
 import android.graphics.Paint
+import android.renderscript.ScriptGroup.Binding
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Task
 import com.baleshapp.pocketpaper.data.model.TaskTag
+import com.baleshapp.pocketpaper.databinding.CompletedTitleLayoutBinding
 import com.baleshapp.pocketpaper.databinding.TaskItemViewBinding
 import com.baleshapp.pocketpaper.utils.DateTimeUtil
 import com.baleshapp.pocketpaper.view.task.dialogs.TaskDetailDialog
@@ -19,6 +24,7 @@ class TaskListAdapter(
     private val onUpdate: (task: Task) -> Unit
 ) : RecyclerView.Adapter<TaskListAdapter.TaskItemViewHolder>() {
     //NEW CLASS REDESIGN
+
     private var taskList = listOf<Task>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskItemViewHolder {
@@ -40,8 +46,9 @@ class TaskListAdapter(
         return taskList.size
     }
 
-    fun setData(list: List<Task>){
+    fun setData(list: List<Task>) {
         taskList = list.toMutableList()
+        notifyItemInserted(taskList.size - 1)
     }
 
 
@@ -49,7 +56,7 @@ class TaskListAdapter(
         binding: TaskItemViewBinding,
         private val onDelete: (task: Task) -> Unit,
         private val onUpdate: (task: Task) -> Unit
-    ) : RecyclerView.ViewHolder(binding.root) {
+    ) : ViewHolder(binding.root) {
 
         lateinit var task: Task
         private val mBinding: TaskItemViewBinding = binding
@@ -83,10 +90,10 @@ class TaskListAdapter(
 
         private fun getTagColor(tag: TaskTag): Int {
             return when (tag) {
-                TaskTag.GENERAL -> R.color.general_task_tag_color
-                TaskTag.PERSONAL -> R.color.personal_task_tag_color
-                TaskTag.WORK -> R.color.work_task_tag_color
-                TaskTag.STUDY -> R.color.study_task_tag_color
+                TaskTag.GENERAL -> R.color.wild_willow
+                TaskTag.PERSONAL -> R.color.macaroni_and_cheese
+                TaskTag.WORK -> R.color.malibu
+                TaskTag.STUDY -> R.color.golden_tainoi
             }
         }
 
@@ -145,7 +152,7 @@ class TaskListAdapter(
             return true
         }
 
-        fun openTaskDetails(){
+        fun openTaskDetails() {
             TaskDetailDialog(context, task, onDelete, onUpdate)
         }
 

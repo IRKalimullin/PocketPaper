@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="activity"
+            type="com.baleshapp.pocketpaper.view.mainpage.MainPageActivity" />
+
+    </data>
+
+    <GridLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/app_sections_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_10_corners_shape"
+        android:backgroundTint="?attr/app_item_background_color"
+        android:columnCount="2"
+        android:paddingVertical="6dp"
+        android:rowCount="2">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/rounded_10_corners_shape"
+            android:backgroundTint="?attr/notes_section_button_color"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/note_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="3dp"
+                android:contentDescription="@string/notes_fragment_button_description"
+                android:src="@drawable/file_02" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@id/note_icon"
+                android:text="@string/title_notes_fragment"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:background="@drawable/rounded_10_corners_shape"
+            android:backgroundTint="?attr/habits_section_button_color"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/habit_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="3dp"
+                android:contentDescription="@string/notes_fragment_button_description"
+                android:src="@drawable/star_06" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@id/habit_icon"
+                android:text="@string/habits"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/rounded_10_corners_shape"
+            android:backgroundTint="?attr/purchases_section_button_color"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/purchases_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="3dp"
+                android:contentDescription="@string/notes_fragment_button_description"
+                android:src="@drawable/shopping_bag_03" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@id/purchases_icon"
+                android:text="@string/title_purchases_fragment"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="6dp"
+            android:background="@drawable/rounded_10_corners_shape"
+            android:backgroundTint="?attr/finances_section_button_color"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/finances_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="3dp"
+                android:contentDescription="@string/notes_fragment_button_description"
+                android:src="@drawable/bank_note_01" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@id/finances_icon"
+                android:text="@string/title_finances_fragment"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+    </GridLayout>
+</layout>

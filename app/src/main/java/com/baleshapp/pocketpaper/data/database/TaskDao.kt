@@ -25,8 +25,11 @@ interface TaskDao {
     @Query("SELECT * FROM Task WHERE isDone = 1")
     fun getCompletedTasksLiveData(): Flow<List<Task>>
 
-    @Query("SELECT * FROM Task where (date BETWEEN :dateBefore AND :dateAfter)")
-    fun getCurrentTasks(dateBefore: Long, dateAfter: Long): Flow<List<Task>>
+    @Query("SELECT * FROM Task WHERE (date BETWEEN :dateBefore AND :dateAfter) AND isDone = 0")
+    fun getCurrentActiveTasks(dateBefore: Long, dateAfter: Long): Flow<List<Task>>
+
+    @Query("SELECT * FROM Task WHERE (date BETWEEN :dateBefore AND :dateAfter) AND isDone = 1")
+    fun getCurrentCompletedTasks(dateBefore: Long, dateAfter: Long): Flow<List<Task>>
 
     @Query("SELECT count(*) FROM Task where date BETWEEN :dateBefore AND :dateAfter")
     suspend fun getCountCurrentTasks(dateBefore: Long, dateAfter: Long): Int

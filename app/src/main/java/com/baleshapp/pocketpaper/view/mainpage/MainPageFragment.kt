@@ -51,9 +51,9 @@ class MainPageFragment : Fragment() {
             taskViewModel.update(it)
         })
 
-        taskViewModel.getCurrentTasks().observe(viewLifecycleOwner) {
-            taskAdapter.setItems(it)
-        }
+       // taskViewModel.getCurrentTasks().observe(viewLifecycleOwner) {
+         //   taskAdapter.setItems(it)
+       // }
 
         val layoutManager =
             LinearLayoutManager(binding.root.context, RecyclerView.VERTICAL, false)

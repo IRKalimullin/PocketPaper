@@ -18,7 +18,8 @@
         android:background="@drawable/rounded_10_corners_shape"
         android:backgroundTint="?attr/app_item_background_color"
         android:layout_height="85dp"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:layout_marginBottom="12dp">
 
         <TextView
             android:id="@+id/task_name_view"
@@ -69,6 +70,7 @@
         </LinearLayout>
 
         <CheckBox
+            android:onCheckedChanged="@{(compoundButton, checked) -> viewHolder.saveCheckedState(checked)}"
             android:checked="@{task.done}"
             android:gravity="top"
             android:layout_width="36dp"
@@ -91,8 +93,7 @@
             android:textSize="16sp"
             android:textColor="@color/white"
             android:background="@drawable/rounded_10_corners_shape"
-            android:backgroundTint="?attr/general_task_tag_color"
-            android:text="@string/general_tag_text"
+            android:text="@{viewHolder.tagText}"
             />
 
     </RelativeLayout>
