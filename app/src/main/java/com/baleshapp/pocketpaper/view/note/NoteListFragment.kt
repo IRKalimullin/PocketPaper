@@ -36,15 +36,15 @@ class NoteListFragment : Fragment() {
         )
 
         noteViewModel = ViewModelProvider(this, viewModelFactory)[NoteViewModel1::class.java]
-        val adapter = NoteAdapter({ noteViewModel.delete(it) }, { noteViewModel.update(it) })
+     //   val adapter = NoteAdapter({ noteViewModel.delete(it) }, { noteViewModel.update(it) })
 
         noteViewModel.getNotes().observe(viewLifecycleOwner) {
-            adapter.setItems(it)
+       //     adapter.setItems(it)
             binding.invalidateAll()
         }
 
         binding.notesRecyclerView.layoutManager = gridLayoutManager
-        binding.notesRecyclerView.adapter = adapter
+        //binding.notesRecyclerView.adapter = adapter
         return binding.root
     }
 

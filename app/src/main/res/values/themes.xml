@@ -61,7 +61,25 @@
     <style name="new_modal_sheet_style" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/rounded_20_corners_shape</item>
     </style>
-    
+
+    <style name="app_alert_dialog_style" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="android:textColor">?attr/text_color_attr</item>
+        <item name="android:textColorPrimary">?attr/text_color_attr</item>
+        <item name="android:dialogMessage">?attr/text_color_attr</item>
+        <item name="android:windowBackground">@drawable/rounded_10_corners_shape</item>
+        <item name="buttonBarPositiveButtonStyle">@style/app_alert_dialog_style_positive_button</item>
+        <item name="buttonBarNegativeButtonStyle">@style/app_alert_dialog_style_negative_button</item>
+    </style>
+
+    <style name="app_alert_dialog_style_positive_button">
+        <item name="android:textColor">?attr/app_primary_color</item>
+    </style>
+
+    <style name="app_alert_dialog_style_negative_button">
+        <item name="android:textColor">?attr/app_primary_color</item>
+    </style>
+
+
     <!-- Старое-->
     <style name="bottom_sheet_dialog_style" parent="Theme.Design.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/modal_sheet_style</item>

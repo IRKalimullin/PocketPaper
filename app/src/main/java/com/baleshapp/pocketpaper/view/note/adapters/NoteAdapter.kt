@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.SortedList
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Note
 import com.baleshapp.pocketpaper.databinding.NoteItemBinding
-import com.baleshapp.pocketpaper.view.note.dialogs.NoteDialog
 
 class NoteAdapter(
+    private val openNote: (note: Note) -> Unit,
     private val onDelete: (note: Note) -> Unit,
     private val onUpdate: (note: Note) -> Unit
 ) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
@@ -63,7 +63,7 @@ class NoteAdapter(
             parent,
             false
         )
-        return NoteViewHolder(binding, onDelete, onUpdate)
+        return NoteViewHolder(binding, openNote, onDelete, onUpdate)
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
@@ -78,6 +78,7 @@ class NoteAdapter(
 
     class NoteViewHolder(
         binding: NoteItemBinding,
+        private val openNote: (note: Note) -> Unit,
         private val onDelete: (note: Note) -> Unit,
         private val onUpdate: (note: Note) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -105,12 +106,7 @@ class NoteAdapter(
         }
 
         fun createNoteDialog() {
-            NoteDialog(
-                mBinding.root.context,
-                false, note,
-                onDelete,
-                onUpdate
-            )
+            openNote(note)
         }
 
         fun onLongClick(): Boolean {

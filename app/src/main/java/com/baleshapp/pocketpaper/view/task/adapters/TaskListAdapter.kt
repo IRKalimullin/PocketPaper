@@ -1,5 +1,6 @@
 package com.baleshapp.pocketpaper.view.task.adapters
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.graphics.Paint
 import android.renderscript.ScriptGroup.Binding
@@ -46,9 +47,10 @@ class TaskListAdapter(
         return taskList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(list: List<Task>) {
         taskList = list.toMutableList()
-        notifyItemInserted(taskList.size - 1)
+        notifyDataSetChanged()
     }
 
 
@@ -106,10 +108,6 @@ class TaskListAdapter(
             }
         }
 
-        fun getDateString(task: Task): String {
-            return dateTimeUtil.getDateString(task.date)
-        }
-
         fun getTimeString(task: Task): String {
             val timeString = dateTimeUtil.getTimeString(task.time)
             return if (timeString == "04:00") {
@@ -137,7 +135,7 @@ class TaskListAdapter(
         }
 
         fun onLongClick(): Boolean {
-            val builder = AlertDialog.Builder(context, R.style.custom_alert_dialog)
+            val builder = AlertDialog.Builder(context, R.style.app_alert_dialog_style)
             builder.setTitle("$deleteTaskMessage \"${task.name}\"?")
                 .setMessage(cancelWarningMessage)
                 .setPositiveButton(

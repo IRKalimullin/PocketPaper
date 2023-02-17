@@ -11,6 +11,6 @@ data class Note(
     @ColumnInfo(name = "text") var text: String,
     @ColumnInfo(name = "isFavorite") var isFavorite: Boolean,
     @ColumnInfo(name = "timestampOfNote") var timestampOfNote: Long
-)
+) : java.io.Serializable
 
 

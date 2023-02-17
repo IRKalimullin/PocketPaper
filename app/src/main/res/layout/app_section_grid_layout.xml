@@ -20,6 +20,7 @@
         android:rowCount="2">
 
         <RelativeLayout
+            android:onClick="@{() -> activity.openNoteListActivity()}"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_columnWeight="1"

@@ -1,5 +1,6 @@
 package com.baleshapp.pocketpaper.view.mainpage
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,11 +8,10 @@ import android.view.LayoutInflater
 import android.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.repository.TaskRepository
 import com.baleshapp.pocketpaper.databinding.ActivityMainPageBinding
+import com.baleshapp.pocketpaper.view.note.NoteListActivity
 import com.baleshapp.pocketpaper.view.task.adapters.TaskListAdapter
 import com.baleshapp.pocketpaper.view.task.dialogs.NewTaskDialog
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModel
@@ -28,8 +28,6 @@ class MainPageActivity : AppCompatActivity() {
     var isAempty = true
     var isCempty = true
 
-    var isCompletedListEmpty = true
-    var isTaskListEmpty = true
     private lateinit var taskViewModel: TaskViewModel
     private lateinit var taskListAdapter: TaskListAdapter
     private lateinit var taskListAdapter2: TaskListAdapter
@@ -77,7 +75,6 @@ class MainPageActivity : AppCompatActivity() {
         taskViewModel.getCurrentCompletedTasks().observe(this) {
             if (it.isNotEmpty()) {
                 taskListAdapter2.setData(it)
-                taskListAdapter2.notifyDataSetChanged()
             }
             isCempty = it.isEmpty()
             setVisibilities()
@@ -86,28 +83,18 @@ class MainPageActivity : AppCompatActivity() {
         taskViewModel.getCurrentActiveTasks().observe(this) {
             if (it.isNotEmpty()) {
                 taskListAdapter.setData(it)
-                taskListAdapter.notifyDataSetChanged()
             }
             isAempty = it.isEmpty()
             setVisibilities()
 
         }
 
-
-        val layoutManager =
-            LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-
-        val layoutManager2 =
-            LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-
-        binding.todayActiveTaskListRv.layoutManager = layoutManager
         binding.todayActiveTaskListRv.adapter = taskListAdapter
 
-        binding.todayCompletedTaskListRv.layoutManager = layoutManager2
         binding.todayCompletedTaskListRv.adapter = taskListAdapter2
     }
 
-    fun setVisibilities() {
+    private fun setVisibilities() {
         if ((!isAempty) and (isCempty)) {
             isActiveVisible = true
             isCompletedVisible = false
@@ -146,6 +133,11 @@ class MainPageActivity : AppCompatActivity() {
 
     fun createNewTask() {
         NewTaskDialog(this) { taskViewModel.insert(it) }
+    }
+
+    fun openNoteListActivity(){
+        val intent = Intent(this,NoteListActivity::class.java)
+        startActivity(intent)
     }
 
 }

@@ -171,6 +171,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/task_menu"
                                 android:overScrollMode="never"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                 android:visibility="@{activity.activeVisible ? View.VISIBLE : View.GONE}"
                                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
@@ -190,7 +191,7 @@
                             android:visibility="@{activity.completedVisible ? View.VISIBLE : View.GONE}" />
 
                         <androidx.recyclerview.widget.RecyclerView
-
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             android:id="@+id/today_completed_task_list_rv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

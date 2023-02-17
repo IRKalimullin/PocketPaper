@@ -17,8 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
-        android:background="@drawable/custom_layout_shape"
-        android:elevation="2dp"
+        android:background="@drawable/rounded_10_corners_shape"
+        android:backgroundTint="?attr/app_item_background_color"
         android:orientation="vertical">
 
         <LinearLayout

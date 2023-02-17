@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="note"
+            type="com.baleshapp.pocketpaper.data.model.Note" />
+
+        <variable
+            name="activity"
+            type="com.baleshapp.pocketpaper.view.note.NoteActivity" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/app_window_background_color"
+        tools:context=".view.note.NoteActivity">
+
+        <RelativeLayout
+            android:id="@+id/note_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/current_note_toolbar"
+                layout="@layout/base_toolbar_layout"
+                app:activity="@{activity}"
+                app:title="@{@string/note}" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/note_toolbar"
+            android:layout_marginHorizontal="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Название"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/note_name_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_toStartOf="@id/save_task_button"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:inputType="textCapSentences|textNoSuggestions"
+                android:minHeight="48dp"
+                android:paddingHorizontal="6dp"
+                android:text="@={note.name}"
+                android:textColor="?attr/text_color_attr"
+                android:textColorHint="@color/light_grey"
+                tools:ignore="Autofill" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Текст заметки"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/note_text_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="top"
+                android:inputType="textCapSentences|textNoSuggestions|textMultiLine"
+                android:minHeight="192dp"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="6dp"
+                android:text="@={note.text}"
+                android:textColor="?attr/text_color_attr"
+                android:textColorHint="@color/light_grey"
+                tools:ignore="Autofill" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/rounded_20_corners_shape"
+            android:elevation="4dp"
+            android:onClick="@{() -> activity.changeNote()}"
+            android:paddingHorizontal="22dp"
+            android:paddingVertical="10dp"
+            android:stateListAnimator="@null"
+            android:text="Сохранить"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="@{activity.saveButtonVisible ? View.VISIBLE : View.GONE}" />
+
+    </RelativeLayout>
+</layout>
