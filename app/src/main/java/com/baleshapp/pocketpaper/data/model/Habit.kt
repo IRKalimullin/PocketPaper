@@ -12,4 +12,4 @@ data class Habit(
     @ColumnInfo(name = "startDate") var startDate: Long,
     @ColumnInfo(name = "repetition") var repetition: Int,
     @ColumnInfo(name = "isCheckable") var isCheckable: Boolean
-)
+) : java.io.Serializable

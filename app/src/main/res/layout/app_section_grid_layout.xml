@@ -55,6 +55,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:onClick="@{() -> activity.openHabitListActivity()}"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_columnWeight="1"
@@ -86,6 +87,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:onClick="@{() ->  activity.openPurchaseListActivity()}"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_columnWeight="1"

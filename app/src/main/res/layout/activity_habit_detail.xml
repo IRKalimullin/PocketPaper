@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+<data>
+
+    <variable
+        name="habit"
+        type="com.baleshapp.pocketpaper.data.model.Habit" />
+
+    <variable
+        name="activity"
+        type="com.baleshapp.pocketpaper.view.habit.HabitDetailActivity" />
+
+    <import type="android.view.View"/>
+</data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+
+        android:background="?attr/app_window_background_color"
+        android:layout_height="match_parent"
+        tools:context=".view.habit.HabitDetailActivity">
+
+
+        <RelativeLayout
+            android:id="@+id/habit_detail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/back_to_habit_list_button"
+                layout="@layout/base_toolbar_layout"
+                app:activity="@{activity}"
+                app:title="@{}"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:visibility="@{activity.editingMode ? View.GONE : View.VISIBLE}"
+                android:onClick="@{() -> activity.changeEditingMode()}"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:textAllCaps="false"
+                android:textAlignment="center"
+                android:src="@drawable/edit_02"
+                android:textColor="?attr/text_color_attr"
+                android:checkable="false"
+                android:minWidth="140dp"
+                android:textSize="20sp"
+                android:padding="6dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                />
+
+            <RelativeLayout
+                android:visibility="@{activity.editingMode ? View.VISIBLE : View.GONE}"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/habit_editing_menu">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:onClick="@{() -> activity.changeEditingMode()}"
+                    android:id="@+id/cancel_habit_editing"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textAllCaps="false"
+                    android:textAlignment="center"
+                    android:src="@drawable/x_close"
+                    android:textColor="?attr/text_color_attr"
+                    android:checkable="false"
+                    android:minWidth="140dp"
+                    android:textSize="20sp"
+                    android:padding="6dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/save_habit_editing"
+                    android:onClick="@{() -> activity.updateHabit()}"
+                    android:layout_toStartOf="@id/cancel_habit_editing"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textAllCaps="false"
+                    android:textAlignment="center"
+                    android:src="@drawable/save_02"
+                    android:textColor="?attr/text_color_attr"
+                    android:checkable="false"
+                    android:minWidth="140dp"
+                    android:textSize="20sp"
+                    android:padding="6dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:onClick="@{() -> activity.deleteHabit()}"
+                    android:id="@+id/delete_habit"
+                    android:layout_toStartOf="@id/save_habit_editing"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:textAllCaps="false"
+                    android:textAlignment="center"
+                    android:src="@drawable/trash_01"
+                    android:textColor="?attr/text_color_attr"
+                    android:checkable="false"
+                    android:minWidth="140dp"
+                    android:textSize="20sp"
+                    android:padding="6dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_marginHorizontal="12dp"
+            android:layout_below="@id/habit_detail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Название"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="16sp" />
+
+            <EditText
+                android:clickable="@{activity.editingMode | activity.newHabit}"
+                android:cursorVisible="@{activity.editingMode | activity.newHabit}"
+                android:focusable="@{activity.editingMode | activity.newHabit}"
+                android:focusableInTouchMode="@{activity.editingMode | activity.newHabit}"
+                android:id="@+id/habit_name_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:inputType="textCapSentences|textNoSuggestions"
+                android:minHeight="48dp"
+                android:paddingHorizontal="6dp"
+                android:text="@={habit.name}"
+                android:textColor="?attr/text_color_attr"
+                android:textColorHint="@color/light_grey"
+                tools:ignore="Autofill" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Описание"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/habit_description_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:gravity="top"
+                android:inputType="textCapSentences|textNoSuggestions|textMultiLine"
+                android:minHeight="192dp"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="6dp"
+                android:clickable="@{activity.editingMode | activity.newHabit}"
+                android:cursorVisible="@{activity.editingMode | activity.newHabit}"
+                android:focusable="@{activity.editingMode | activity.newHabit}"
+                android:focusableInTouchMode="@{activity.editingMode | activity.newHabit}"
+                android:text="@={habit.description}"
+                android:textColor="?attr/text_color_attr"
+                android:textColorHint="@color/light_grey"
+                tools:ignore="Autofill" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Дата начала"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="16sp" />
+
+            <com.google.android.material.chip.Chip
+                android:clickable="@{activity.editingMode | activity.newHabit}"
+                android:layout_marginTop="6dp"
+                android:onClick="@{() -> activity.openDatePicker()}"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="@{activity.habitStartDateText}"
+                android:textAlignment="center"
+                android:textColor="?attr/text_color_attr"
+                android:checkable="false"
+                android:minWidth="140dp"
+                android:textSize="20sp"
+                android:padding="6dp"
+                app:chipCornerRadius="10dp"
+                app:chipBackgroundColor="?attr/app_item_background_color"
+                app:chipMinTouchTargetSize="0dp"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:visibility="@{activity.newHabit ? View.VISIBLE : View.GONE}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/rounded_20_corners_shape"
+            android:elevation="4dp"
+            android:onClick="@{() -> activity.saveHabit()}"
+            android:paddingHorizontal="26dp"
+            android:paddingVertical="10dp"
+            android:stateListAnimator="@null"
+            android:text="Сохранить"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+</layout>

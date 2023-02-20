@@ -36,7 +36,7 @@ class NewPurchaseListDialog(
     private fun createDialog() {
         val inputManager: InputMethodManager = context.getSystemService()!!
         inputManager.showSoftInput(binding.root,InputMethodManager.SHOW_IMPLICIT)
-        dialog = BottomSheetDialog(context, R.style.bottom_sheet_dialog_style)
+        dialog = BottomSheetDialog(context, R.style.app_bottom_sheet_dialog_style)
         dialog.setContentView(binding.root)
 
         dialog.setOnCancelListener {

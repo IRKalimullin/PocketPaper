@@ -21,6 +21,10 @@ class HabitViewModel(private val repository: HabitRepository) : ViewModel() {
         insertHabitPoint(habitPoint)
     }
 
+    fun updateHabit(habit: Habit) = viewModelScope.launch {
+        repository.update(habit)
+    }
+
     private fun createInitHabitPoint(habitId: Int, lastDate: Long) {
         val todayCalendar = Calendar.getInstance()
         val startDateCalendar = Calendar.getInstance()

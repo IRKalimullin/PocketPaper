@@ -42,7 +42,7 @@ class NewHabitDialog(
 
     private fun createDialog() {
         val inputManager: InputMethodManager = context.getSystemService()!!
-        dialog = BottomSheetDialog(context, R.style.bottom_sheet_dialog_style)
+       // dialog = BottomSheetDialog(context, R.style.bottom_sheet_dialog_style)
         dialog.setContentView(binding.root)
         dialog.setOnCancelListener {
             inputManager.showSoftInput(binding.root, InputMethodManager.HIDE_IMPLICIT_ONLY)

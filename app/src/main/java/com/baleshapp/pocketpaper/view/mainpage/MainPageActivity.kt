@@ -11,7 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.repository.TaskRepository
 import com.baleshapp.pocketpaper.databinding.ActivityMainPageBinding
+import com.baleshapp.pocketpaper.view.habit.HabitListActivity
 import com.baleshapp.pocketpaper.view.note.NoteListActivity
+import com.baleshapp.pocketpaper.view.purchase.PurchaseListActivity
 import com.baleshapp.pocketpaper.view.task.adapters.TaskListAdapter
 import com.baleshapp.pocketpaper.view.task.dialogs.NewTaskDialog
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModel
@@ -29,8 +31,16 @@ class MainPageActivity : AppCompatActivity() {
     var isCempty = true
 
     private lateinit var taskViewModel: TaskViewModel
-    private lateinit var taskListAdapter: TaskListAdapter
-    private lateinit var taskListAdapter2: TaskListAdapter
+    private var taskListAdapter: TaskListAdapter = TaskListAdapter(emptyList(),{
+        taskViewModel.delete(it)
+    }, {
+        taskViewModel.update(it)
+    })
+    private var taskListAdapter2: TaskListAdapter = TaskListAdapter(emptyList(),{
+        taskViewModel.delete(it)
+    }, {
+        taskViewModel.update(it)
+    })
     lateinit var binding: ActivityMainPageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +67,7 @@ class MainPageActivity : AppCompatActivity() {
 
         taskViewModel = ViewModelProvider(this, viewModelFactory)[TaskViewModel::class.java]
 
-        taskListAdapter =
+    /*    taskListAdapter =
             TaskListAdapter({
                 taskViewModel.delete(it)
             }, {
@@ -70,11 +80,11 @@ class MainPageActivity : AppCompatActivity() {
             }, {
                 taskViewModel.update(it)
             })
-
+*/
 
         taskViewModel.getCurrentCompletedTasks().observe(this) {
             if (it.isNotEmpty()) {
-                taskListAdapter2.setData(it)
+                taskListAdapter2.submitList(it)
             }
             isCempty = it.isEmpty()
             setVisibilities()
@@ -82,7 +92,7 @@ class MainPageActivity : AppCompatActivity() {
 
         taskViewModel.getCurrentActiveTasks().observe(this) {
             if (it.isNotEmpty()) {
-                taskListAdapter.setData(it)
+                taskListAdapter.submitList(it)
             }
             isAempty = it.isEmpty()
             setVisibilities()
@@ -137,6 +147,16 @@ class MainPageActivity : AppCompatActivity() {
 
     fun openNoteListActivity(){
         val intent = Intent(this,NoteListActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun openPurchaseListActivity(){
+        val intent = Intent(this,PurchaseListActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun openHabitListActivity(){
+        val intent = Intent(this,HabitListActivity::class.java)
         startActivity(intent)
     }
 

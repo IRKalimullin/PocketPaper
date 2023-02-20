@@ -1,10 +1,14 @@
 package com.baleshapp.pocketpaper.view.purchase.adapters
 
 import android.app.AlertDialog
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SortedList
 import com.baleshapp.pocketpaper.R
@@ -12,11 +16,12 @@ import com.baleshapp.pocketpaper.data.model.PurchaseItem
 import com.baleshapp.pocketpaper.databinding.PurchaseItemBinding
 
 class PurchaseAdapter(
+    var list: List<PurchaseItem>,
     private val onDelete: (item: PurchaseItem) -> Unit,
     private val onUpdate: (item: PurchaseItem) -> Unit
-) : RecyclerView.Adapter<PurchaseAdapter.PurchaseViewHolder>() {
-
-    private var itemList: SortedList<PurchaseItem> =
+) : ListAdapter<PurchaseItem, PurchaseAdapter.PurchaseViewHolder>(PurchaseItemDiffCallback()) {
+//RecyclerView.Adapter<PurchaseAdapter.PurchaseViewHolder>()
+  /*  private var itemList : SortedList<PurchaseItem> =
         SortedList(PurchaseItem::class.java, object : SortedList.Callback<PurchaseItem>() {
             override fun compare(o1: PurchaseItem, o2: PurchaseItem): Int {
                 return if (!o2.isAdded && o1.isAdded) {
@@ -56,7 +61,7 @@ class PurchaseAdapter(
             }
 
         })
-
+*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PurchaseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<PurchaseItemBinding>(
@@ -69,24 +74,27 @@ class PurchaseAdapter(
     }
 
     override fun onBindViewHolder(holder: PurchaseViewHolder, position: Int) {
-        holder.bind(itemList.get(position))
+        val item = getItem(position)
+        holder.bind(item)
     }
 
-    fun setItems(itemList: List<PurchaseItem>) {
+    /*fun setItems(itemList: List<PurchaseItem>) {
         this.itemList.replaceAll(itemList)
-        notifyDataSetChanged()
+
     }
 
-    override fun getItemCount(): Int = itemList.size()
+     */
 
-    class PurchaseViewHolder(
+    //override fun getItemCount(): Int = itemList.size()
+
+    inner class PurchaseViewHolder(
         binding: PurchaseItemBinding,
         private val onDelete: (item: PurchaseItem) -> Unit,
         private val onUpdate: (item: PurchaseItem) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         lateinit var item: PurchaseItem
-        private val mBinding: PurchaseItemBinding = binding
+        val mBinding: PurchaseItemBinding = binding
         private val cancelWarningMessage =
             binding.root.resources.getString(R.string.cancel_warning_message)
         private val deleteMessage = binding.root.resources.getString(R.string.delete)
@@ -103,7 +111,13 @@ class PurchaseAdapter(
         fun saveCheckedState(isChecked: Boolean) {
             item.isAdded = isChecked
             onUpdate(item)
-            mBinding.invalidateAll()
+            if (isChecked) {
+                mBinding.purchaseItemName.paintFlags =
+                    mBinding.purchaseItemName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            } else {
+                mBinding.purchaseItemName.paintFlags =
+                    mBinding.purchaseItemName.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            }
         }
 
         fun onLongClick(): Boolean {
@@ -127,4 +141,15 @@ class PurchaseAdapter(
             Toast.makeText(mBinding.root.context, deletedMessage, Toast.LENGTH_SHORT).show()
         }
     }
+
+    class PurchaseItemDiffCallback : DiffUtil.ItemCallback<PurchaseItem>(){
+        override fun areItemsTheSame(oldItem: PurchaseItem, newItem: PurchaseItem): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: PurchaseItem, newItem: PurchaseItem): Boolean {
+            return oldItem.id == newItem.id
+        }
+    }
+
 }

@@ -35,7 +35,7 @@ class PurchaseListDialog(
     lateinit var dialog: BottomSheetDialog
 
     val binding: PurchaseListDialogBinding
-    private lateinit var adapter: PurchaseAdapter
+    ///private lateinit var adapter: PurchaseAdapter
 
     init {
         val inflater = LayoutInflater.from(context)
@@ -47,19 +47,19 @@ class PurchaseListDialog(
     }
 
     private fun createDialog() {
-        dialog = BottomSheetDialog(context, R.style.bottom_sheet_dialog_style)
+       // dialog = BottomSheetDialog(context, R.style.bottom_sheet_dialog_style)
         dialog.setContentView(binding.root)
 
-        adapter = PurchaseAdapter(onDelete, onUpdate)
+        //adapter = PurchaseAdapter(onDelete, onUpdate)
 
         val layoutManager = LinearLayoutManager(binding.root.context, RecyclerView.VERTICAL, false)
         binding.purchaseRecyclerView.layoutManager = layoutManager
-        binding.purchaseRecyclerView.adapter = adapter
+        //binding.purchaseRecyclerView.adapter = adapter
         dialog.show()
     }
 
     fun setData(itemList: List<PurchaseItem>) {
-        adapter.setItems(itemList)
+        //adapter.setItems(itemList)
     }
 
     fun saveItem() {

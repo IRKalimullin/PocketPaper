@@ -9,4 +9,4 @@ data class PurchaseList(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "timestampOfList") var timestampOfList: Long
-)
+) : java.io.Serializable

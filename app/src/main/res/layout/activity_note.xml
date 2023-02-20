@@ -55,7 +55,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:layout_toStartOf="@id/save_task_button"
                 android:background="@drawable/rounded_10_corners_shape"
                 android:backgroundTint="?attr/app_item_background_color"
                 android:focusable="true"

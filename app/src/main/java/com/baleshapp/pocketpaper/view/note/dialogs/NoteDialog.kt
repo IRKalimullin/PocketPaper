@@ -43,7 +43,7 @@ class NoteDialog(
     }
 
     private fun createDialog() {
-        dialog = BottomSheetDialog(context, R.style.bottom_sheet_dialog_style)
+        //dialog = BottomSheetDialog(context, R.style.bottom_sheet_dialog_style)
         binding.note = note
         dialog.setContentView(binding.root)
         dialog.show()
