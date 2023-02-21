@@ -56,7 +56,7 @@
                 android:contentDescription="@string/save_list_button_description"
                 android:minHeight="60dp"
                 android:onClick="@{()-> dialog.saveList()}"
-                android:src="@drawable/ic_baseline_playlist_add_24"
+                android:src="@drawable/send_03"
                 app:tint="?attr/button_color_attr" />
         </LinearLayout>
     </LinearLayout>

@@ -111,6 +111,7 @@
                         android:layout_toLeftOf="@id/save_purchase_item_button"/>
 
                     <ImageView
+                        app:tint="?attr/text_color_attr"
                         android:onClick="@{() -> activity.saveItem()}"
                         android:layout_marginStart="6dp"
                         android:layout_width="30dp"

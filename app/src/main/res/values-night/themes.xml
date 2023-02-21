@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.PocketPaper" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimary">@color/dim_purple</item>
         <item name="colorPrimaryVariant">@color/white</item>
-        <item name="colorOnPrimary">@color/gray</item>
+        <item name="colorOnPrimary">@color/dim_purple</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/green</item>
         <item name="colorSecondaryVariant">@color/green</item>
@@ -19,6 +19,81 @@
         <item name="button_color_attr">@color/white</item>
         <item name="navigation_bar_background_color_attr">@color/black</item>
         <item name="alertDialogStyle">@style/custom_alert_dialog</item>
+        <!-- new app style colors -->
+        <item name="app_window_background_color">@color/black</item>
+        <item name="app_item_background_color">@color/dark_grey</item>
+        <item name="app_primary_color">@color/dim_purple</item>
+
+        <item name="notes_section_button_color">@color/sandy_brown</item>
+        <item name="habits_section_button_color">@color/amulet</item>
+        <item name="purchases_section_button_color">@color/ming</item>
+        <item name="finances_section_button_color">@color/copper_canyon</item>
+
+        <item name="general_task_tag_color">@color/wild_willow</item>
+        <item name="work_task_tag_color">@color/malibu</item>
+        <item name="personal_task_tag_color">@color/macaroni_and_cheese</item>
+        <item name="study_task_tag_color">@color/golden_tainoi</item>
+
+        <item name="deactivated_button_color">@color/stack</item>
+
+        <item name="android:popupMenuStyle">@style/popup_menu_style</item>
+        <item name="android:textColor">?attr/text_color_attr</item>
+
     </style>
+
+    <!-- Новые стили-->
+
+    <style name="popup_menu_style" parent="Widget.Material3.PopupMenu">
+        <item name="android:titleTextColor">?attr/text_color_attr</item>
+        <item name="android:popupBackground">@drawable/rounded_10_corners_shape</item>
+        <item name="android:backgroundTint">?attr/app_item_background_color</item>
+    </style>
+
+    <style name="app_bottom_sheet_dialog_style" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/new_modal_sheet_style</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="new_modal_sheet_style" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_20_corners_shape</item>
+    </style>
+
+
+    <style name="app_alert_dialog_style" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="colorAccent">?attr/app_primary_color</item>
+        <item name="android:colorAccent">?attr/app_primary_color</item>
+        <item name="colorOnPrimary">?attr/app_primary_color</item>
+        <item name="android:textColor">?attr/text_color_attr</item>
+        <item name="android:textColorPrimary">?attr/text_color_attr</item>
+        <item name="android:dialogMessage">?attr/text_color_attr</item>
+        <item name="android:windowBackground">@drawable/rounded_10_corners_shape</item>
+        <item name="buttonBarPositiveButtonStyle">@style/app_alert_dialog_style_positive_button
+        </item>
+        <item name="buttonBarNegativeButtonStyle">@style/app_alert_dialog_style_negative_button
+        </item>
+    </style>
+
+    <style name="app_alert_dialog_style_positive_button">
+        <item name="android:textColor">?attr/app_primary_color</item>
+    </style>
+
+    <style name="app_alert_dialog_style_negative_button">
+        <item name="android:textColor">?attr/app_primary_color</item>
+    </style>
+
+    <style name="app_date_picker_dialog_style" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorPrimary">@color/dim_purple</item>
+        <item name="colorOnPrimary">?attr/app_window_background_color</item>
+        <item name="colorOnSurface">?attr/text_color_attr</item>
+        <item name="colorSurface">?attr/app_window_background_color</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">16dp</item>
+    </style>
+
+
 
 </resources>

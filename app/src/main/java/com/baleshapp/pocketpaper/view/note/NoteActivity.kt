@@ -3,6 +3,7 @@ package com.baleshapp.pocketpaper.view.note
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -20,8 +21,8 @@ class NoteActivity : AppCompatActivity() {
     private lateinit var noteViewModel: NoteViewModel
     private var untitledText = ""
     private var emptyNoteMessage = ""
-    private var isNewNote = true
-    var isSaveButtonVisible = true
+    var isNewNote = true
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +63,23 @@ class NoteActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (isNewNote) {
+            binding.noteTextInput.requestFocus()
+            showKeyboard()
+        }
+    }
+
+    private fun showKeyboard() {
+        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        changeNote()
+    }
+
     fun changeNote() {
         if (isValidate()) {
             if (isNewNote) {
@@ -69,17 +87,16 @@ class NoteActivity : AppCompatActivity() {
             } else {
                 noteViewModel.update(note!!)
             }
-            isSaveButtonVisible = false
             binding.invalidateAll()
         }
     }
 
     private fun isValidate(): Boolean {
-        if (note!!.name.isEmpty()) {
+        if (note!!.name.isEmpty() and note!!.text.isNotEmpty()) {
             note!!.name = untitledText
         }
-        return if (note!!.text.isEmpty()) {
-            Toast.makeText(this, emptyNoteMessage, Toast.LENGTH_SHORT).show()
+        return if (note!!.text.isEmpty() and note!!.name.isEmpty()) {
+            Toast.makeText(this, "Пустая заметка удалена", Toast.LENGTH_SHORT).show()
             false
         } else true
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -26,7 +26,8 @@
             android:background="@drawable/rounded_10_corners_shape"
             android:backgroundTint="?attr/app_item_background_color"
             android:onClick="@{() -> activity.onBackPressed()}"
-            android:src="@drawable/chevron_left" />
+            android:src="@drawable/chevron_left"
+            app:tint="?attr/text_color_attr" />
 
         <TextView
             android:layout_width="wrap_content"

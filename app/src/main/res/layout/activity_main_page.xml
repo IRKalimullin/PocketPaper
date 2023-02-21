@@ -33,6 +33,7 @@
                 app:layout_scrollFlags="scroll|enterAlways">
 
                 <ImageButton
+                    app:tint="?attr/text_color_attr"
                     android:layout_width="46dp"
                     android:layout_height="46dp"
                     android:layout_centerVertical="true"
@@ -44,6 +45,7 @@
                     android:src="@drawable/calendar" />
 
                 <ImageButton
+                    app:tint="?attr/text_color_attr"
                     android:id="@+id/main_page_settings_button"
                     android:layout_width="46dp"
                     android:layout_height="46dp"
@@ -107,7 +109,8 @@
                         android:background="@drawable/rounded_10_corners_shape"
                         android:backgroundTint="?attr/app_item_background_color"
                         android:onClick="@{() -> activity.openTagMenu()}"
-                        android:src="@drawable/tag_03" />
+                        android:src="@drawable/tag_03"
+                        app:tint="?attr/text_color_attr" />
 
                     <TextView
                         android:layout_width="wrap_content"

@@ -52,6 +52,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:tint="?attr/text_color_attr"
                 android:src="@drawable/menu_03"/>
 
             <ImageView
@@ -59,6 +60,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:tint="?attr/text_color_attr"
                 android:src="@drawable/bell_01"/>
 
             <ImageView
@@ -66,6 +68,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:tint="?attr/text_color_attr"
                 android:src="@drawable/branch_01"/>
 
         </LinearLayout>

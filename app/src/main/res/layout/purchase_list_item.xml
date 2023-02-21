@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -28,7 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
-            android:src="@drawable/shopping_bag_02" />
+            android:src="@drawable/shopping_bag_02"
+            app:tint="?attr/text_color_attr"/>
 
         <TextView
             android:id="@+id/purchase_list_name"
@@ -45,6 +47,7 @@
             android:textSize="20sp" />
 
         <ImageView
+            app:tint="?attr/text_color_attr"
             android:id="@+id/purchase_list_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
