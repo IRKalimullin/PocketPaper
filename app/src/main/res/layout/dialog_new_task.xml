@@ -158,7 +158,7 @@
                 android:background="@drawable/rounded_10_corners_shape"
                 android:backgroundTint="?attr/app_item_background_color"
                 android:contentDescription="@string/save_task_button_description"
-                android:src="@drawable/ic_baseline_send_24"
+                android:src="@drawable/send_03"
                 app:tint="?attr/button_color_attr" />
 
         </RelativeLayout>

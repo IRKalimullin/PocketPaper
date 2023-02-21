@@ -4,6 +4,7 @@ import android.content.Context
 import com.baleshapp.pocketpaper.data.database.AppDatabase
 import com.baleshapp.pocketpaper.data.database.TaskDao
 import com.baleshapp.pocketpaper.data.model.Task
+import com.baleshapp.pocketpaper.data.model.TaskTag
 import com.baleshapp.pocketpaper.utils.DateTimeUtil
 import kotlinx.coroutines.flow.Flow
 
@@ -26,6 +27,16 @@ class TaskRepository(context: Context) {
         return taskDao.getCurrentCompletedTasks(day[0], day[1])
     }
 
+    fun getCurrentActiveFilteredTasks(taskTag: TaskTag): Flow<List<Task>> {
+        val day = DateTimeUtil().getTodayDayBorders()
+        return taskDao.getCurrentActiveFilteredTasks(day[0], day[1],taskTag)
+    }
+
+    fun getCurrentCompletedFilteredTasks(taskTag: TaskTag): Flow<List<Task>> {
+        val day = DateTimeUtil().getTodayDayBorders()
+        return taskDao.getCurrentCompletedFilteredTasks(day[0], day[1],taskTag)
+    }
+
     fun getDateList(): Flow<List<Long>>{
         return taskDao.getTasksDates()
     }
@@ -42,6 +53,8 @@ class TaskRepository(context: Context) {
     fun getCompletedTasks(): Flow<List<Task>> {
         return taskDao.getCompletedTasksLiveData()
     }
+
+
 
     fun getMissedTasks(): Flow<List<Task>> {
         val day = DateTimeUtil().getTodayDayBorders()

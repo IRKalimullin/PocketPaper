@@ -189,7 +189,7 @@
                     android:layout_gravity="center_vertical"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/set_date_button_description"
-                    android:src="@drawable/ic_baseline_date_range_24"
+
                     app:tint="?attr/button_color_attr" />
 
                 <TextView
@@ -215,7 +215,7 @@
                     android:layout_toEndOf="@id/task_description_date_text"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/set_date_button_description"
-                    android:src="@drawable/ic_baseline_access_time_24"
+
                     app:tint="?attr/button_color_attr" />
 
                 <TextView

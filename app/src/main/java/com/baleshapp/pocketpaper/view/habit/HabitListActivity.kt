@@ -11,9 +11,6 @@ import com.baleshapp.pocketpaper.data.model.Habit
 import com.baleshapp.pocketpaper.data.repository.HabitRepository
 import com.baleshapp.pocketpaper.databinding.ActivityHabitListBinding
 import com.baleshapp.pocketpaper.view.habit.adapters.HabitListAdapter
-import com.baleshapp.pocketpaper.view.habit.dialog.NewHabitDialog
-import com.baleshapp.pocketpaper.view.note.NOTE_EXTRA_KEY
-import com.baleshapp.pocketpaper.view.note.NoteActivity
 import com.baleshapp.pocketpaper.viewmodel.habit.HabitViewModel
 import com.baleshapp.pocketpaper.viewmodel.habit.HabitViewModelFactory
 

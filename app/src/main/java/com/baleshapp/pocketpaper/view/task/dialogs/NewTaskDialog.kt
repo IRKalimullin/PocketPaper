@@ -11,7 +11,6 @@ import androidx.databinding.DataBindingUtil
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Task
 import com.baleshapp.pocketpaper.data.model.TaskTag
-import com.baleshapp.pocketpaper.databinding.DialogCreateNewTaskBinding
 import com.baleshapp.pocketpaper.databinding.DialogNewTaskBinding
 
 import com.baleshapp.pocketpaper.utils.DateTimeUtil

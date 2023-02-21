@@ -40,6 +40,7 @@
                     android:layout_toStartOf="@id/main_page_settings_button"
                     android:background="@drawable/rounded_10_corners_shape"
                     android:backgroundTint="?attr/app_item_background_color"
+                    android:onClick="@{() -> activity.openCalendar()}"
                     android:src="@drawable/calendar" />
 
                 <ImageButton
@@ -50,6 +51,7 @@
                     android:layout_centerVertical="true"
                     android:background="@drawable/rounded_10_corners_shape"
                     android:backgroundTint="?attr/app_item_background_color"
+                    android:onClick="@{() -> activity.openSettings()}"
                     android:src="@drawable/settings_03" />
 
                 <TextView
@@ -123,6 +125,7 @@
                         android:layout_centerVertical="true"
                         android:background="@drawable/rounded_10_corners_shape"
                         android:backgroundTint="?attr/app_item_background_color"
+                        android:onClick="@{() -> activity.openAllTasksList()}"
                         android:padding="6dp"
                         android:text="@string/open_all"
                         android:textColor="?attr/text_color_attr"
@@ -171,8 +174,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/task_menu"
                                 android:overScrollMode="never"
-                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                 android:visibility="@{activity.activeVisible ? View.VISIBLE : View.GONE}"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
                         </LinearLayout>
@@ -191,7 +194,6 @@
                             android:visibility="@{activity.completedVisible ? View.VISIBLE : View.GONE}" />
 
                         <androidx.recyclerview.widget.RecyclerView
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             android:id="@+id/today_completed_task_list_rv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -199,6 +201,7 @@
                             android:layout_marginTop="12dp"
                             android:overScrollMode="never"
                             android:visibility="@{activity.completedVisible ? View.VISIBLE : View.GONE}"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
                         <Space

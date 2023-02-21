@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.repository.TaskRepository
 import com.baleshapp.pocketpaper.databinding.FragmentTasksPageBinding
-import com.baleshapp.pocketpaper.view.task.adapters.TaskAdapter
+import com.baleshapp.pocketpaper.view.task.adapters.TaskListAdapter
+//import com.baleshapp.pocketpaper.view.task.adapters.TaskAdapter
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModel
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModelFactory
 
@@ -36,23 +37,21 @@ class TasksPageFragment(private val position: Int) : Fragment() {
 
         viewModel = ViewModelProvider(this, viewModelFactory)[TaskViewModel::class.java]
 
-        val adapter = TaskAdapter({ viewModel.delete(it) }, { viewModel.update(it) })
+        val adapter =
+            TaskListAdapter(emptyList(), { viewModel.delete(it) }, { viewModel.update(it) })
 
         when (position) {
             0 -> viewModel.getActiveTasks().observe(viewLifecycleOwner) {
-                adapter.setItems(it)
+                adapter.submitList(it)
             }
             1 -> viewModel.getCompletedTasks().observe(viewLifecycleOwner) {
-                adapter.setItems(it)
+                adapter.submitList(it)
             }
             2 -> viewModel.getMissedTasks().observe(viewLifecycleOwner) {
-                adapter.setItems(it)
+                adapter.submitList(it)
             }
         }
 
-        val layoutManager = LinearLayoutManager(binding.root.context, RecyclerView.VERTICAL, false)
-
-        binding.currentTasksRecyclerView.layoutManager = layoutManager
         binding.currentTasksRecyclerView.adapter = adapter
 
         return binding.root
