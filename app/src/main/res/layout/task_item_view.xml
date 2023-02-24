@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,95 +11,98 @@
         <variable
             name="task"
             type="com.baleshapp.pocketpaper.data.model.Task" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/rounded_10_corners_shape"
         android:backgroundTint="?attr/app_item_background_color"
-        android:layout_height="85dp"
-        android:padding="10dp"
+        android:onClick="@{() -> viewHolder.openTaskDetail()}"
         android:onLongClick="@{() -> viewHolder.onLongClick()}"
-        android:layout_marginBottom="12dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/task_name_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{task.name}"
             android:textColor="?attr/text_color_attr"
             android:textSize="20sp"
-            android:text="@{task.name}"/>
-        
+            tools:ignore="RelativeOverlap" />
+
         <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/task_name_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/task_name_view"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
-            
+
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/text_color_attr"
-                android:textSize="14sp"
                 android:text="@{viewHolder.getTimeString(task)}"
-                />
+                android:textColor="?attr/text_color_attr"
+                android:textSize="14sp" />
 
             <ImageView
-                android:visibility="@{task.description != null ? View.VISIBLE : View.GONE}"
-                android:layout_marginStart="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/menu_03"
+                android:visibility="@{viewHolder.description ? View.VISIBLE : View.GONE}"
                 app:tint="?attr/text_color_attr"
-                android:src="@drawable/menu_03"/>
+                tools:ignore="ContentDescription" />
 
             <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/bell_01"
                 android:visibility="@{View.GONE}"
-                android:layout_marginStart="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 app:tint="?attr/text_color_attr"
-                android:src="@drawable/bell_01"/>
+                tools:ignore="ContentDescription" />
 
             <ImageView
-                android:visibility="@{View.GONE}"
-                android:layout_marginStart="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/branch_01"
+                android:visibility="@{View.GONE}"
                 app:tint="?attr/text_color_attr"
-                android:src="@drawable/branch_01"/>
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
         <CheckBox
-            android:onCheckedChanged="@{(compoundButton, checked) -> viewHolder.saveCheckedState(checked)}"
-            android:checked="@{task.done}"
-            android:gravity="top"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:button="@drawable/circle_checkbox_selector"
             android:layout_alignParentEnd="true"
+            android:button="@drawable/circle_checkbox_selector"
             android:buttonTint="?attr/button_color_attr"
-            />
+            android:checked="@{task.done}"
+            android:gravity="top"
+            android:onCheckedChanged="@{(compoundButton, checked) -> viewHolder.saveCheckedState(checked)}" />
 
         <com.google.android.material.chip.Chip
-            app:chipCornerRadius="10dp"
             android:id="@+id/task_tag_item_view"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/task_name_view"
-            android:layout_alignParentEnd="true"
-            android:padding="2dp"
-            app:chipMinTouchTargetSize="0dp"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
-            android:textSize="16sp"
-            android:textColor="@color/white"
+            android:layout_below="@id/task_name_view"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rounded_10_corners_shape"
+            android:padding="2dp"
             android:text="@{viewHolder.tagText}"
-            />
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:chipCornerRadius="10dp"
+            app:chipMinTouchTargetSize="0dp" />
 
     </RelativeLayout>
 </layout>

@@ -1,16 +1,19 @@
 package com.baleshapp.pocketpaper.view.calendar
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.style.ForegroundColorSpan
-import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.baleshapp.pocketpaper.R
+import com.baleshapp.pocketpaper.data.model.Task
 import com.baleshapp.pocketpaper.data.repository.TaskRepository
 import com.baleshapp.pocketpaper.databinding.ActivityCalendarBinding
 import com.baleshapp.pocketpaper.utils.DateTimeUtil
+import com.baleshapp.pocketpaper.view.task.TASK_EXTRA_KEY
+import com.baleshapp.pocketpaper.view.task.TaskDetailActivity
 import com.baleshapp.pocketpaper.view.task.adapters.TaskListAdapter
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModel
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModelFactory
@@ -25,19 +28,19 @@ class CalendarActivity : AppCompatActivity() {
     private lateinit var taskViewModel: TaskViewModel
     private lateinit var calendarView: MaterialCalendarView
 
-    private var taskListAdapter: TaskListAdapter = TaskListAdapter(emptyList(), {
-        taskViewModel.delete(it)
-    }, {
-        taskViewModel.update(it)
-    })
+    private var taskListAdapter: TaskListAdapter = TaskListAdapter(emptyList(),
+        {
+            openTaskDetail(it)
+        }, {
+            taskViewModel.delete(it)
+        }, {
+            taskViewModel.update(it)
+        })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val inflater = LayoutInflater.from(this)
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.activity_calendar, null, false)
-
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_calendar)
         binding.activity = this
 
         val viewModelFactory = TaskViewModelFactory(
@@ -46,11 +49,17 @@ class CalendarActivity : AppCompatActivity() {
         taskViewModel = ViewModelProvider(this, viewModelFactory)[TaskViewModel::class.java]
 
         binding.selectedDateRecyclerView.adapter = taskListAdapter
-
         calendarView = binding.tasksCalendarMonth
 
         setContentView(binding.root)
         initCalendar()
+    }
+
+    private fun openTaskDetail(task: Task) {
+        val intent = Intent(this, TaskDetailActivity::class.java).apply {
+            putExtra(TASK_EXTRA_KEY, task)
+        }
+        startActivity(intent)
     }
 
     private fun initCalendar() {
@@ -104,7 +113,7 @@ class CalendarActivity : AppCompatActivity() {
         }
     }
 
-    inner class SelectedDayDecorator(private val date: CalendarDay, private val context: Context) :
+    class SelectedDayDecorator(private val date: CalendarDay, private val context: Context) :
         DayViewDecorator {
 
         override fun shouldDecorate(day: CalendarDay): Boolean {

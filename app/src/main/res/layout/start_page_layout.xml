@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.baleshapp.pocketpaper.view.mainpage.MainPageActivity" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/first_start_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/app_window_background_color"
+        android:elevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="100dp"
+                android:gravity="center"
+                android:text="@string/welcome_to_app"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="46dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color">
+
+                <ImageView
+                    android:id="@+id/check_circle_start_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/check_circle_2"
+                    app:tint="?attr/text_color_attr"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/plan_your_day_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_toEndOf="@id/check_circle_start_activity"
+                    android:text="@string/plan_your_day_text"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/plan_your_day_text"
+                    android:layout_marginBottom="14dp"
+                    android:layout_toEndOf="@id/check_circle_start_activity"
+                    android:text="@string/add_tasks_to_list_text"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color">
+
+                <ImageView
+                    android:id="@+id/note_icon_start_activity"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginHorizontal="16dp"
+                    android:src="@drawable/file_02"
+                    app:tint="?attr/text_color_attr"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/add_notes_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_toEndOf="@id/note_icon_start_activity"
+                    android:text="@string/add_notes_text"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/add_notes_text"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="14dp"
+                    android:layout_toEndOf="@id/note_icon_start_activity"
+                    android:text="@string/record_information_text"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color">
+
+                <ImageView
+                    android:id="@+id/habit_icon_start_activity"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginHorizontal="16dp"
+                    android:src="@drawable/star_06"
+                    app:tint="?attr/text_color_attr"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/add_habit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_toEndOf="@id/habit_icon_start_activity"
+                    android:text="@string/track_your_habits_text"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/add_habit_text"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="14dp"
+                    android:layout_toEndOf="@id/habit_icon_start_activity"
+                    android:text="@string/track_in_calendar_text"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/start_app_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/rounded_20_corners_shape"
+            android:drawableEnd="@drawable/chevron_right_double"
+            android:drawableTint="@color/white"
+            android:elevation="4dp"
+            android:onClick="@{() -> activity.setFirstStarted()}"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:stateListAnimator="@null"
+            android:text="@string/begin"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+</layout>
+
+

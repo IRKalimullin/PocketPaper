@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate
 
 const val STORAGE_NAME = "APP_SETTINGS"
 const val APP_THEME_KEY = "THEME_MODE"
+const val FIRST_START_FLAG = "FIRST_START_FLAG"
 
 /**
  * A class that contains methods for applying settings and working with SharedPreferences
@@ -47,6 +48,20 @@ class AppSettings(context: Context) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.getDefaultNightMode())
             }
         }
+    }
+
+    /**
+     * Method that gets value of first started app flag
+     */
+    fun isFirstStart():Boolean  {
+        return settings.getBoolean(FIRST_START_FLAG,true)
+    }
+
+    /**
+     * Method that save first started in preferences
+     */
+    fun changeFirstStart(){
+        editor.putBoolean(FIRST_START_FLAG,false).apply()
     }
 
 }

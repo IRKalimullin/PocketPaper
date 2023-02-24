@@ -3,7 +3,6 @@ package com.baleshapp.pocketpaper.view.note
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,8 +18,6 @@ const val NOTE_EXTRA_KEY = "NOTE_EXTRA_KEY"
 
 class NoteListActivity : AppCompatActivity() {
 
-    // NEW CLASS REDESIGN
-
     lateinit var binding: ActivityNoteListBinding
     private lateinit var gridLayoutManager: GridLayoutManager
     private lateinit var noteViewModel: NoteViewModel
@@ -29,24 +26,21 @@ class NoteListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val inflater = LayoutInflater.from(this)
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.activity_note_list, null, false)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_note_list)
         binding.activity = this
-
         setContentView(binding.root)
-
         gridLayoutManager = GridLayoutManager(this, 2)
 
         val viewModelFactory = NoteViewModelFactory(
             NoteRepository(binding.root.context)
         )
-
         noteViewModel = ViewModelProvider(this, viewModelFactory)[NoteViewModel::class.java]
+
         val adapter = NoteAdapter(
             { openNote(it) },
             { noteViewModel.delete(it) },
-            { noteViewModel.update(it) })
+            { noteViewModel.update(it) }
+        )
 
         noteViewModel.getNotes().observe(this) {
             adapter.setItems(it)
@@ -55,7 +49,6 @@ class NoteListActivity : AppCompatActivity() {
 
         binding.noteListRecyclerView.layoutManager = gridLayoutManager
         binding.noteListRecyclerView.adapter = adapter
-
     }
 
     private fun changeVisible(flag: Boolean) {
@@ -68,9 +61,9 @@ class NoteListActivity : AppCompatActivity() {
     }
 
     private fun openNote(note: Note?) {
-        val intent = Intent(this, NoteActivity::class.java)
-        intent.putExtra(NOTE_EXTRA_KEY, note)
+        val intent = Intent(this, NoteActivity::class.java).apply {
+            putExtra(NOTE_EXTRA_KEY, note)
+        }
         startActivity(intent)
     }
-
 }

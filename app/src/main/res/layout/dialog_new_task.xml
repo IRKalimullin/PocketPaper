@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_10_corners_shape"
                 android:backgroundTint="?attr/app_item_background_color"
-                android:onClick="@{() -> dialog.setDateTime()}"
+                android:onClick="@{() -> dialog.createDateTimePicker()}"
                 android:padding="6dp">
 
                 <ImageView
@@ -100,7 +100,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/calendar"
-                    app:tint="?attr/text_color_attr" />
+                    app:tint="?attr/text_color_attr"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -108,7 +109,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="6dp"
                     android:layout_toEndOf="@id/task_date_time_icon"
-                    android:text="Сегодня"
+                    android:text="@{dialog.dateText}"
                     android:textColor="?attr/text_color_attr"
                     android:textSize="16sp" />
             </RelativeLayout>
@@ -125,7 +126,8 @@
                 android:onClick="@{() -> dialog.changeDescriptionState()}"
                 android:padding="6dp"
                 android:src="@drawable/menu_03"
-                app:tint="?attr/text_color_attr" />
+                app:tint="?attr/text_color_attr"
+                tools:ignore="ContentDescription" />
         </RelativeLayout>
 
         <RelativeLayout

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/app_window_background_color">
@@ -9,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/big_award_05" />
+        android:src="@drawable/big_award_05"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/text1"
@@ -18,10 +20,11 @@
         android:layout_below="@id/pencil"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Вы выполнили все задачи \n на сегодня"
+        android:gravity="center"
+        android:lines="2"
+        android:text="@string/all_task_completed_text"
         android:textAlignment="center"
         android:textColor="?attr/text_color_attr"
         android:textSize="14sp" />
-
 
 </RelativeLayout>

@@ -12,7 +12,6 @@
         <import type="android.view.View" />
     </data>
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -21,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/app_window_background_color"
-            tools:context=".view.habit.HabitListActivity">
+            tools:context=".view.habit.HabitListActivity"
+            tools:ignore="UselessParent">
 
             <include
                 android:id="@+id/habit_list_toolbar"
@@ -62,13 +62,12 @@
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="10dp"
                 android:stateListAnimator="@null"
-                android:text="Новая привычка"
+                android:text="@string/new_habit"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
         </RelativeLayout>
-
 
     </RelativeLayout>
 

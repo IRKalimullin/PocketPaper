@@ -18,4 +18,4 @@ data class Task(
 
     @TypeConverters(TaskTagConverter::class)
     @ColumnInfo(name = "tag") var tag: TaskTag
-)
+) : java.io.Serializable

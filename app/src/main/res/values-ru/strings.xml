@@ -37,7 +37,7 @@
 
     <!--Task status titles -->
     <string name="active_tasks">Активные</string>
-    <string name="completed_tasks">Выполненные</string>
+    <string name="completed_tasks">Завершенные</string>
     <string name="missed_tasks">Просроченные</string>
 
     <!--Task's tags name -->
@@ -63,6 +63,7 @@
     <string name="add_new_item_hint">Добавьте предмет</string>
     <string name="new_list_hint">Новый список</string>
     <string name="new_task">Новая задача</string>
+    <string name="new_note">Новая заметка</string>
     <string name="tasks_on_date">Задачи на выбранную дату</string>
     <string name="expand">Развернуть</string>
     <string name="collapse">Свернуть</string>
@@ -78,9 +79,39 @@
     <string name="save">Сохранить</string>
     <string name="edit">Редактировать</string>
     <string name="done">Выполнено</string>
+    <string name="apply">Применить</string>
+    <string name="empty_note_deleted">Пустая заметка удалена</string>
     <string name="add_description_text">Добавьте описание для задачи</string>
-    
+    <string name="share">Поделиться</string>
+    <string name="list">Список</string>
+    <string name="date_and_time">Дата и время</string>
+    <string name="tag">Тэг</string>
+    <string name="all">Все</string>
+    <string name="begin">Начать</string>
+
+    <string name="rate_app">Оценить приложение</string>
+    <string name="recommend_app">Рекомендовать приложение</string>
+    <string name="report_bug">Сообщить об ошибке</string>
+
+    <string name="all_task_completed_text">Вы выполнили все задачи на сегодня</string>
+    <string name="nothing_added_text">Вы ничего не добавили</string>
+    <string name="click_to_record">Нажмите чтобы записать</string>
+    <string name="nothing_planned_today_text">На сегодня у вас ничего не запланировано</string>
+    <string name="click_to_add_task_text">Нажмите чтобы добавить новую задачу</string>
+
+    <string name="welcome_to_app">Добро пожаловать в\nPocket Paper</string>
+
+    <string name="share_recommendation_text">Я использую приложение Pocket Paper для ведения списка дел.</string>
+    <string name="try_app_text">Попробуй приложение:</string>
     <string name="app_description">Все ваши списки дел, покупок и заметки в одном месте.</string>
+
+
+    <string name="plan_your_day_text">Планируй свой день</string>
+    <string name="add_tasks_to_list_text">Добавляй задачи на любой день</string>
+    <string name="add_notes_text">Добавляй заметки</string>
+    <string name="record_information_text">Запиши нужную информацию чтобы не забыть</string>
+    <string name="track_your_habits_text">Отслеживай свои привычки</string>
+    <string name="track_in_calendar_text">Следи за выполнением в календаре</string>
 
     <string-array name="finance_spent_categories">
         <item>Продукты</item>

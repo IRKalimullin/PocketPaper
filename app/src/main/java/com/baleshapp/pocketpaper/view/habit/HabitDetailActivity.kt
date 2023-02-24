@@ -5,7 +5,6 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.style.ForegroundColorSpan
-import android.view.LayoutInflater
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -16,6 +15,7 @@ import com.baleshapp.pocketpaper.data.model.HabitPoint
 import com.baleshapp.pocketpaper.data.repository.HabitRepository
 import com.baleshapp.pocketpaper.databinding.ActivityHabitDetailBinding
 import com.baleshapp.pocketpaper.utils.DateTimeUtil
+import com.baleshapp.pocketpaper.view.habit.dialog.DeleteHabitDialog
 import com.baleshapp.pocketpaper.viewmodel.habit.HabitViewModel
 import com.baleshapp.pocketpaper.viewmodel.habit.HabitViewModelFactory
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -28,7 +28,7 @@ class HabitDetailActivity : AppCompatActivity() {
 
     var habitStartDateText = ""
     var isNewHabit = true
-    val dateTimeUtil = DateTimeUtil()
+    private val dateTimeUtil = DateTimeUtil()
     lateinit var binding: ActivityHabitDetailBinding
     private lateinit var habitViewModel: HabitViewModel
     var habit: Habit? = null
@@ -41,9 +41,7 @@ class HabitDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val inflater = LayoutInflater.from(this)
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.activity_habit_detail, null, false)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_habit_detail)
 
         habit = intent.getSerializableExtra(HABIT_EXTRA_KEY) as Habit?
 
@@ -63,7 +61,6 @@ class HabitDetailActivity : AppCompatActivity() {
         val viewModelFactory = HabitViewModelFactory(
             HabitRepository(this)
         )
-
         habitViewModel = ViewModelProvider(this, viewModelFactory)[HabitViewModel::class.java]
 
         binding.habit = habit
@@ -190,8 +187,13 @@ class HabitDetailActivity : AppCompatActivity() {
     }
 
     fun deleteHabit() {
-        habitViewModel.fullDeleteHabit(habit!!)
-        onBackPressed()
+        DeleteHabitDialog(this, habit!!) { deleteHabitFun(it) }
+
+    }
+
+    private fun deleteHabitFun(habit: Habit) {
+        habitViewModel.fullDeleteHabit(habit)
+        finish()
     }
 
     fun saveHabit() {

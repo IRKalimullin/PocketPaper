@@ -4,60 +4,69 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.baleshapp.pocketpaper.R
+import com.baleshapp.pocketpaper.data.model.Task
 import com.baleshapp.pocketpaper.data.model.TaskTag
 import com.baleshapp.pocketpaper.data.repository.TaskRepository
 import com.baleshapp.pocketpaper.databinding.ActivityMainPageBinding
+import com.baleshapp.pocketpaper.settings.AppSettings
 import com.baleshapp.pocketpaper.view.SettingsActivity
 import com.baleshapp.pocketpaper.view.calendar.CalendarActivity
 import com.baleshapp.pocketpaper.view.habit.HabitListActivity
 import com.baleshapp.pocketpaper.view.note.NoteListActivity
 import com.baleshapp.pocketpaper.view.purchase.PurchaseListActivity
-import com.baleshapp.pocketpaper.view.task.AllTasksActivity
+import com.baleshapp.pocketpaper.view.task.alltasks.AllTasksActivity
+import com.baleshapp.pocketpaper.view.task.TASK_EXTRA_KEY
+import com.baleshapp.pocketpaper.view.task.TaskDetailActivity
 import com.baleshapp.pocketpaper.view.task.adapters.TaskListAdapter
 import com.baleshapp.pocketpaper.view.task.dialogs.NewTaskDialog
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModel
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModelFactory
 
 class MainPageActivity : AppCompatActivity() {
-    //NEW CLASS REDESIGN
+
     private lateinit var popupMenu2: PopupMenu
     var isCompletedVisible = false
     var isActiveVisible = false
     var isEmptyMessageVisible = true
     var isCompletedMessageVisible = false
-
-    private var isAempty = true
-    private var isCempty = true
-
+    var isFirstStart = true
+    private var isActiveEmpty = true
+    private var isCompletedEmpty = true
     private lateinit var taskViewModel: TaskViewModel
-    private var taskListAdapter: TaskListAdapter = TaskListAdapter(emptyList(), {
-        taskViewModel.delete(it)
-    }, {
-        taskViewModel.update(it)
-    })
-    private var taskListAdapter2: TaskListAdapter = TaskListAdapter(emptyList(), {
-        taskViewModel.delete(it)
-    }, {
-        taskViewModel.update(it)
-    })
     lateinit var binding: ActivityMainPageBinding
+    private lateinit var appSettings: AppSettings
+
+    private var taskListAdapter: TaskListAdapter = TaskListAdapter(emptyList(),
+        {
+            openTaskDetail(it)
+        }, {
+            taskViewModel.delete(it)
+        }, {
+            taskViewModel.update(it)
+        })
+
+    private var taskListAdapter2: TaskListAdapter = TaskListAdapter(emptyList(),
+        {
+            openTaskDetail(it)
+        }, {
+            taskViewModel.delete(it)
+        }, {
+            taskViewModel.update(it)
+        })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val inflater = LayoutInflater.from(this)
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.activity_main_page,
-            null,
-            false
-        )
+
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main_page)
         binding.activity = this
+        appSettings = AppSettings(this)
+        isFirstStart = appSettings.isFirstStart()
+
         setContentView(binding.root)
 
         popupMenu2 = PopupMenu(this, binding.tagSelectorButton)
@@ -119,7 +128,7 @@ class MainPageActivity : AppCompatActivity() {
             if (it.isNotEmpty()) {
                 taskListAdapter2.submitList(it)
             }
-            isCempty = it.isEmpty()
+            isCompletedEmpty = it.isEmpty()
             setVisibilities()
         }
 
@@ -127,7 +136,7 @@ class MainPageActivity : AppCompatActivity() {
             if (it.isNotEmpty()) {
                 taskListAdapter.submitList(it)
             }
-            isAempty = it.isEmpty()
+            isActiveEmpty = it.isEmpty()
             setVisibilities()
         }
     }
@@ -137,7 +146,7 @@ class MainPageActivity : AppCompatActivity() {
             if (it.isNotEmpty()) {
                 taskListAdapter2.submitList(it)
             }
-            isCempty = it.isEmpty()
+            isCompletedEmpty = it.isEmpty()
             setVisibilities()
         }
 
@@ -145,31 +154,31 @@ class MainPageActivity : AppCompatActivity() {
             if (it.isNotEmpty()) {
                 taskListAdapter.submitList(it)
             }
-            isAempty = it.isEmpty()
+            isActiveEmpty = it.isEmpty()
             setVisibilities()
         }
     }
 
     private fun setVisibilities() {
-        if ((!isAempty) and (isCempty)) {
+        if ((!isActiveEmpty) and (isCompletedEmpty)) {
             isActiveVisible = true
             isCompletedVisible = false
             isEmptyMessageVisible = false
             isCompletedMessageVisible = false
         } else
-            if ((!isAempty) and (!isCempty)) {
+            if ((!isActiveEmpty) and (!isCompletedEmpty)) {
                 isActiveVisible = true
                 isCompletedVisible = true
                 isEmptyMessageVisible = false
                 isCompletedMessageVisible = false
             } else
-                if ((isAempty) and (!isCempty)) {
+                if ((isActiveEmpty) and (!isCompletedEmpty)) {
                     isActiveVisible = false
                     isCompletedVisible = true
                     isEmptyMessageVisible = false
                     isCompletedMessageVisible = true
                 } else
-                    if ((isAempty) and (isCempty)) {
+                    if ((isActiveEmpty) and (isCompletedEmpty)) {
                         isActiveVisible = false
                         isCompletedVisible = false
                         isEmptyMessageVisible = true
@@ -187,37 +196,44 @@ class MainPageActivity : AppCompatActivity() {
         popupMenu2.show()
     }
 
+    fun setFirstStarted() {
+        isFirstStart = false
+        appSettings.changeFirstStart()
+        binding.invalidateAll()
+    }
+
+    private fun openTaskDetail(task: Task) {
+        val intent = Intent(this, TaskDetailActivity::class.java).apply {
+            putExtra(TASK_EXTRA_KEY, task)
+        }
+        startActivity(intent)
+    }
+
     fun createNewTask() {
-        NewTaskDialog(this) { taskViewModel.insert(it) }
+        NewTaskDialog(this, supportFragmentManager) { taskViewModel.insert(it) }
     }
 
     fun openNoteListActivity() {
-        val intent = Intent(this, NoteListActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, NoteListActivity::class.java))
     }
 
     fun openPurchaseListActivity() {
-        val intent = Intent(this, PurchaseListActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, PurchaseListActivity::class.java))
     }
 
     fun openHabitListActivity() {
-        val intent = Intent(this, HabitListActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, HabitListActivity::class.java))
     }
 
     fun openCalendar() {
-        val intent = Intent(this, CalendarActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, CalendarActivity::class.java))
     }
 
-    fun openAllTasksList(){
-        val intent = Intent(this, AllTasksActivity::class.java)
-        startActivity(intent)
+    fun openAllTasksList() {
+        startActivity(Intent(this, AllTasksActivity::class.java))
     }
 
-    fun openSettings(){
-        val intent = Intent(this, SettingsActivity::class.java)
-        startActivity(intent)
+    fun openSettings() {
+        startActivity(Intent(this, SettingsActivity::class.java))
     }
 }

@@ -5,75 +5,34 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.baleshapp.pocketpaper.BuildConfig
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.databinding.ActivitySettingsBinding
-import com.baleshapp.pocketpaper.settings.AppSettings
-import com.baleshapp.pocketpaper.settings.ThemeModes
+import com.baleshapp.pocketpaper.utils.ShareDataUtil
 
 class SettingsActivity : AppCompatActivity() {
 
     lateinit var binding: ActivitySettingsBinding
-    private var themeMode = ThemeModes.AUTO
-    private lateinit var appSettings: AppSettings
-    var isThemeChanged = false
     val versionName = "v" + BuildConfig.VERSION_NAME
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val inflater = LayoutInflater.from(this)
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.activity_settings, null, false)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_settings)
         binding.activity = this
-
-        appSettings = AppSettings(this)
-
-        themeMode = appSettings.getAppThemeMode()
-
-        setThemeIcon(themeMode)
-
         setContentView(binding.root)
     }
 
-    fun setThemeMode() {
-        themeMode = when (themeMode) {
-            ThemeModes.AUTO -> {
-                ThemeModes.LIGHT
-            }
-            ThemeModes.LIGHT -> {
-                ThemeModes.DARK
-            }
-            else -> {
-                ThemeModes.AUTO
-            }
-        }
-        setThemeIcon(themeMode)
-        binding.invalidateAll()
-        appSettings.saveAppThemeMode(themeMode)
-        isThemeChanged = true
-    }
-
-    private fun setThemeIcon(themeModes: ThemeModes) {
-        when (themeModes) {
-            ThemeModes.AUTO -> binding.appThemeMode.setImageResource(R.drawable.ic_baseline_hdr_auto_24)
-            ThemeModes.LIGHT -> binding.appThemeMode.setImageResource(R.drawable.ic_baseline_light_mode_24)
-            ThemeModes.DARK -> binding.appThemeMode.setImageResource(R.drawable.ic_baseline_dark_mode_24)
-        }
-    }
-
     fun sendRecommendation() {
-        val intent = Intent(Intent.ACTION_SEND).apply {
-            type = "text/plain"
-            putExtra(
-                Intent.EXTRA_TEXT,
-                "Я использую приложение Pocket Paper для ведения моего списка дел. \n Попробуй приложение: "
-            )
-        }
-        startActivity(Intent.createChooser(intent, "Поделиться"))
+        val appPackageName = packageName
+        val shareMessage = resources.getString(R.string.share_recommendation_text)
+        val tryAppMessage = resources.getString(R.string.try_app_text)
+        ShareDataUtil(
+            this,
+            "$shareMessage\n$tryAppMessage \n" +
+                    "https://play.google.com/store/apps/details?id=$appPackageName"
+        )
     }
 
     fun sendErrorReport() {

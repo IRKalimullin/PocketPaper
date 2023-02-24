@@ -11,6 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PocketPaper">
         <activity
+            android:name=".view.task.TaskDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.SettingsActivity"
             android:exported="false">
             <meta-data
@@ -18,7 +25,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.task.AllTasksActivity"
+            android:name=".view.task.alltasks.AllTasksActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -2,7 +2,6 @@ package com.baleshapp.pocketpaper.view.purchase
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.baleshapp.pocketpaper.R
@@ -19,33 +18,28 @@ class PurchaseListItemActivity : AppCompatActivity() {
     lateinit var binding: ActivityPurchaseListItemBinding
     lateinit var purchaseList: PurchaseList
     lateinit var viewModel: PurchaseViewModel
-    var newItem = PurchaseItem(
+    private var purchaseAdapter:  PurchaseAdapter? = PurchaseAdapter(emptyList(),{viewModel.deleteItem(it)},{viewModel.updateItem(it)})
+
+    private var newItem = PurchaseItem(
         categoryId = 0,
         name = "",
         number = 0,
         isAdded = false,
         timestampOfItem = System.currentTimeMillis()
     )
-    var purchaseAdapter:  PurchaseAdapter? = PurchaseAdapter(emptyList(),{viewModel.deleteItem(it)},{viewModel.updateItem(it)})
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         purchaseList = intent.getSerializableExtra(PURCHASE_LIST_EXTRA_KEY) as PurchaseList
-
         newItem.categoryId = purchaseList.id
 
-        val inflater = LayoutInflater.from(this)
-
-        binding = DataBindingUtil.inflate(inflater,R.layout.activity_purchase_list_item, null,false)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_purchase_list_item)
 
         val viewModelFactory = PurchaseViewModelFactory(
             PurchaseRepository(binding.root.context)
         )
         viewModel = ViewModelProvider(this, viewModelFactory)[PurchaseViewModel::class.java]
-
-       // val purchaseAdapter = PurchaseAdapter({viewModel.deleteItem(it)},{viewModel.updateItem(it)})
 
         viewModel.getItemList(purchaseList).observe(this){
             purchaseAdapter?.submitList(it)
@@ -54,7 +48,6 @@ class PurchaseListItemActivity : AppCompatActivity() {
         binding.activity = this
         binding.purchaseList = purchaseList
         binding.purchaseItem = newItem
-
         binding.purchaseItemRecyclerView.adapter = purchaseAdapter
 
         setContentView(binding.root)

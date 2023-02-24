@@ -96,7 +96,7 @@ class PurchaseListAdapter(
         }
 
         fun onLongClick(): Boolean {
-            val builder = AlertDialog.Builder(mBinding.root.context, R.style.custom_alert_dialog)
+            val builder = AlertDialog.Builder(mBinding.root.context, R.style.app_alert_dialog_style)
             builder.setTitle("$deleteMessage \"${list.name}\"?")
                 .setMessage(cancelWarningMessage)
                 .setPositiveButton(

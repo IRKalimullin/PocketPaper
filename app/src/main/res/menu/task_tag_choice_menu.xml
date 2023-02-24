@@ -3,35 +3,35 @@
     <item
         android:id="@+id/all_tasks_tag"
         android:icon="@drawable/tag_02"
-        android:iconTintMode="src_in"
         android:iconTint="?attr/app_primary_color"
-        android:title="Все" />
+        android:iconTintMode="src_in"
+        android:title="@string/all" />
 
     <item
         android:id="@+id/general_tasks_tag"
         android:icon="@drawable/tag_02"
-        android:iconTintMode="src_in"
         android:iconTint="?attr/general_task_tag_color"
-        android:title="Общее" />
+        android:iconTintMode="src_in"
+        android:title="@string/general_tag_text" />
 
     <item
         android:id="@+id/work_tasks_tag"
         android:icon="@drawable/tag_02"
-        android:iconTintMode="src_in"
         android:iconTint="?attr/work_task_tag_color"
-        android:title="Работа" />
+        android:iconTintMode="src_in"
+        android:title="@string/work_tag_text" />
 
     <item
         android:id="@+id/personal_tasks_tag"
         android:icon="@drawable/tag_02"
-        android:iconTintMode="src_in"
         android:iconTint="?attr/personal_task_tag_color"
-        android:title="Личное" />
+        android:iconTintMode="src_in"
+        android:title="@string/personal_tag_text" />
 
     <item
         android:id="@+id/study_tasks_tag"
         android:icon="@drawable/tag_02"
-        android:iconTintMode="src_in"
         android:iconTint="?attr/study_task_tag_color"
-        android:title="Учеба" />
+        android:iconTintMode="src_in"
+        android:title="@string/study_tag_text" />
 </menu>

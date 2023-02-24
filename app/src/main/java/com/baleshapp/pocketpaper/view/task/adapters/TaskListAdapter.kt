@@ -1,37 +1,25 @@
 package com.baleshapp.pocketpaper.view.task.adapters
 
-import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.graphics.Paint
-import android.renderscript.ScriptGroup.Binding
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Task
 import com.baleshapp.pocketpaper.data.model.TaskTag
-import com.baleshapp.pocketpaper.databinding.CompletedTitleLayoutBinding
 import com.baleshapp.pocketpaper.databinding.TaskItemViewBinding
 import com.baleshapp.pocketpaper.utils.DateTimeUtil
-import com.baleshapp.pocketpaper.view.task.dialogs.TaskDetailDialog
+import com.baleshapp.pocketpaper.view.task.dialogs.DeleteTaskDialog
 
 class TaskListAdapter(
     list: List<Task>,
+    private val onOpenDetail: (task: Task) -> Unit,
     private val onDelete: (task: Task) -> Unit,
     private val onUpdate: (task: Task) -> Unit
-) : ListAdapter<Task,TaskListAdapter.TaskItemViewHolder>(TaskListAdapter.TaskListDiffCallback()){
-    // RecyclerView.Adapter<TaskListAdapter.TaskItemViewHolder>()
-
-    //NEW CLASS REDESIGN
-
-   // private var taskList = listOf<Task>()
+) : ListAdapter<Task, TaskListAdapter.TaskItemViewHolder>(TaskListDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -41,27 +29,17 @@ class TaskListAdapter(
             parent,
             false
         )
-        return TaskItemViewHolder(binding, onDelete, onUpdate)
+        return TaskItemViewHolder(binding,onOpenDetail, onDelete, onUpdate)
     }
 
     override fun onBindViewHolder(holder: TaskItemViewHolder, position: Int) {
         val task = getItem(position)
         holder.bind(task)
     }
-/*
-    override fun getItemCount(): Int {
-        return taskList.size
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setData(list: List<Task>) {
-        taskList = list.toMutableList()
-        notifyDataSetChanged()
-    }
-*/
 
     class TaskItemViewHolder(
         binding: TaskItemViewBinding,
+        private val onOpenDetail: (task: Task) -> Unit,
         private val onDelete: (task: Task) -> Unit,
         private val onUpdate: (task: Task) -> Unit
     ) : ViewHolder(binding.root) {
@@ -71,16 +49,7 @@ class TaskListAdapter(
         private val dateTimeUtil = DateTimeUtil()
         private val context = binding.root.context
         var isDescription = false
-
         var tagText: String = context.resources.getString(R.string.general_tag_text)
-
-        private val deleteTaskMessage =
-            context.resources.getString(R.string.delete_task)
-        private val deleteMessage = context.resources.getString(R.string.delete)
-        private val cancelMessage = context.resources.getString(R.string.cancel)
-        private val cancelWarningMessage =
-            context.resources.getString(R.string.cancel_warning_message)
-        private val deletedMessage = context.resources.getString(R.string.deleted)
 
         init {
             mBinding.viewHolder = this
@@ -103,6 +72,10 @@ class TaskListAdapter(
                 TaskTag.WORK -> R.color.malibu
                 TaskTag.STUDY -> R.color.golden_tainoi
             }
+        }
+
+        fun openTaskDetail(){
+            onOpenDetail(task)
         }
 
         private fun getTagText(tag: TaskTag): String {
@@ -141,32 +114,12 @@ class TaskListAdapter(
         }
 
         fun onLongClick(): Boolean {
-            val builder = AlertDialog.Builder(context, R.style.app_alert_dialog_style)
-            builder.setTitle("$deleteTaskMessage \"${task.name}\"?")
-                .setMessage(cancelWarningMessage)
-                .setPositiveButton(
-                    deleteMessage
-                ) { _, _ -> deleteTask() }
-                .setNegativeButton(
-                    cancelMessage
-                ) { dialog, _ -> dialog.cancel() }
-
-            val alertDialog = builder.create()
-            alertDialog.show()
+            DeleteTaskDialog(mBinding.root.context,task,onDelete)
             return true
-        }
-
-        fun openTaskDetails() {
-            TaskDetailDialog(context, task, onDelete, onUpdate)
-        }
-
-        private fun deleteTask() {
-            onDelete(task)
-            Toast.makeText(context, deletedMessage, Toast.LENGTH_SHORT).show()
         }
     }
 
-    class TaskListDiffCallback : DiffUtil.ItemCallback<Task>(){
+    class TaskListDiffCallback : DiffUtil.ItemCallback<Task>() {
         override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
             return oldItem == newItem
         }
@@ -174,6 +127,5 @@ class TaskListAdapter(
         override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
             return oldItem.id == newItem.id
         }
-
     }
 }

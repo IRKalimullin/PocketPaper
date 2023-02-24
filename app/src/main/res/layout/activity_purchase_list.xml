@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/app_window_background_color"
-            tools:context=".view.purchase.PurchaseListActivity">
+            tools:context=".view.purchase.PurchaseListActivity"
+            tools:ignore="UselessParent">
 
             <include
                 android:id="@+id/purchase_list_toolbar"
@@ -44,8 +45,8 @@
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="16dp"
                 android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:visibility="@{activity.listEmpty ? View.GONE : View.VISIBLE}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
             <Button
@@ -61,13 +62,12 @@
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="10dp"
                 android:stateListAnimator="@null"
-                android:text="Новый список"
+                android:text="@string/new_list_hint"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
         </RelativeLayout>
-
 
     </RelativeLayout>
 </layout>

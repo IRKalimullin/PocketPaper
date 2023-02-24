@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -15,22 +16,22 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        >
+        android:layout_marginBottom="2dp">
 
         <ImageView
             android:id="@+id/purchase_item_icon"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:src="@drawable/corner_down_right"
-            app:tint="?attr/text_color_attr" />
+            app:tint="?attr/text_color_attr"
+            tools:ignore="ContentDescription" />
 
         <TextView
-            android:layout_toEndOf="@id/purchase_item_icon"
             android:id="@+id/purchase_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/purchase_item_icon"
             android:onLongClick="@{() -> viewHolder.onLongClick()}"
             android:paddingStart="15dp"
             android:paddingTop="10dp"
@@ -39,7 +40,8 @@
             android:text="@{item.name}"
             android:textColor="?attr/text_color_attr"
             android:textSize="20sp"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            tools:ignore="RelativeOverlap" />
 
         <CheckBox
             android:id="@+id/shopping_list_items_show_checkBox"
@@ -48,10 +50,10 @@
             android:layout_alignParentEnd="true"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="0dp"
-            android:checked="@{item.added}"
             android:button="@drawable/circle_checkbox_selector"
+            android:buttonTint="?attr/text_color_attr"
+            android:checked="@{item.added}"
             android:onCheckedChanged="@{(compoundButton, isChecked) -> viewHolder.saveCheckedState(isChecked)}"
-            android:padding="2dp"
-            android:theme="@style/custom_checkbox_style" />
+            android:padding="2dp" />
     </RelativeLayout>
 </layout>

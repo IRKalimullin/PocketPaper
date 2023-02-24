@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/delete_note"
+        android:icon="@drawable/trash_01"
+        android:iconTint="?attr/text_color_attr"
+        android:iconTintMode="src_in"
+        android:title="@string/delete" />
+
+    <item
+        android:id="@+id/share_note"
+        android:icon="@drawable/share_06"
+        android:iconTint="?attr/text_color_attr"
+        android:iconTintMode="src_in"
+        android:title="@string/share" />
+
+</menu>

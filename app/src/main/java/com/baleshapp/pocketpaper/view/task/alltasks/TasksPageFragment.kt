@@ -7,17 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.baleshapp.pocketpaper.R
+import com.baleshapp.pocketpaper.data.model.Task
 import com.baleshapp.pocketpaper.data.repository.TaskRepository
 import com.baleshapp.pocketpaper.databinding.FragmentTasksPageBinding
 import com.baleshapp.pocketpaper.view.task.adapters.TaskListAdapter
-//import com.baleshapp.pocketpaper.view.task.adapters.TaskAdapter
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModel
 import com.baleshapp.pocketpaper.viewmodel.task.TaskViewModelFactory
 
-class TasksPageFragment(private val position: Int) : Fragment() {
+class TasksPageFragment(
+    private val position: Int,
+    private val onOpenDetail: (task: Task) -> Unit
+) : Fragment() {
 
     lateinit var binding: FragmentTasksPageBinding
     private lateinit var viewModelFactory: TaskViewModelFactory
@@ -29,16 +30,19 @@ class TasksPageFragment(private val position: Int) : Fragment() {
     ): View {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tasks_page, container, false)
-
         binding.fragment = this
+
         viewModelFactory = TaskViewModelFactory(
             TaskRepository(binding.root.context)
         )
-
         viewModel = ViewModelProvider(this, viewModelFactory)[TaskViewModel::class.java]
 
         val adapter =
-            TaskListAdapter(emptyList(), { viewModel.delete(it) }, { viewModel.update(it) })
+            TaskListAdapter(
+                emptyList(),
+                onOpenDetail,
+                { viewModel.delete(it) },
+                { viewModel.update(it) })
 
         when (position) {
             0 -> viewModel.getActiveTasks().observe(viewLifecycleOwner) {
