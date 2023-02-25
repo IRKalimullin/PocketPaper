@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.baleshapp.pocketpaper.view.purchase.PurchaseListActivity" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/app_window_background_color"
+            tools:context=".view.purchase.PurchaseListActivity"
+            tools:ignore="UselessParent">
+
+            <include
+                android:id="@+id/purchase_list_toolbar"
+                layout="@layout/base_toolbar_layout"
+                app:activity="@{activity}"
+                app:title="@{@string/title_purchases_fragment}" />
+
+            <include
+                android:id="@+id/empty_purchase_list_layout"
+                layout="@layout/empty_list_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="@{activity.listEmpty ? View.VISIBLE : View.GONE}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/purchase_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/purchase_list_toolbar"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="16dp"
+                android:overScrollMode="never"
+                android:visibility="@{activity.listEmpty ? View.GONE : View.VISIBLE}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/rounded_20_corners_shape"
+                android:drawableLeft="@drawable/ic_baseline_add_24"
+                android:elevation="4dp"
+                android:onClick="@{() -> activity.createNewList()}"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="10dp"
+                android:stateListAnimator="@null"
+                android:text="@string/new_list_hint"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

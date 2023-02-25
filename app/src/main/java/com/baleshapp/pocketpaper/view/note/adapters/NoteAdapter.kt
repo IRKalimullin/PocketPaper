@@ -1,18 +1,17 @@
 package com.baleshapp.pocketpaper.view.note.adapters
 
-import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SortedList
 import com.baleshapp.pocketpaper.R
 import com.baleshapp.pocketpaper.data.model.Note
 import com.baleshapp.pocketpaper.databinding.NoteItemBinding
-import com.baleshapp.pocketpaper.view.note.dialogs.NoteDialog
+import com.baleshapp.pocketpaper.view.note.dialogs.DeleteNoteDialog
 
 class NoteAdapter(
+    private val openNote: (note: Note) -> Unit,
     private val onDelete: (note: Note) -> Unit,
     private val onUpdate: (note: Note) -> Unit
 ) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
@@ -63,7 +62,7 @@ class NoteAdapter(
             parent,
             false
         )
-        return NoteViewHolder(binding, onDelete, onUpdate)
+        return NoteViewHolder(binding, openNote, onDelete, onUpdate)
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
@@ -78,18 +77,13 @@ class NoteAdapter(
 
     class NoteViewHolder(
         binding: NoteItemBinding,
+        private val openNote: (note: Note) -> Unit,
         private val onDelete: (note: Note) -> Unit,
         private val onUpdate: (note: Note) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         lateinit var note: Note
         private val mBinding: NoteItemBinding = binding
-        private val cancelWarningMessage =
-            binding.root.resources.getString(R.string.cancel_warning_message)
-        private val deleteMessage = binding.root.resources.getString(R.string.delete)
-        private val cancelMessage = binding.root.resources.getString(R.string.cancel)
-        private val deleteNoteMessage = binding.root.resources.getString(R.string.delete_note)
-        private val deletedMessage = binding.root.resources.getString(R.string.deleted)
 
         fun bind(note: Note) {
             this.note = note
@@ -104,34 +98,13 @@ class NoteAdapter(
             mBinding.invalidateAll()
         }
 
-        fun createNoteDialog() {
-            NoteDialog(
-                mBinding.root.context,
-                false, note,
-                onDelete,
-                onUpdate
-            )
+        fun openNoteDetail() {
+            openNote(note)
         }
 
         fun onLongClick(): Boolean {
-            val builder = AlertDialog.Builder(mBinding.root.context, R.style.custom_alert_dialog)
-            builder.setTitle("$deleteNoteMessage \"${note.name}\"?")
-                .setMessage(cancelWarningMessage)
-                .setPositiveButton(
-                    deleteMessage
-                ) { _, _ -> deleteTask() }
-                .setNegativeButton(
-                    cancelMessage
-                ) { dialog, _ -> dialog.cancel() }
-
-            val alertDialog = builder.create()
-            alertDialog.show()
+            DeleteNoteDialog(mBinding.root.context, note,onDelete)
             return true
-        }
-
-        private fun deleteTask() {
-            onDelete(note)
-            Toast.makeText(mBinding.root.context, deletedMessage, Toast.LENGTH_SHORT).show()
         }
     }
 }

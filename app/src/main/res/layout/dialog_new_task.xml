@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="task"
+            type="com.baleshapp.pocketpaper.data.model.Task" />
+
+        <variable
+            name="dialog"
+            type="com.baleshapp.pocketpaper.view.task.dialogs.NewTaskDialog" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_20_corners_shape"
+        android:backgroundTint="?attr/app_window_background_color"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="4dp"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/task_input_tag_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/general_tag_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:checked="true"
+                    android:text="@string/general_tag_text"
+                    app:checkedIconEnabled="true"
+                    app:chipBackgroundColor="?attr/general_task_tag_color"
+                    app:chipCornerRadius="10dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/personal_tag_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/personal_tag_text"
+                    app:checkedIconEnabled="true"
+                    app:chipBackgroundColor="?attr/personal_task_tag_color"
+                    app:chipCornerRadius="10dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/work_tag_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/work_tag_text"
+                    app:checkedIconEnabled="true"
+                    app:chipBackgroundColor="?attr/work_task_tag_color"
+                    app:chipCornerRadius="10dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/study_tag_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/study_tag_text"
+                    app:checkedIconEnabled="true"
+                    app:chipBackgroundColor="?attr/study_task_tag_color"
+                    app:chipCornerRadius="10dp" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp">
+
+            <RelativeLayout
+                android:id="@+id/task_date_time_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:onClick="@{() -> dialog.createDateTimePicker()}"
+                android:padding="6dp">
+
+                <ImageView
+                    android:id="@+id/task_date_time_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/calendar"
+                    app:tint="?attr/text_color_attr"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="6dp"
+                    android:layout_toEndOf="@id/task_date_time_icon"
+                    android:text="@{dialog.dateText}"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/task_add_description_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/task_date_time_container"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:onClick="@{() -> dialog.changeDescriptionState()}"
+                android:padding="6dp"
+                android:src="@drawable/menu_03"
+                app:tint="?attr/text_color_attr"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/task_name_save_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/task_input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/save_task_button"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="@string/new_task"
+                android:inputType="textCapSentences|textNoSuggestions"
+                android:minHeight="48dp"
+                android:paddingHorizontal="6dp"
+                android:text="@={task.name}"
+                android:textColor="?attr/text_color_attr"
+                android:textColorHint="@color/light_grey"
+                tools:ignore="Autofill" />
+
+            <ImageButton
+                android:id="@+id/save_task_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:contentDescription="@string/save_task_button_description"
+                android:onClick="@{() -> dialog.saveTask()}"
+                android:src="@drawable/send_03"
+                app:tint="?attr/button_color_attr" />
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/task_input_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_10_corners_shape"
+            android:backgroundTint="?attr/app_item_background_color"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="@string/add_description_text"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine|textCapSentences|textNoSuggestions"
+            android:minHeight="120dp"
+            android:padding="8dp"
+            android:text="@={task.description}"
+            android:textAlignment="gravity"
+            android:textColor="?attr/text_color_attr"
+            android:textColorHint="@color/light_grey"
+            android:textSize="16sp"
+            android:visibility="@{dialog.description ? View.VISIBLE : View.GONE}" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="36dp" />
+
+    </LinearLayout>
+</layout>

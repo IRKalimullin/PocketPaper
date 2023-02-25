@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="purchaseList"
+            type="com.baleshapp.pocketpaper.data.model.PurchaseList" />
+
+        <variable
+            name="purchaseItem"
+            type="com.baleshapp.pocketpaper.data.model.PurchaseItem" />
+
+        <variable
+            name="activity"
+            type="com.baleshapp.pocketpaper.view.purchase.PurchaseListItemActivity" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/app_window_background_color"
+        tools:context=".view.purchase.PurchaseListItemActivity">
+
+        <RelativeLayout
+            android:id="@+id/note_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/current_note_toolbar"
+                layout="@layout/base_toolbar_layout"
+                app:activity="@{activity}" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/note_toolbar"
+            android:layout_marginHorizontal="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/name_hint"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/purchase_list_name_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:inputType="textCapSentences|textNoSuggestions"
+                android:minHeight="48dp"
+                android:paddingHorizontal="6dp"
+                android:text="@={purchaseList.name}"
+                android:textColor="?attr/text_color_attr"
+                android:textColorHint="@color/light_grey"
+                tools:ignore="Autofill,LabelFor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/list"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:minHeight="200dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/purchases_items_add_line_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        android:clickable="true"
+                        android:hint="@string/add_new_item_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textNoSuggestions|textPersonName"
+                        android:paddingStart="15dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="0dp"
+                        android:paddingBottom="10dp"
+                        android:text="@={purchaseItem.name}"
+                        android:textColor="?attr/text_color_attr"
+                        android:textColorHint="@color/light_grey"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/save_purchase_item_button"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="6dp"
+                        android:onClick="@{() -> activity.saveItem()}"
+                        android:src="@drawable/download_03"
+                        app:tint="?attr/text_color_attr"
+                        tools:ignore="ContentDescription" />
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/purchase_item_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="6dp"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

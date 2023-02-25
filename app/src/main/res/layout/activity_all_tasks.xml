@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.baleshapp.pocketpaper.view.task.alltasks.AllTasksActivity" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/app_window_background_color"
+        android:orientation="vertical"
+        tools:context=".view.task.alltasks.AllTasksActivity">
+
+        <include
+            layout="@layout/base_toolbar_layout"
+            app:activity="@{activity}"
+            app:title="@{@string/all_tasks}" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/all_task_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:background="?attr/app_window_background_color"
+            app:tabIconTint="?attr/text_color_attr"
+            app:tabIndicatorColor="?attr/app_primary_color"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="auto"
+            app:tabTextColor="?attr/text_color_attr" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/all_tasks_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+</layout>

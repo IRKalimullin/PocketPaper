@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.baleshapp.pocketpaper.view.mainpage.MainPageActivity" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/app_window_background_color">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:background="?attr/app_window_background_color"
+            android:fitsSystemWindows="true"
+            app:elevation="0dp">
+
+            <RelativeLayout
+                android:id="@+id/main_page_up_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <ImageButton
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toStartOf="@id/main_page_settings_button"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    android:onClick="@{() -> activity.openCalendar()}"
+                    android:src="@drawable/calendar"
+                    app:tint="?attr/text_color_attr"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/main_page_settings_button"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    android:onClick="@{() -> activity.openSettings()}"
+                    android:src="@drawable/settings_03"
+                    app:tint="?attr/text_color_attr"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/main_page_title"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="40sp"
+                    tools:ignore="RelativeOverlap" />
+            </RelativeLayout>
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|snap">
+
+                <include
+                    layout="@layout/app_section_grid_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:activity="@{activity}"
+                    app:layout_collapseMode="pin" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="12dp"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:id="@+id/task_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageButton
+                        android:id="@+id/tag_selector_button"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/rounded_10_corners_shape"
+                        android:backgroundTint="?attr/app_item_background_color"
+                        android:onClick="@{() -> activity.openTagMenu()}"
+                        android:src="@drawable/tag_03"
+                        app:tint="?attr/text_color_attr"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@id/tag_selector_button"
+                        android:text="@string/today"
+                        android:textColor="?attr/text_color_attr"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/rounded_10_corners_shape"
+                        android:backgroundTint="?attr/app_item_background_color"
+                        android:onClick="@{() -> activity.openAllTasksList()}"
+                        android:padding="6dp"
+                        android:text="@string/open_all"
+                        android:textColor="?attr/text_color_attr"
+                        android:textSize="16sp"
+                        tools:ignore="RelativeOverlap" />
+
+                </RelativeLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/task_menu">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/active_task_list_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <include
+                                android:id="@+id/empty_task_list_layout"
+                                layout="@layout/empty_task_list_placeholder"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="40dp"
+                                android:visibility="@{activity.emptyMessageVisible ? View.VISIBLE : View.GONE}" />
+
+                            <include
+                                android:id="@+id/completed_task_list_layout"
+                                layout="@layout/completed_task_list_placeholder"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="20dp"
+                                android:visibility="@{activity.completedMessageVisible ? View.VISIBLE : View.GONE}" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/today_active_task_list_rv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:overScrollMode="never"
+                                android:visibility="@{activity.activeVisible ? View.VISIBLE : View.GONE}"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/completed_task_list_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/active_task_list_container"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/completed_tasks"
+                            android:textColor="?attr/text_color_attr"
+                            android:textSize="20sp"
+                            android:visibility="@{activity.completedVisible ? View.VISIBLE : View.GONE}" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/today_completed_task_list_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/completed_task_list_text"
+                            android:layout_marginTop="12dp"
+                            android:overScrollMode="never"
+                            android:visibility="@{activity.completedVisible ? View.VISIBLE : View.GONE}"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="85dp"
+                            android:layout_below="@id/today_completed_task_list_rv" />
+
+                    </RelativeLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/first_start_view"
+            layout="@layout/start_page_layout"
+            android:visibility="@{activity.firstStart ? View.VISIBLE : View.GONE}"
+            app:activity="@{activity}" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/rounded_20_corners_shape"
+            android:drawableLeft="@drawable/ic_baseline_add_24"
+            android:elevation="4dp"
+            android:onClick="@{() -> activity.createNewTask()}"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:stateListAnimator="@null"
+            android:text="@string/new_task"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

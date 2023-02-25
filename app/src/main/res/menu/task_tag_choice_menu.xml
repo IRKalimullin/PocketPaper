@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/all_tasks_tag"
+        android:icon="@drawable/tag_02"
+        android:iconTint="?attr/app_primary_color"
+        android:iconTintMode="src_in"
+        android:title="@string/all" />
+
+    <item
+        android:id="@+id/general_tasks_tag"
+        android:icon="@drawable/tag_02"
+        android:iconTint="?attr/general_task_tag_color"
+        android:iconTintMode="src_in"
+        android:title="@string/general_tag_text" />
+
+    <item
+        android:id="@+id/work_tasks_tag"
+        android:icon="@drawable/tag_02"
+        android:iconTint="?attr/work_task_tag_color"
+        android:iconTintMode="src_in"
+        android:title="@string/work_tag_text" />
+
+    <item
+        android:id="@+id/personal_tasks_tag"
+        android:icon="@drawable/tag_02"
+        android:iconTint="?attr/personal_task_tag_color"
+        android:iconTintMode="src_in"
+        android:title="@string/personal_tag_text" />
+
+    <item
+        android:id="@+id/study_tasks_tag"
+        android:icon="@drawable/tag_02"
+        android:iconTint="?attr/study_task_tag_color"
+        android:iconTintMode="src_in"
+        android:title="@string/study_tag_text" />
+</menu>

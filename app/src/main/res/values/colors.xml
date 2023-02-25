@@ -23,4 +23,25 @@
     <color name="general_task_tag_color">@color/green</color>
     <color name="work_task_tag_color">@color/violet</color>
     <color name="study_task_tag_color">@color/yellow</color>
+
+
+    <!-- New app colors -->
+    <color name="dim_purple">#A07E7F</color>
+    <color name="porcelain">#F1F3F4</color>
+    <color name="sandy_brown">#F39558</color>
+    <color name="amulet">#85A375</color>
+    <color name="ming">#3A6C7F</color>
+    <color name="copper_canyon">#8B4218</color>
+    <color name="wild_willow">#B7CF79</color>
+    <color name="malibu">#89B8FF</color>
+    <color name="macaroni_and_cheese">#FFB682</color>
+    <color name="golden_tainoi">#FEC868</color>
+    <color name="stromboli">#34685C</color>
+    <color name="go_ben">#737955</color>
+    <color name="crown_of_thorns">#80221E</color>
+    <color name="stack">#8F9390</color>
+    <color name="dark_grey">#282D30</color>
+    <color name="dark_black">#070C08</color>
+
+
 </resources>

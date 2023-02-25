@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dialog"
+            type="com.baleshapp.pocketpaper.view.task.dialogs.TaskDateTimePickerDialog" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_10_corners_shape"
+        android:backgroundTint="?attr/app_window_background_color"
+        android:orientation="vertical">
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:id="@+id/task_calendar_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_10_corners_shape"
+            android:backgroundTint="?attr/app_item_background_color"
+            android:switchTextAppearance="@style/calendar_text_appearance"
+            app:mcv_calendarMode="month"
+            app:mcv_dateTextAppearance="@style/calendar_text_appearance"
+            app:mcv_headerTextAppearance="@style/calendar_text_appearance"
+            app:mcv_selectionColor="?attr/app_primary_color"
+            app:mcv_showOtherDates="out_of_range"
+            app:mcv_weekDayTextAppearance="@style/calendar_text_appearance" />
+
+        <RelativeLayout
+            android:id="@+id/time_container"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/rounded_10_corners_shape"
+            android:backgroundTint="?attr/app_item_background_color"
+            android:onClick="@{() -> dialog.createTimePicker()}">
+
+            <ImageView
+                android:id="@+id/task_time_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/clock"
+                app:tint="?attr/text_color_attr"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="6dp"
+                android:layout_toEndOf="@id/task_time_icon"
+                android:gravity="center_vertical"
+                android:text="@string/time"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical"
+                android:text="@{dialog.timeText}"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="20sp"
+                tools:ignore="RelativeOverlap" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

@@ -63,6 +63,7 @@
     <string name="add_new_item_hint">Add an item</string>
     <string name="new_list_hint">New list</string>
     <string name="new_task">New task</string>
+    <string name="new_note">New note</string>
     <string name="tasks_on_date">Tasks for selected date</string>
     <string name="expand">Expand</string>
     <string name="collapse">Collapse</string>
@@ -78,9 +79,39 @@
     <string name="save">Save</string>
     <string name="edit">Edit</string>
     <string name="done">Done</string>
+    <string name="apply">Apply</string>
+    <string name="empty_note_deleted">Empty note deleted</string>
     <string name="add_description_text">Add a description for the task</string>
+    <string name="share">Share</string>
+    <string name="list">List</string>
+    <string name="date_and_time">Date and time</string>
+    <string name="tag">Tag</string>
+    <string name="all">All</string>
+    <string name="begin">Begin</string>
 
+    <string name="rate_app">Rate the app</string>
+    <string name="recommend_app">Recommend the app</string>
+    <string name="report_bug">Report a bug</string>
+
+    <string name="all_task_completed_text">You have completed all tasks for today</string>
+    <string name="nothing_added_text">You have not added anything</string>
+    <string name="click_to_record">Click to record</string>
+    <string name="nothing_planned_today_text">You have nothing planned for today</string>
+    <string name="click_to_add_task_text">Click to add a new task</string>
+
+    <string name="welcome_to_app">Welcome to\nPocket Paper</string>
+
+    <string name="share_recommendation_text">I use the Pocket Paper app to keep a to-do list.</string>
+    <string name="try_app_text">Try the app:</string>
     <string name="app_description">All your to-do lists, shopping lists and notes in one place.</string>
+
+
+    <string name="plan_your_day_text">Plan your day</string>
+    <string name="add_tasks_to_list_text">Add tasks for any day</string>
+    <string name="add_notes_text">Add notes</string>
+    <string name="record_information_text">Write down the information you need so you dont forget</string>
+    <string name="track_your_habits_text">Track your habits</string>
+    <string name="track_in_calendar_text">Keep track of progress on the calendar</string>
 
     <string-array name="finance_spent_categories">
         <item>Products</item>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="note"
+            type="com.baleshapp.pocketpaper.data.model.Note" />
+
+        <variable
+            name="activity"
+            type="com.baleshapp.pocketpaper.view.note.NoteActivity" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/app_window_background_color"
+        tools:context=".view.note.NoteActivity">
+
+        <RelativeLayout
+            android:id="@+id/note_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/current_note_toolbar"
+                layout="@layout/base_toolbar_layout"
+                app:activity="@{activity}"
+                app:title="@{@string/note}" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/note_menu"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:checkable="false"
+                android:minWidth="140dp"
+                android:onClick="@{() -> activity.openMenu()}"
+                android:padding="6dp"
+                android:src="@drawable/dots_vertical"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="20sp"
+                android:visibility="@{activity.newNote ? View.GONE : View.VISIBLE}"
+                app:tint="?attr/text_color_attr" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/save_habit"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:checkable="false"
+                android:minWidth="140dp"
+                android:onClick="@{() -> activity.changeNote()}"
+                android:padding="6dp"
+                android:src="@drawable/save_02"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="20sp"
+                android:visibility="@{activity.newNote ? View.VISIBLE : View.GONE }"
+                app:tint="?attr/text_color_attr" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:id="@+id/note_detail_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/note_toolbar"
+            android:layout_marginTop="16dp"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name_hint"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/note_name_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:inputType="textCapSentences|textNoSuggestions"
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="6dp"
+                    android:text="@={note.name}"
+                    android:textColor="?attr/text_color_attr"
+                    android:textColorHint="@color/light_grey"
+                    tools:ignore="Autofill,LabelFor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/note_text_hint"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/note_text_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="top"
+                    android:inputType="textCapSentences|textNoSuggestions|textMultiLine"
+                    android:minHeight="192dp"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="6dp"
+                    android:text="@={note.text}"
+                    android:textColor="?attr/text_color_attr"
+                    android:textColorHint="@color/light_grey"
+                    tools:ignore="Autofill,LabelFor" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>

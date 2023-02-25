@@ -63,6 +63,7 @@
     <string name="add_new_item_hint">Añadir artículo</string>
     <string name="new_list_hint">Lista nueva</string>
     <string name="new_task">Nueva tarea</string>
+    <string name="new_note">Nueva nota</string>
     <string name="tasks_on_date">Tareas para la fecha seleccionada</string>
     <string name="expand">Expandir</string>
     <string name="collapse">Colapsar</string>
@@ -78,10 +79,38 @@
     <string name="save">Salvar</string>
     <string name="edit">Editar</string>
     <string name="done">Hecho</string>
+    <string name="apply">Aplicar</string>
+    <string name="empty_note_deleted">Nota vacía eliminada</string>
     <string name="add_description_text">Agregar una descripción para la tarea</string>
+    <string name="share">Compartir</string>
+    <string name="list">Lista</string>
+    <string name="date_and_time">Fecha y hora</string>
+    <string name="tag">Tag</string>
+    <string name="all">Toda</string>
+    <string name="begin">Comenzar</string>
 
+    <string name="rate_app">Califica la aplicación</string>
+    <string name="recommend_app">Recomendar la aplicación</string>
+    <string name="report_bug">Reportar un error</string>
 
+    <string name="all_task_completed_text">Has completado todas las tareas de hoy</string>
+    <string name="nothing_added_text">No has añadido nada</string>
+    <string name="click_to_record">Haga clic para grabar</string>
+    <string name="nothing_planned_today_text">No tienes nada planeado para hoy</string>
+    <string name="click_to_add_task_text">Haga clic para agregar una nueva tarea</string>
+
+    <string name="welcome_to_app">Bienvenida a\nPocket Paper</string>
+
+    <string name="share_recommendation_text">Uso la aplicación Pocket Paper para mantener una lista de tareas pendientes.</string>
+    <string name="try_app_text">Prueba la aplicación:</string>
     <string name="app_description">Todas tus listas de tareas, listas de compras y notas en un solo lugar.</string>
+
+    <string name="plan_your_day_text">Planifica tu día</string>
+    <string name="add_tasks_to_list_text">Agregar tareas para cualquier día</string>
+    <string name="add_notes_text">Agregar notas</string>
+    <string name="record_information_text">Anota la información que necesitas para que no se te olvide</string>
+    <string name="track_your_habits_text">Seguimiento de sus hábitos</string>
+    <string name="track_in_calendar_text">Mantenga un registro del progreso en el calendario</string>
 
     <string-array name="finance_spent_categories">
         <item>Productos</item>

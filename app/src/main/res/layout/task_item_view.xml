@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewHolder"
+            type="com.baleshapp.pocketpaper.view.task.adapters.TaskListAdapter.TaskItemViewHolder" />
+
+        <variable
+            name="task"
+            type="com.baleshapp.pocketpaper.data.model.Task" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/rounded_10_corners_shape"
+        android:backgroundTint="?attr/app_item_background_color"
+        android:onClick="@{() -> viewHolder.openTaskDetail()}"
+        android:onLongClick="@{() -> viewHolder.onLongClick()}"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/task_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{task.name}"
+            android:textColor="?attr/text_color_attr"
+            android:textSize="20sp"
+            tools:ignore="RelativeOverlap" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/task_name_view"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:text="@{viewHolder.getTimeString(task)}"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/menu_03"
+                android:visibility="@{viewHolder.description ? View.VISIBLE : View.GONE}"
+                app:tint="?attr/text_color_attr"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/bell_01"
+                android:visibility="@{View.GONE}"
+                app:tint="?attr/text_color_attr"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/branch_01"
+                android:visibility="@{View.GONE}"
+                app:tint="?attr/text_color_attr"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:button="@drawable/circle_checkbox_selector"
+            android:buttonTint="?attr/button_color_attr"
+            android:checked="@{task.done}"
+            android:gravity="top"
+            android:onCheckedChanged="@{(compoundButton, checked) -> viewHolder.saveCheckedState(checked)}" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/task_tag_item_view"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_below="@id/task_name_view"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_10_corners_shape"
+            android:padding="2dp"
+            android:text="@{viewHolder.tagText}"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:chipCornerRadius="10dp"
+            app:chipMinTouchTargetSize="0dp" />
+
+    </RelativeLayout>
+</layout>

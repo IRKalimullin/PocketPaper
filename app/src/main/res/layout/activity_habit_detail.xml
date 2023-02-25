@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="habit"
+            type="com.baleshapp.pocketpaper.data.model.Habit" />
+
+        <variable
+            name="activity"
+            type="com.baleshapp.pocketpaper.view.habit.HabitDetailActivity" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/app_window_background_color"
+        tools:context=".view.habit.HabitDetailActivity">
+
+        <RelativeLayout
+            android:id="@+id/habit_detail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/back_to_habit_list_button"
+                layout="@layout/base_toolbar_layout"
+                app:activity="@{activity}"
+                app:title="@{}" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/delete_habit"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/rounded_10_corners_shape"
+                android:backgroundTint="?attr/app_item_background_color"
+                android:checkable="false"
+                android:minWidth="140dp"
+                android:onClick="@{() -> activity.deleteHabit()}"
+                android:padding="6dp"
+                android:src="@drawable/trash_01"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="?attr/text_color_attr"
+                android:textSize="20sp"
+                app:tint="?attr/text_color_attr" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/habit_detail_toolbar"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="16dp"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name_hint"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/habit_name_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    android:inputType="textCapSentences|textNoSuggestions"
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="6dp"
+                    android:text="@={habit.name}"
+                    android:textColor="?attr/text_color_attr"
+                    android:textColorHint="@color/light_grey"
+                    tools:ignore="Autofill,LabelFor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/description"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/habit_description_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    android:gravity="top"
+                    android:inputType="textCapSentences|textNoSuggestions|textMultiLine"
+                    android:minHeight="192dp"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="6dp"
+                    android:text="@={habit.description}"
+                    android:textColor="?attr/text_color_attr"
+                    android:textColorHint="@color/light_grey"
+                    tools:ignore="Autofill,LabelFor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/start_date"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:checkable="false"
+                    android:minWidth="140dp"
+                    android:onClick="@{() -> activity.openDatePicker()}"
+                    android:padding="6dp"
+                    android:text="@{activity.habitStartDateText}"
+                    android:textAlignment="center"
+                    android:textColor="?attr/text_color_attr"
+                    android:textSize="20sp"
+                    app:chipBackgroundColor="?attr/app_item_background_color"
+                    app:chipCornerRadius="10dp"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/rounded_10_corners_shape"
+                    android:backgroundTint="?attr/app_item_background_color"
+                    android:visibility="@{activity.newHabit ? View.GONE : View.VISIBLE}">
+
+                    <HorizontalScrollView
+                        android:id="@+id/habit_calendar_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="8dp"
+                        android:scrollbars="none">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/completed_habit_circle"
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_baseline_circle_24"
+                                app:tint="@color/green"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:id="@+id/completed_habit_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:layout_toEndOf="@id/completed_habit_circle"
+                                android:text="@string/completed_tasks"
+                                android:textColor="?attr/text_color_attr"
+                                android:textSize="12sp" />
+
+                            <ImageView
+                                android:id="@+id/missed_habit_circle"
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="6dp"
+                                android:layout_toEndOf="@id/completed_habit_text"
+                                android:src="@drawable/ic_baseline_circle_24"
+                                app:tint="@color/crimson"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:id="@+id/missed_habit_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:layout_toEndOf="@id/missed_habit_circle"
+                                android:text="@string/missed_tasks"
+                                android:textColor="?attr/text_color_attr"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/today_habit_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="6dp"
+                                android:layout_toEndOf="@id/missed_habit_text"
+                                android:text="12"
+                                android:textColor="@color/yellow"
+                                android:textSize="12sp"
+                                tools:ignore="HardcodedText" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:layout_toEndOf="@id/today_habit_text"
+                                android:text="@string/current_date"
+                                android:textColor="?attr/text_color_attr"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </HorizontalScrollView>
+
+                    <View
+                        android:id="@+id/line_view_habit_calendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_below="@id/habit_calendar_info"
+                        android:layout_marginTop="8dp"
+                        android:background="?attr/app_window_background_color" />
+
+                    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                        android:id="@+id/habit_calendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/line_view_habit_calendar"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="6dp"
+                        android:switchTextAppearance="@style/calendar_text_appearance"
+                        app:mcv_calendarMode="month"
+                        app:mcv_dateTextAppearance="@style/calendar_text_appearance"
+                        app:mcv_headerTextAppearance="@style/calendar_text_appearance"
+                        app:mcv_selectionColor="?attr/item_background_color_attr"
+                        app:mcv_showOtherDates="decorated_disabled"
+                        app:mcv_weekDayTextAppearance="@style/calendar_text_appearance" />
+
+                </RelativeLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/rounded_20_corners_shape"
+            android:elevation="4dp"
+            android:onClick="@{() -> activity.saveHabit()}"
+            android:paddingHorizontal="26dp"
+            android:paddingVertical="10dp"
+            android:stateListAnimator="@null"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="@{activity.newHabit ? View.VISIBLE : View.GONE}" />
+
+    </RelativeLayout>
+</layout>
