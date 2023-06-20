@@ -221,13 +221,13 @@
             </RelativeLayout>
 
         </RelativeLayout>
-
+<!--
         <include
             android:id="@+id/first_start_view"
             layout="@layout/start_page_layout"
             android:visibility="@{activity.firstStart ? View.VISIBLE : View.GONE}"
             app:activity="@{activity}" />
-
+-->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

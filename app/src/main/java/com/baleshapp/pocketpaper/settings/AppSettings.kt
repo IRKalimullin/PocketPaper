@@ -64,4 +64,6 @@ class AppSettings(context: Context) {
         editor.putBoolean(FIRST_START_FLAG,false).apply()
     }
 
+
+
 }
