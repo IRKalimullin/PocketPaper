@@ -4,7 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.baleshapp.pocketpaper.data.database.converters.TaskTagConverter
+import com.baleshapp.pocketpaper.data.database.converters.StateConverter
+import com.baleshapp.pocketpaper.data.database.converters.TaskPriorityConverter
 
 @Entity
 data class Task(
@@ -15,7 +16,11 @@ data class Task(
     @ColumnInfo(name = "time") var time: Long,
     @ColumnInfo(name = "timestampOfTask") var timestampOfTask: Long,
     @ColumnInfo(name = "description") var description: String,
+    @ColumnInfo(name = "folderId") var folderId: Int = 0,
 
-    @TypeConverters(TaskTagConverter::class)
-    @ColumnInfo(name = "tag") var tag: TaskTag
+    @TypeConverters(TaskPriorityConverter::class)
+    @ColumnInfo(name = "priority") var priority: TaskPriority = TaskPriority.NONE,
+
+    @TypeConverters(StateConverter::class)
+    @ColumnInfo(name = "state") var state: States = States.CREATED
 ) : java.io.Serializable

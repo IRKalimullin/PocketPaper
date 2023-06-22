@@ -59,3 +59,45 @@ internal val MIGRATION_1_2 = object : Migration(1, 2) {
         )
     }
 }
+
+internal val MIGRATION_2_3 = object : Migration(2, 3) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            "CREATE TABLE Folder (id INTEGER NOT NULL, name TEXT NOT NULL, PRIMARY KEY(id))"
+        )
+
+        database.execSQL(
+            "CREATE TABLE CanceledTaskCause (id INTEGER NOT NULL, taskId INTEGER NOT NULL, " +
+                    "cause TEXT NOT NULL, PRIMARY KEY(id))"
+        )
+
+        database.execSQL(
+            "CREATE TABLE Task_backup (id INTEGER NOT NULL, name TEXT NOT NULL, " +
+                    "isDone INTEGER NOT NULL, date INTEGER NOT NULL, time INTEGER NOT NULL, " +
+                    "timestampOfTask INTEGER NOT NULL, description TEXT NOT NULL, tag TEXT NOT NULL)"
+        )
+
+        database.execSQL(
+            "INSERT INTO Task_backup SELECT id, name, isDone, date, time, " +
+                    "timestampOfTask, description,tag FROM Task"
+        )
+
+        database.execSQL("DROP TABLE Task")
+
+        database.execSQL(
+            "CREATE TABLE Task (id INTEGER NOT NULL, name TEXT NOT NULL, " +
+                    "isDone INTEGER NOT NULL, date INTEGER NOT NULL, time INTEGER NOT NULL, " +
+                    "timestampOfTask INTEGER NOT NULL, description TEXT NOT NULL, folderId INTEGER DEFAULT 0 NOT NULL," +
+                    "priority TEXT DEFAULT 'NONE' NOT NULL, state TEXT DEFAULT 'CREATED' NOT NULL, PRIMARY KEY(id))"
+        )
+
+        database.execSQL(
+            "INSERT INTO Task SELECT id, name, isDone, date, time, timestampOfTask," +
+                    "description FROM Task_backup"
+        )
+
+        database.execSQL("DROP TABLE Task_backup")
+
+        database.execSQL("ALTER TABLE Note ADD state DEFAULT 'CREATED' NOT NULL")
+    }
+}
